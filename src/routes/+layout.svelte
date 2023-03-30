@@ -36,12 +36,16 @@
 	</svelte:fragment>
 	<!-- <svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment> -->
 	<svelte:fragment slot="sidebarRight">
-		<div class="bg-secondary-500 h-full">
+		<div class="bg-secondary-500 h-full p-10 hidden md:block">
 			<User session={data.session} />
 		</div>
 	</svelte:fragment>
-	<!-- <svelte:fragment slot="pageHeader">Page Header</svelte:fragment> -->
-	<!-- Router Slot -->
+	<svelte:fragment slot="pageHeader">
+		<div class="block md:hidden">
+			<User session={data.session} />
+		</div>
+	</svelte:fragment>
+	
 	<slot />
 	
 	<!-- <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment>
