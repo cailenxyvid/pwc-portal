@@ -14,10 +14,10 @@
 </script>
 
 {#if !session}
-<div class="bg-secondary-500">
+<div class="bg-secondary-500 pt-2 pb-2 md:p-2">
     <form on:submit|preventDefault={signInWithMagicLink}>
-        <input type="email" name="email" id="email" placeholder="email" bind:value={email} />
-        <button type="submit" class="bg-primary-500 p-2 rounded-sm">Sign In with Magic Link</button>
+        <input type="email" name="email" id="email" placeholder="email" class="sm:w-2/4 md:w-full md:mb-2" bind:value={email} />
+        <button type="submit" class="bg-primary-500 p-2 rounded-sm sm:w-2/4 md:w-full">Sign In with Magic Link</button>
     </form>
 </div>
 {:else}
