@@ -1,15 +1,17 @@
 <script lang="ts">
+	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
+
 	import type { PageData } from './$types';
 
   	export let data: PageData;
 	
+	let { events } = data;
+    $: ({ events } = data);
 </script>
     
-<div class="container h-full mx-auto flex justify-center items-center">
-	<div class="flex flex-row h-full pt-16">
-		<div class="w-3/4">
-			Events
-		</div>
-		
-	</div>	
+  
+<div class="container h-full mx-auto flex justify-center pt-10 pl-10 border border-secondary-500">
+	{#each events as event}
+	<UpcomingEvent {event} />
+	{/each}
 </div>

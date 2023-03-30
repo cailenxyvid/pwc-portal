@@ -7,17 +7,17 @@
 	const signInWithMagicLink = async () => {
 		const { data, error } = await supabase.auth.signInWithOtp({ email });
 		console.log(data, error);
+		//# todo: need to handle and display errors plus UX for 60 second cap on link request
 	};
 
 	let email ='';
 </script>
 
 {#if !session}
-<h1>I am not logged in</h1>
-<div class="test">
+<div class="bg-secondary-500">
     <form on:submit|preventDefault={signInWithMagicLink}>
         <input type="email" name="email" id="email" placeholder="email" bind:value={email} />
-        <button type="submit">Sign In with Magic Link</button>
+        <button type="submit" class="bg-primary-500 p-2 rounded-sm">Sign In with Magic Link</button>
     </form>
 </div>
 {:else}
