@@ -5,7 +5,8 @@ import {
   } from '$env/static/public';
   import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit';
   import type { LayoutLoad } from './$types';
-  //# add these after the DB is setup (if you can make sense of supabase CLI used in this context
+
+  //# add this after the DB is setup (if you can make sense of supabase CLI used in this context
   //   import type { Database } from '../DatabaseDefinitions';
 
   

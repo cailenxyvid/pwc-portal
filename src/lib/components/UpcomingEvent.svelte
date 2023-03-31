@@ -6,6 +6,12 @@
 <div class="w-full">
     <div class="event-title text-primary-500 text-2xl">{event.title}</div>
     <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
+    <div class="event-register">
+        <label class="inline-flex items-center">
+            <input type="checkbox" class="w-8 h-8 text-primary-500"  />
+            <span class="ml-2">Large size checkbox</span>
+          </label>
+    </div>
     <div class="event-content">{@html event.content}</div>
 </div>
 {:else}
