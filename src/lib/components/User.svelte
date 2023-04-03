@@ -3,6 +3,8 @@
 	import type { Session } from '@supabase/supabase-js';  
 	import { supabase } from '$lib/data/supabase';
 
+	import { myEvents } from '$lib/stores/myEvents';
+
 	import Register from './Register.svelte';
 	import MyEvents from './MyEvents.svelte';
 
@@ -52,8 +54,24 @@
 		}
 	}
 
+	let loadEvents = async () => {
+		if (!session) return;
+		let { data } = await supabase
+			.from("registration")
+			.select(`
+				attendee,
+				event (
+					title
+				)
+				`)
+			.eq('attendee', session?.user.id);
+		console.log('loadEvents', data)
+		$myEvents = data;
+	}
+
 	onMount(async () => {
 		loadProfile();
+		loadEvents();
 	});
 
 	let emailSent = false;
