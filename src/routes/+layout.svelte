@@ -47,5 +47,5 @@
 		</div>
 	</svelte:fragment>
 	
-	<slot />	
+	<slot />
 </AppShell>

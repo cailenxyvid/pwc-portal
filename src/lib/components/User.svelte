@@ -93,11 +93,12 @@
 	{/if}    
 {:else}
 	{#if emailSent}
-		<div class="text-success-500 pl-2 w-full">Email sent!</div>
+		<div class="text-success-500 pl-2 w-full">Email sent! Please follow the link in your email to continue with registration.</div>
 		{:else}
 		<form on:submit|preventDefault={signInWithMagicLink}>
 			<input type="email" name="email" id="email" placeholder="email" class="sm:w-2/4 md:w-full md:mb-2" bind:value={email} />
-			<button type="submit" class="bg-primary-500 text-white p-2 rounded-sm sm:w-2/4 md:w-full">Sign In with Magic Link</button>
+			<button type="submit" class="bg-primary-500 text-white p-2 rounded-sm sm:w-2/4 md:w-full">Register</button>
+			<div class="text-sm italic text-secondary-500">You will recieve an email with a sign-in link.</div>
 		</form>		
 	{/if}	    
 {/if}	

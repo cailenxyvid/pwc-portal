@@ -22,7 +22,7 @@
             </div>            
             {/each}
 		{:else if tabSet === 1}
-			Do we actually want this?       
+			You are not registered for any replay events.
 		{/if}
 	</svelte:fragment>
 </TabGroup>

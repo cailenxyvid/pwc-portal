@@ -7,8 +7,7 @@
     export let toggleEvent: any;
 
     let alreadyRegistered = false;
-    $: alreadyRegistered = $myEvents.some(e => event.id = e.event.id)
-    console.log('alreadyRegistered', alreadyRegistered, $myEvents)
+    $: alreadyRegistered = $myEvents.some(e => event.id == e.event.id)    
 </script>
 
 {#if event}
