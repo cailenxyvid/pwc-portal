@@ -10,7 +10,7 @@
 </script>
     
   
-<div class="container h-full mx-auto flex justify-center pt-10 pl-10 pr-10 border border-secondary-500">
+<div class="container h-full mx-auto flex justify-center pt-10 pl-10 pr-10 border border-secondary-500 space-x-6">
 	{#each events as event}
 	<ReplayEvent {event} />
 	{/each}
