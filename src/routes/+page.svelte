@@ -92,7 +92,7 @@
 	<div class="w-full text-center mb-10">
 		<button on:click={registerEvents} class="{enableRegister ? 'bg-primary-500' : 'bg-primary-100'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
 	</div>
-	<div class="w-full flex flex-row space-x-6">
+	<div class="w-full flex flex-col md:flex-row space-x-6">
 		{#each events as event}
 		<UpcomingEvent {event} {toggleEvent} />
 		{/each}
