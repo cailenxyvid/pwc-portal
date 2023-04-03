@@ -45,6 +45,7 @@
 				.select()
 			}
 			await loadEvents();
+			selectedEvents = [];
 		} else {
 			//# toast or alert
 			console.warn('No events selected!')
@@ -54,6 +55,7 @@
 	let addEvent = (event_id:string) => {		
 		if (!selectedEvents.some(e => e === event_id)) {
 			selectedEvents.push(event_id)
+			selectedEvents = selectedEvents;
    		}
 	}
 
@@ -75,8 +77,11 @@
 	}
 
 	let selectedEvents:string[] = [];
+	let enableRegister = false;
+
 	let { events } = data;
     $: ({ events } = data);
+	$: enableRegister = (selectedEvents.length > 0); console.log('enable register react', selectedEvents)
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 pl-10 pr-10 border border-secondary-500">	
@@ -85,7 +90,7 @@
 		Our monthly webcasts provide trust building blocks at the intersection of emerging topics. Listen to diverse perspectives and prepare for the future. *Pick one topic or choose them all. 
 	</div>
 	<div class="w-full text-center mb-10">
-		<button on:click={registerEvents} class="{selectedEvents.length > 0 ? 'bg-primary-500' : 'bg-primary-100'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
+		<button on:click={registerEvents} class="{enableRegister ? 'bg-primary-500' : 'bg-primary-100'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
 	</div>
 	<div class="w-full flex flex-row space-x-6">
 		{#each events as event}
