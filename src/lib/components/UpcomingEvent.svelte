@@ -24,7 +24,7 @@
     <div class="event-register">
         <label class="inline-flex items-center">
             <input on:change={toggleEvent} value={event.id} checked={alreadyRegistered} disabled={alreadyRegistered} type="checkbox" class="w-8 h-8 text-primary-500" />
-            <span class="ml-2">Select this event</span>
+            <span class="ml-2">{alreadyRegistered ? 'You are registered!' : 'Select this event'}</span>
           </label>
     </div>
     <div class="event-content">        
