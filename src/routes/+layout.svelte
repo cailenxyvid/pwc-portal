@@ -35,7 +35,7 @@
 	</svelte:fragment>
 	
 	<svelte:fragment slot="sidebarRight">
-		<div class="h-full p-10 hidden md:block bg-secondary-500">
+		<div class="h-full p-10 hidden md:block bg-secondary-100">
 			<User session={data.session} />
 		</div>
 	</svelte:fragment>

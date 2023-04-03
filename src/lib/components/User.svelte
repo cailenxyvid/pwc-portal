@@ -82,7 +82,7 @@
 	$: console.log('profile', profile)
 </script>
 
-<div class="bg-secondary-500 pt-2 pb-2 md:p-2 w-full">
+<div class="pt-2 pb-2 md:p-2 w-full">
 {#if session}
 <strong class="text-lg text-primary-500 text-center">Welcome {session.user.email}</strong>    
 	<!-- <button on:click={signOut} class="bg-tertiary-500 text-white rounded-sm">Sign Out</button> -->

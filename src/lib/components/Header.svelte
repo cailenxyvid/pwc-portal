@@ -12,7 +12,7 @@
             <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />
         </div>
     </svelte:fragment>
-	<div class="items-center text-center">        
+	<div class="items-center text-center md:text-xl">        
         <a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Upcoming Events</a>
         <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Replay Events</a>
     </div>
@@ -23,7 +23,7 @@
 
 <style>
     .topnav {
-        font-size: x-large;
+        /* font-size: x-large; */
         margin-right: 3em;
     }
 
