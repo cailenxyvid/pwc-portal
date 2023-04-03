@@ -1,5 +1,6 @@
 <script lang="ts">
     export let event: any;
+    export let toggleEvent: any;
 </script>
 
 {#if event}
@@ -8,7 +9,7 @@
     <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
     <div class="event-register">
         <label class="inline-flex items-center">
-            <input type="checkbox" class="w-8 h-8 text-primary-500"  />
+            <input on:change={toggleEvent} value={event.id} type="checkbox" class="w-8 h-8 text-primary-500" />
             <span class="ml-2">Select this event</span>
           </label>
     </div>
