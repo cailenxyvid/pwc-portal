@@ -22,7 +22,7 @@
             </div>            
             {/each}
 		{:else if tabSet === 1}
-			(tab panel 2 contents)        
+			Do we actually want this?       
 		{/if}
 	</svelte:fragment>
 </TabGroup>
