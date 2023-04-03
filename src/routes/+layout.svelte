@@ -5,6 +5,8 @@
 	import '../app.postcss'; // do explict global overrides here, if needed
 
 	import { AppShell } from '@skeletonlabs/skeleton';	
+	import { Toast } from '@skeletonlabs/skeleton';
+	
 	import User from "$lib/components/User.svelte";
 	import Header from '$lib/components/Header.svelte';
 	
@@ -42,10 +44,13 @@
 	
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">
-		<div class="block md:hidden">
+		<div class="block md:hidden bg-secondary-100">
 			<User session={data.session} />
 		</div>
 	</svelte:fragment>
 	
+	<!-- main content -->
 	<slot />
+
+	<Toast />
 </AppShell>

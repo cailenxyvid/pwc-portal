@@ -3,19 +3,21 @@
 	import type { Session } from '@supabase/supabase-js';  
 	import { supabase } from '$lib/data/supabase';
 
-	import { myEvents } from '$lib/stores/myEvents';
+	import { myEvents } from '$lib/data/myEvents';
 
 	import Register from './Register.svelte';
 	import MyEvents from './MyEvents.svelte';
 
 	export let session: Session | null;
 	
-
 	const signInWithMagicLink = async () => {
 		const { data, error } = await supabase.auth.signInWithOtp({ email });
-		console.log(data, error);
+		
 		//# todo: need to handle and display errors plus UX for 60 second cap on link request
-		emailSent = true;
+		if (error) {
+			console.error(error)			
+		}
+		emailSent = true; //todo: setTimeout to reset 
 	};
 
 	const updateProfile = async (e:any) => {
@@ -25,8 +27,7 @@
 		for (let field of formData) {
 			const [key, value] = field;
 			data[key] = value; //# todo refactor for TS. this shortcut works for now, despite complaining 
-		}
-		console.log(data)
+		}		
 
 		const { error } = await supabase
 			.from('attendee')
@@ -66,7 +67,7 @@
 				)
 				`)
 			.eq('attendee', session?.user.id);
-		console.log('loadEvents', data)
+		
 		$myEvents = data;
 	}
 
@@ -77,9 +78,7 @@
 
 	let emailSent = false;
 	let email = '';
-	let profile: any;	
-
-	$: console.log('profile', profile)
+	let profile: any;		
 </script>
 
 <div class="pt-2 pb-2 md:p-2 w-full">

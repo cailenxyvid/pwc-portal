@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
-    import { myEvents } from "$lib/stores/myEvents";
+    import { myEvents } from "$lib/data/myEvents";
 
     export let event: any;
     export let toggleEvent: any;

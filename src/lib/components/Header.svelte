@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
     import { AppBar } from '@skeletonlabs/skeleton';
     import logo from '$lib/assets/PwC-logo.svg';
-    console.log($page)
+    import Menu from './Menu.svelte';
 </script>
 
 <AppBar>
@@ -12,12 +12,12 @@
             <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />
         </div>
     </svelte:fragment>
-	<div class="ml-4 md:ml-12 md:text-xl md:space-x-10">        
+	<div class="ml-4 md:ml-12 md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden sm:block">        
         <a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Upcoming&nbsp;Events</a>
         <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Replay&nbsp;Events</a>
     </div>
 	<svelte:fragment slot="trail">
-        <!-- (actions) -->
+        <Menu />
     </svelte:fragment>
 </AppBar>
 

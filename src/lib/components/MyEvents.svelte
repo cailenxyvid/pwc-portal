@@ -1,12 +1,12 @@
 <script>
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 
-    import { myEvents } from '$lib/stores/myEvents';
+    import { myEvents } from '$lib/data/myEvents';
 
     let tabSet = 0;
 </script>
 
-<div class="bg-secondary-300 rounded-sm p-4">
+<div class="rounded-sm p-4">
     <h3>My Events</h3>
     
 <TabGroup>
