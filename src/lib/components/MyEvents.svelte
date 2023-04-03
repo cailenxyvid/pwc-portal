@@ -16,7 +16,8 @@
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
 			{#each $myEvents as event}
-            <div class="bg-primary-200">
+            <div class="text-primary-500 underline">
+                <i class="fa fa-play"></i>
                 {event.event.title}
             </div>            
             {/each}

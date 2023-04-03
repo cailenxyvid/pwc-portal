@@ -12,9 +12,9 @@
             <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />
         </div>
     </svelte:fragment>
-	<div class="items-center text-center">
-        <a href="/" class="topnav">Upcoming Events</a>
-        <a href="/replay" class="topnav">Replay Events</a>
+	<div class="items-center text-center">        
+        <a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Upcoming Events</a>
+        <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Replay Events</a>
     </div>
 	<svelte:fragment slot="trail">
         <!-- (actions) -->
@@ -27,7 +27,7 @@
         margin-right: 3em;
     }
 
-    .topnav:hover {
+    .topnav:hover,.active {
         border-bottom: 5px solid #333;
     }
 </style>

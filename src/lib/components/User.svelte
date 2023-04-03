@@ -61,7 +61,8 @@
 			.select(`
 				attendee,
 				event (
-					title
+					title,
+					id
 				)
 				`)
 			.eq('attendee', session?.user.id);
@@ -96,7 +97,7 @@
 		{:else}
 		<form on:submit|preventDefault={signInWithMagicLink}>
 			<input type="email" name="email" id="email" placeholder="email" class="sm:w-2/4 md:w-full md:mb-2" bind:value={email} />
-			<button type="submit" class="bg-primary-500 p-2 rounded-sm sm:w-2/4 md:w-full">Sign In with Magic Link</button>
+			<button type="submit" class="bg-primary-500 text-white p-2 rounded-sm sm:w-2/4 md:w-full">Sign In with Magic Link</button>
 		</form>		
 	{/if}	    
 {/if}	
