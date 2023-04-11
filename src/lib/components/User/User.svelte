@@ -3,11 +3,13 @@
 	import type { Session } from '@supabase/supabase-js';
 	import { supabase } from '$lib/data/supabase';
 
-	import { myEvents } from '$lib/data/myEvents';
+	import { toastStore } from '@skeletonlabs/skeleton';
 
 	import Register from './Register.svelte';
 	import MyEvents from './MyEvents.svelte';
 	import Login from './Login.svelte';
+
+	import { myEvents } from '$lib/data/myEvents';
 
 	export let session: Session | null;
 	export let cookie: string | undefined;
@@ -29,21 +31,24 @@
 			.eq('id', session?.user.id)
 		if (error) {
 			console.error(error);
+			toastStore.trigger({
+				message: 'Error updating profile!',
+				background: 'variant-filled-warning text-white',
+			});
 		} else {
 			loadProfile();
+			toastStore.trigger({
+				message: 'Profile updated!',
+				background: 'variant-filled-success text-white',
+				timeout: 10000
+			});
 		}
     }
-
-	//# this is probably excessive. just having a profile means they got past form validation originally and business rules might change to allow some fields to be empty
-	const validateProfile = () => {
-		return Object.values(profile).every(val => val !== null)				
-	}
-
+	
 	const loadProfile = async () => {				
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
-			profile = data;
-			console.log('loaded profile', typeof profile)
+			profile = data;			
 		}
 	}
 
@@ -78,10 +83,10 @@
 {#if profile}
 <strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>    
 	<!-- <button on:click={signOut} class="bg-tertiary-500 text-white rounded-sm">Sign Out</button> -->
-	{#if validateProfile()}
+	{#if profile}
 		<MyEvents />
-		{:else}
-		<Register {session} {updateProfile} />
+		{:else}		
+		<Register {session} {profile} {updateProfile} />
 	{/if}    
 {:else}
 	<Login {session} />    

@@ -4,6 +4,7 @@
     import Login from './Login.svelte';
 
 	export let session: Session | null;
+    export let profile: any;
 
     export let updateProfile: any
 </script>
@@ -13,19 +14,19 @@
     <form on:submit|preventDefault={updateProfile}>
         <label for="first_name">
             <div class="font-bold">First Name*</div>
-            <input class="w-full" type="text" id="first_name" name="first_name" required />
+            <input class="w-full" type="text" id="first_name" name="first_name" value={profile?.first_name} required />
         </label>
         <label for="last_name">
             <div class="font-bold">Last Name*</div>
-            <input class="w-full" type="text" id="last_name" name="last_name" required />
+            <input class="w-full" type="text" id="last_name" name="last_name" value={profile?.last_name} required />
         </label>
         <label for="company">
             <div class="font-bold">Company*</div>
-            <input class="w-full" type="text" id="company" name="company" required />
+            <input class="w-full" type="text" id="company" name="company" value={profile?.company} required />
         </label>
         <label for="email">
             <div class="font-bold">Email*</div>
-            <input class="w-full" type="text" id="email" name="email" value={session.user.email} disabled />
+            <input class="w-full" type="text" id="email" name="email" value={session.user.email}  />
         </label>
         <label for="job_level">
             <div class="font-bold">Job Level*</div>
@@ -43,7 +44,7 @@
         </label>
         <label for="job_title">
             <div class="font-bold">Job Title*</div>
-            <input class="w-full" type="text" id="job_title" name="job_title" required />
+            <input class="w-full" type="text" id="job_title" name="job_title" value={profile?.job_title} required />
         </label>
         <label for="country">
             <div class="font-bold">Country*</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { supabase } from '$lib/data/supabase';
 	import { onMount } from 'svelte';
-	import { toastStore } from '@skeletonlabs/skeleton';	
+	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';		
 
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
