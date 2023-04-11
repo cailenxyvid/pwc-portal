@@ -1,0 +1,89 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import type { Session } from '@supabase/supabase-js';
+	import { supabase } from '$lib/data/supabase';
+
+	import { myEvents } from '$lib/data/myEvents';
+
+	import Register from './Register.svelte';
+	import MyEvents from './MyEvents.svelte';
+	import Login from './Login.svelte';
+
+	export let session: Session | null;
+	export let cookie: string | undefined;
+	
+	
+
+	const updateProfile = async (e:any) => {
+		const formData = new FormData(e.target);
+
+		const data = {};
+		for (let field of formData) {
+			const [key, value] = field;
+			data[key] = value; //# todo: refactor for TS. this shortcut works for now, despite complaining 
+		}		
+
+		const { error } = await supabase
+			.from('attendee')
+			.update(data)
+			.eq('id', session?.user.id)
+		if (error) {
+			console.error(error);
+		} else {
+			loadProfile();
+		}
+    }
+
+	//# this is probably excessive. just having a profile means they got past form validation originally and business rules might change to allow some fields to be empty
+	const validateProfile = () => {
+		return Object.values(profile).every(val => val !== null)				
+	}
+
+	const loadProfile = async () => {				
+		if (cookie) {
+			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
+			profile = data;
+			console.log('loaded profile', typeof profile)
+		}
+	}
+
+	let loadEvents = async () => {
+		if (!cookie) return;
+		let { data } = await supabase
+			.from("registration")
+			.select(`
+				attendee,
+				event (
+					title,
+					id
+				)
+				`)
+			.eq('attendee', cookie);
+		
+		$myEvents = data;
+	}
+
+	onMount(async () => {
+		//# this would be better done server side (to avoid UI "flicker")
+		loadProfile();
+		loadEvents();
+	});
+
+	// let emailSent = false;
+	// let email = '';
+	let profile: any;		
+</script>
+
+<div class="pt-2 pb-2 md:p-2 w-full">
+{#if profile}
+<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>    
+	<!-- <button on:click={signOut} class="bg-tertiary-500 text-white rounded-sm">Sign Out</button> -->
+	{#if validateProfile()}
+		<MyEvents />
+		{:else}
+		<Register {session} {updateProfile} />
+	{/if}    
+{:else}
+	<Login {session} />    
+{/if}	
+</div>

@@ -1,5 +1,8 @@
 <script lang="ts">
-    import type { Session } from '@supabase/supabase-js';  
+    import type { Session } from '@supabase/supabase-js'; 
+    
+    import Login from './Login.svelte';
+
 	export let session: Session | null;
 
     export let updateProfile: any
@@ -52,5 +55,6 @@
     </form>
 </div>
 {:else}
-<div class="text-error-500 text-2xl">Error retrieving user data</div>
+<div class="text-xl text-primary-500">Please validate your email address to continue!</div>
+<Login {session} />
 {/if}

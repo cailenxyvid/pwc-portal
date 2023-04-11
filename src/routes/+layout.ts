@@ -11,8 +11,10 @@ import {
 
   
   export const load: LayoutLoad = async ({ fetch, data, depends }) => {
+    let cookie = data.cookie;
+
     depends('supabase:auth');
-  
+    //# if we go back and generate types for DB objects, toggle the following line
     // const supabase = createSupabaseLoadClient<Database>({
     const supabase = createSupabaseLoadClient({
       supabaseUrl: PUBLIC_SUPABASE_URL,
@@ -25,5 +27,5 @@ import {
       data: { session }
     } = await supabase.auth.getSession();
   
-    return { supabase, session };
+    return { supabase, session, cookie };
   };

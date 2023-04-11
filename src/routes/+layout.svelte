@@ -7,7 +7,7 @@
 	import { AppShell } from '@skeletonlabs/skeleton';	
 	import { Toast } from '@skeletonlabs/skeleton';
 	
-	import User from "$lib/components/User.svelte";
+	import User from "$lib/components/User/User.svelte";
 	import Header from '$lib/components/Header.svelte';
 	
 	import type { LayoutData } from './$types';
@@ -17,7 +17,7 @@
 
 	export let data: LayoutData;
 
-	$: ({ supabase } = data);
+	$: ({ supabase, cookie, session } = data);
 
 	// authentication
 	onMount(() => {		
@@ -38,14 +38,14 @@
 	
 	<svelte:fragment slot="sidebarRight">
 		<div class="h-full p-10 hidden md:block bg-secondary-100">
-			<User session={data.session} />
+			<User {session} {cookie} />
 		</div>
 	</svelte:fragment>
 	
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">
 		<div class="block md:hidden bg-secondary-100">
-			<User session={data.session} />
+			<User {session} {cookie} />
 		</div>
 	</svelte:fragment>
 	
