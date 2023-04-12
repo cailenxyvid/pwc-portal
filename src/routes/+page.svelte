@@ -103,12 +103,12 @@
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 pl-10 pr-10">	
-	<div class="mx-auto w-2/3 mb-10">
+	<!-- <div class="mx-auto w-2/3 mb-10">
 		<div style="font-family: georgia, palatino; font-size: 72px; color: rgb(0, 0, 0);" class="text-center">Trust in Action</div>
 		Our monthly webcasts provide trust building blocks at the intersection of emerging topics. Listen to diverse perspectives and prepare for the future. *Pick one topic or choose them all. 
-	</div>
+	</div> -->
 	<div class="w-full text-center mb-10">
-		<button on:click={registerEvents} disabled={!enableRegister} class="{enableRegister ? 'bg-primary-500' : 'bg-primary-100'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
+		<button on:click={registerEvents} disabled={!enableRegister} class="{enableRegister ? 'bg-primary-500' : 'bg-primary-400'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
 	</div>
 	<div class="w-full flex flex-col md:flex-row space-x-6">
 		{#each events as event}

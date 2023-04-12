@@ -14,8 +14,6 @@
 	export let session: Session | null;
 	export let cookie: string | undefined;
 	
-	
-
 	const updateProfile = async (e:any) => {
 		const formData = new FormData(e.target);
 
@@ -75,9 +73,7 @@
 		loadProfile();
 		loadEvents();
 	});
-
-	// let emailSent = false;
-	// let email = '';
+	
 	let profile: any;		
 </script>
 

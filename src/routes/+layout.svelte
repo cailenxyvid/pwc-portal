@@ -31,20 +31,20 @@
 	});
 </script>
 
-<AppShell>
+<AppShell slotSidebarRight="w-1/4">
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
 	
 	<svelte:fragment slot="sidebarRight">
-		<div class="h-full p-10 hidden md:block bg-secondary-100">
+		<div class="h-full w-full p-10 hidden md:block bg-white">
 			<User {session} {cookie} />
 		</div>
 	</svelte:fragment>
 	
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">
-		<div class="block md:hidden bg-secondary-100">
+		<div class="block md:hidden bg-white">
 			<User {session} {cookie} />
 		</div>
 	</svelte:fragment>

@@ -2,7 +2,7 @@
     let open = false;
     let toggle = () => { open = !open }
 </script>
-<div class="hamburger-container relative">
+<div class="hamburger-container relative md:hidden">
     <button on:click={toggle}><i class="fa fa-bars"></i></button>
     {#if open}
     <div class="absolute bg-white w-48 right-0 p-6 rounded-sm space-y-2">        
