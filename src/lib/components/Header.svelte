@@ -5,7 +5,7 @@
     import Menu from './Menu.svelte';
 </script>
 
-<AppBar>
+<AppBar background="bg-transparent">
 	<svelte:fragment slot="lead">
         <div class="p-1">
             <!-- PwC brand guide requires 65px min width -->

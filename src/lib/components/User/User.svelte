@@ -71,7 +71,7 @@
 
 	onMount(async () => {
 		//# this would be better done server side (to avoid UI "flicker")
-		console.log('User onMount', cookie)
+		console.log('User onMount', cookie, session?.user)
 		loadProfile();
 		loadEvents();
 	});

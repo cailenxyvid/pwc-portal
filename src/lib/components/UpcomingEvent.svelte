@@ -11,8 +11,8 @@
 </script>
 
 {#if event}
-<div class="w-full">
-    <div class="event-title text-primary-500 text-2xl">{event.title}</div>
+<div class="w-full card">
+    <div class="event-title text-primary-500 text-2xl card-header">{event.title}</div>
     <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
     <div class="event-calendar">
         <button class="bg-primary-500 rounded-sm p-2 mb-4 mt-4 text-white">
