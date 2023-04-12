@@ -5,13 +5,12 @@
 <div class="hamburger-container relative">
     <button on:click={toggle}><i class="fa fa-bars"></i></button>
     {#if open}
-    <div class="absolute bg-white w-auto right-0 p-6 rounded-sm space-y-2">        
-        <a href="/">Upcoming Events</a>
-        <a href="/">Past Events</a>
-        <a href="/">Our Speakers</a>
-        <a href="/">About Us</a>        
-        <a href="/">Past Events</a>
-        <a href="/">Help</a>
+    <div class="absolute bg-white w-48 right-0 p-6 rounded-sm space-y-2">        
+        <a class="block" href="/">Upcoming Events</a>
+        <a class="block" href="/replay">Past Events</a>
+        <a class="block" href="/speakers">Our Speakers</a>
+        <!-- <a class="block" href="/about">About Us</a>                 -->
+        <a class="block" href="/help">Help</a>
     </div>
     {/if}
 </div>

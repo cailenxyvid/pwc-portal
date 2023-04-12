@@ -45,7 +45,8 @@
 		}
     }
 	
-	const loadProfile = async () => {				
+	const loadProfile = async () => {
+		console.log('loadProfile', cookie)
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
 			profile = data;			
@@ -70,6 +71,7 @@
 
 	onMount(async () => {
 		//# this would be better done server side (to avoid UI "flicker")
+		console.log('User onMount', cookie)
 		loadProfile();
 		loadEvents();
 	});
@@ -87,8 +89,8 @@
 		<MyEvents />
 		{:else}		
 		<Register {session} {profile} {updateProfile} />
-	{/if}    
+	{/if}
 {:else}
-	<Login {session} />    
+	<Login {session} />
 {/if}	
 </div>

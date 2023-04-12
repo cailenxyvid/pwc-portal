@@ -27,5 +27,10 @@ import {
       data: { session }
     } = await supabase.auth.getSession();
   
+    // avoid missing cookie on first visit from magic link
+    if (!cookie && session?.user.id) {
+      cookie = session.user.id;
+    }
+
     return { supabase, session, cookie };
   };
