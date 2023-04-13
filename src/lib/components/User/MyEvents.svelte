@@ -15,12 +15,16 @@
 	
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-			{#each $myEvents as event}
-            <div class="text-primary-500 underline">
-                <i class="fa fa-play"></i>
-                {event.event.title}
-            </div>            
-            {/each}
+            {#if $myEvents.length > 0}
+                {#each $myEvents as event}
+                <div class="text-primary-500 underline">
+                    <i class="fa fa-play"></i>
+                    {event.event.title}
+                </div>            
+                {/each}
+            {:else}
+                You are not currently registered for any upcoming events.
+            {/if}
 		{:else if tabSet === 1}
 			You are not registered for any replay events.
 		{/if}

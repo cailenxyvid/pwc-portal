@@ -61,8 +61,11 @@
 					title,
 					id
 				)
-				`)
-			.eq('attendee', cookie);
+				`)			
+			.eq('attendee', cookie)
+			.eq('event.status', 'pending');
+		
+		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
 		
 		$myEvents = data;
 	}
