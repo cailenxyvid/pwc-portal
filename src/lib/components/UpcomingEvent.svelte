@@ -39,6 +39,8 @@
         </Accordion> -->
     </div>    
 </div>
+
+
 {:else}
 <div class="text-error-500 text-xl">Error Loading Event</div>
 {/if}
