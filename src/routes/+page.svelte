@@ -54,48 +54,53 @@
 		if (!$myProfile) {
 				console.error('Missing user profile!');
 				return;
-			}
+		}
+		
+		// get xyvid event id
+		// var result = jsObjects.filter(obj => {
+		// 	return obj.b === 6
+		// })
 
-			//# currently the api will 500 if any of these are empty
-			// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
-			let x_body = {
-				events: selectedEvents,
-				fname: $myProfile.first_name ? $myProfile.first_name : '',
-				lname: $myProfile.last_name ? $myProfile.last_name : '',
-				company: $myProfile.company ? $myProfile.company : '',
-				email: $myProfile.email ? $myProfile.email : '',
-				location: $myProfile.country ? $myProfile.country : '',
-				joblevel: $myProfile.job_level ? $myProfile.job_level : '',
-				jobtitle: $myProfile.job_title ? $myProfile.job_title : '',
-			}
-			console.log('post body', x_body)
+		//# currently the api will 500 if any of these are empty
+		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
+		let x_body = {
+			events: [ "152119" ],
+			fname: $myProfile.first_name ? $myProfile.first_name : '',
+			lname: $myProfile.last_name ? $myProfile.last_name : '',
+			company: $myProfile.company ? $myProfile.company : '',
+			email: $myProfile.email ? $myProfile.email : '',
+			location: $myProfile.country ? $myProfile.country : '',
+			joblevel: $myProfile.job_level ? $myProfile.job_level : '',
+			jobtitle: $myProfile.job_title ? $myProfile.job_title : '',
+		}
+		console.log('post body', x_body)
 
-			// x_body = {
-			// 	"events": [
-			// 		"152109"
-			// 	],
-			// 	"fname": "Cailen",
-			// 	"lname": "Fisher",
-			// 	"company": "XYVID",    
-			// 	"email": "cfisher@xyvid.com",
-			// 	"location": "US",
-			// 	"joblevel": "Staff",
-			// 	"jobtitle": "Dev"
-			// }
+		// x_body = {
+		// 	"events": [
+		// 		"152109"
+		// 	],
+		// 	"fname": "Cailen",
+		// 	"lname": "Fisher",
+		// 	"company": "XYVID",    
+		// 	"email": "cfisher@xyvid.com",
+		// 	"location": "US",
+		// 	"joblevel": "Staff",
+		// 	"jobtitle": "Dev"
+		// }
 
-			let x_reg = await fetch(xyp_registration_url, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					// 'Accept': '*/*',
-					'x-api-key': xyp_api_key
-				},
-				body: JSON.stringify(x_body),
-				
-			})
+		let x_reg = await fetch(xyp_registration_url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				// 'Accept': '*/*',
+				'x-api-key': xyp_api_key
+			},
+			body: JSON.stringify(x_body),
+			
+		})
 
-			console.log('X REG', x_reg)
-			return true;
+		console.log('X REG', x_reg)
+		return true;
 	}
 
 	let registerEvents = async () => {
@@ -109,6 +114,7 @@
 			// 	console.error('Error registering with XYP');
 			// 	return;
 			// }	
+			registerXyp()
 			
 			for (let event_id of selectedEvents) {				
 				const { data, error } = await supabase
