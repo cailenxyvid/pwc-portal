@@ -31,7 +31,7 @@
 	});
 </script>
 
-<AppShell slotSidebarRight="w-1/4">
+<AppShell slotSidebarRight="md:w-1/4">
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
