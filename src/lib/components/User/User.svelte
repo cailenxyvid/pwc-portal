@@ -10,6 +10,7 @@
 	import Login from './Login.svelte';
 
 	import { myEvents } from '$lib/data/myEvents';
+	import { myProfile } from '$lib/data/myProfile';
 
 	export let session: Session | null;
 	export let cookie: string | undefined;
@@ -47,7 +48,8 @@
 		console.log('loadProfile', cookie)
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
-			profile = data;			
+			profile = data;		
+			$myProfile = data;	
 		}
 	}
 
@@ -67,7 +69,7 @@
 		
 		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
 		
-		$myEvents = data;
+		$myEvents = data; //# todo make Types
 	}
 
 	onMount(async () => {
@@ -81,12 +83,15 @@
 </script>
 
 <div class="pt-2 pb-2 md:p-2 w-full">
-{#if profile}
-<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>    
+{#if cookie}  
 	<!-- <button on:click={signOut} class="bg-tertiary-500 text-white rounded-sm">Sign Out</button> -->
-	{#if profile}
+	{#if profile?.email}
+		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
 		<MyEvents />
 		{:else}		
+		<strong class="text-lg text-primary-500">
+			Please complete the registration form to continue.
+		</strong>
 		<Register {session} {profile} {updateProfile} />
 	{/if}
 {:else}

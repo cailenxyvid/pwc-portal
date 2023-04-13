@@ -49,7 +49,7 @@
         <label for="country">
             <div class="font-bold">Country*</div>
             <select name="country" id="country" class="w-full">
-                
+                <option value="US">United States</option>
             </select>
         </label>
         <button type="submit" class="bg-primary-500 rounded-sm p-2 mt-4 w-full">Save</button>
