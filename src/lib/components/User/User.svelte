@@ -44,8 +44,7 @@
 		}
     }
 	
-	const loadProfile = async () => {
-		console.log('loadProfile', cookie)
+	const loadProfile = async () => {		
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
 			profile = data;		
@@ -73,8 +72,7 @@
 	}
 
 	onMount(async () => {
-		//# this would be better done server side (to avoid UI "flicker")
-		console.log('User onMount', cookie, session?.user)
+		//# this would be better done server side (to avoid UI "flicker")		
 		loadProfile();
 		loadEvents();
 	});

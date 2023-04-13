@@ -19,13 +19,13 @@
 		emailSent = true; //todo: setTimeout to reset 
 	};
 
-    const signOut = async () => {
-		if (session) {
-			let t = await supabase.auth.signOut();
-			console.log('logout response', t, session)
-			emailSent = false;
-		}
-	}
+    // const signOut = async () => {
+	// 	if (session) {
+	// 		let t = await supabase.auth.signOut();
+	// 		console.log('logout response', t, session)
+	// 		emailSent = false;
+	// 	}
+	// }
 </script>
 {#if session}
 <strong class="text-lg text-primary-500 text-center">Welcome {session.user.email}</strong>    	 

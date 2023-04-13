@@ -56,24 +56,23 @@
 				return;
 		}
 		
-		// get xyvid event id
-		// var result = jsObjects.filter(obj => {
-		// 	return obj.b === 6
-		// })
+		// get xyvid event ids
+		let x_ids = selectedEvents.map((id) => events?.find((event) => event.id == id).xyp_id);
+
 
 		//# currently the api will 500 if any of these are empty
 		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
 		let x_body = {
-			events: [ "152119" ],
-			fname: $myProfile.first_name ? $myProfile.first_name : '',
-			lname: $myProfile.last_name ? $myProfile.last_name : '',
-			company: $myProfile.company ? $myProfile.company : '',
-			email: $myProfile.email ? $myProfile.email : '',
-			location: $myProfile.country ? $myProfile.country : '',
-			joblevel: $myProfile.job_level ? $myProfile.job_level : '',
-			jobtitle: $myProfile.job_title ? $myProfile.job_title : '',
-		}
-		console.log('post body', x_body)
+			// events: [ "152119" ],
+			events: x_ids,
+			fname: $myProfile.first_name ? $myProfile.first_name : '.', //# if someday there is a weird bug with a bunch of '.' in data, i am so sorry
+			lname: $myProfile.last_name ? $myProfile.last_name : '.',
+			company: $myProfile.company ? $myProfile.company : '.',
+			email: $myProfile.email ? $myProfile.email : '.',
+			location: $myProfile.country ? $myProfile.country : '.',
+			joblevel: $myProfile.job_level ? $myProfile.job_level : '.',
+			jobtitle: $myProfile.job_title ? $myProfile.job_title : '.',
+		}		
 
 		// x_body = {
 		// 	"events": [
@@ -98,8 +97,7 @@
 			body: JSON.stringify(x_body),
 			
 		})
-
-		console.log('X REG', x_reg)
+		
 		return true;
 	}
 

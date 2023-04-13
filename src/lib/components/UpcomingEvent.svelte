@@ -7,7 +7,7 @@
     export let toggleEvent: any;
 
     let alreadyRegistered = false;
-    $: if ($myEvents.length > 0) { console.log('reactive myevents count', $myEvents); alreadyRegistered = $myEvents.some(e => event.id == e.event.id) }
+    $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) }
 </script>
 
 {#if event}
