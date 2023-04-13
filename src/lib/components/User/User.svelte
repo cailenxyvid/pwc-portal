@@ -88,10 +88,7 @@
 	{#if profile?.email}
 		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
 		<MyEvents />
-		{:else}		
-		<strong class="text-lg text-primary-500">
-			Please complete the registration form to continue.
-		</strong>
+		{:else}				
 		<Register {session} {profile} {updateProfile} />
 	{/if}
 {:else}

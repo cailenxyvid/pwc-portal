@@ -10,7 +10,11 @@
 </script>
 
 {#if session}
-<div class="w-full flex-col space-y-4 mt-10">
+<strong class="text-lg text-primary-500">
+			Please complete the registration form to continue.
+</strong>
+
+<div class="w-full flex-col space-y-4 mt-10">    
     <form on:submit|preventDefault={updateProfile}>
         <label for="first_name">
             <div class="font-bold">First Name*</div>
