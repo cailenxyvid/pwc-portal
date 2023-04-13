@@ -15,10 +15,12 @@
     <div class="event-title text-primary-500 text-2xl">{event.title}</div>
     <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
     <div class="event-calendar">
-        <button class="bg-primary-500 rounded-sm p-2 mb-4 mt-4 text-white">
-            <i class="fa fa-calendar"></i>
-            Add to Calendar
-        </button>
+        <a href="https://www.addevent.com/event/pq16740271+outlook">
+            <button class="bg-primary-500 rounded-sm p-2 mb-4 mt-4 text-white">
+                <i class="fa fa-calendar"></i>
+                Add to Calendar
+            </button>
+        </a>
     </div>
     <div class="event-register">
         <label class="inline-flex items-center">

@@ -56,7 +56,7 @@
                 <option value="US">United States</option>
             </select>
         </label>
-        <button type="submit" class="bg-primary-500 rounded-sm p-2 mt-4 w-full">Save</button>
+        <button type="submit" class="bg-primary-500 text-white rounded-sm p-2 mt-4 w-full">Save</button>
     </form>
 </div>
 {:else}
