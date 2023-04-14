@@ -75,6 +75,11 @@
 		//# this would be better done server side (to avoid UI "flicker")		
 		loadProfile();
 		loadEvents();
+
+		if (!cookie && session?.user) {
+			cookie = session.user.id;
+			console.log('User component - onMount - missing cookie, setting from session', cookie)
+		}		
 	});
 	
 	let profile: any;		
