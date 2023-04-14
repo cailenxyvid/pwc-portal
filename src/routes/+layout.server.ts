@@ -7,10 +7,11 @@ export const load: LayoutServerLoad = async ({ locals: { getSession }, cookies }
   // if we have an active Supabase auth session, re/set the persistent cookie
   if (session?.user.id) {
     cookies.set('xyp_user', session.user.id);
+    console.log('layout.server - found session, setting cookie', cookies.get('xyp_user'))
   }
 
   return {
     session: getSession(),
-    cookie: cookies.get('xyp_user')
+    cookie: cookies.get('xyp_user'),
   };
 };
