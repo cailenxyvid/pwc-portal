@@ -173,7 +173,7 @@
 
 	let { events, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ events } = data);
-	$: enableRegister = (selectedEvents.length > 0);
+	$: enableRegister = (selectedEvents.length > 0 && cookie);
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
