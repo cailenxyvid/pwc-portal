@@ -79,7 +79,9 @@
 		if (!cookie && session?.user) {
 			cookie = session.user.id;
 			console.log('User component - onMount - missing cookie, setting from session', cookie)
-		}		
+		} else {
+			console.log('User component cookie:', cookie)
+		}
 	});
 	
 	let profile: any;		

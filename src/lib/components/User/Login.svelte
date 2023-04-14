@@ -31,7 +31,7 @@
 <strong class="text-lg text-primary-500 text-center">Welcome {session.user.email}</strong>    	 
 {:else}
 	{#if emailSent}
-		<div class="text-success-500 pl-2 w-full">Email sent! Please follow the link in your email to continue with registration.</div>
+		<div class="text-success-500 pl-2 w-full">Email sent! Please close this window and follow the link in your email to continue with registration.</div>
 		{:else}
 		<form on:submit|preventDefault={signInWithMagicLink}>
 			<input type="email" name="email" id="email" placeholder="email" class="sm:w-2/4 md:w-full md:mb-2" bind:value={email} />
