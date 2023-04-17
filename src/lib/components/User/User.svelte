@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
 	import type { Session } from '@supabase/supabase-js';
 	import { supabase } from '$lib/data/supabase';
 
@@ -87,7 +89,7 @@
 	let profile: any;		
 </script>
 
-<div class="pt-2 pb-2 md:p-2 w-full">
+<div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">
 {#if cookie}  
 	<!-- <button on:click={signOut} class="bg-tertiary-500 text-white rounded-sm">Sign Out</button> -->
 	{#if profile?.email}
