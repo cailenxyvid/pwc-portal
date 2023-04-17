@@ -10,8 +10,9 @@
 	import Register from './Register.svelte';
 	import MyEvents from './MyEvents.svelte';
 	import Login from './Login.svelte';
+	import Loading from '../Loading.svelte';
 
-	import { myEvents } from '$lib/data/myEvents';
+	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
 
 	export let session: Session | null;
@@ -49,12 +50,15 @@
 	const loadProfile = async () => {		
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
-			profile = data;		
+			// profile = data;		
 			$myProfile = data;	
+			return data;
+		} else {
+			return;
 		}
 	}
 
-	let loadEvents = async () => {
+	let loadEvents = async (type:string) => {
 		if (!cookie) return;
 		let { data } = await supabase
 			.from("registration")
@@ -66,38 +70,42 @@
 				)
 				`)			
 			.eq('attendee', cookie)
-			.eq('event.status', 'pending');
+			.eq('event.status', type);
 		
 		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
 		
-		$myEvents = data; //# todo make Types
+		//# 
+		if (type == 'pending') {
+			$myEvents = data;
+		} else if (type == 'replay') {
+			$myReplayEvents = data;
+		}
+		return data;
 	}
 
-	onMount(async () => {
-		//# this would be better done server side (to avoid UI "flicker")		
-		loadProfile();
-		loadEvents();
+	onMount(async () => {						
+		$myEvents = loadEvents('pending');
+		$myReplayEvents = loadEvents('replay');
 
+		//# we really shouldn't have to check this so far in
 		if (!cookie && session?.user) {
-			cookie = session.user.id;
-			console.log('User component - onMount - missing cookie, setting from session', cookie)
-		} else {
-			console.log('User component cookie:', cookie)
-		}
-	});
-	
-	let profile: any;		
+			cookie = session.user.id;			
+		} 
+	});		
 </script>
 
-<div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">
+<div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">	
 {#if cookie}  
-	<!-- <button on:click={signOut} class="bg-tertiary-500 text-white rounded-sm">Sign Out</button> -->
-	{#if profile?.email}
+	{#await loadProfile()}
+		<Loading />
+	{:then profile} 
+		{#if profile?.email}
 		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
 		<MyEvents />
 		{:else}				
 		<Register {session} {profile} {updateProfile} />
-	{/if}
+		{/if}
+	{/await}	
 {:else}
 	<Login {session} />
 {/if}	

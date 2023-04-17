@@ -14,10 +14,8 @@ import {
     let cookie; 
     if (data.cookie) {
       cookie = data.cookie;
-    }
-    
-    console.log('layout.ts - setting cookie if available', cookie)
-    
+    }        
+
     depends('supabase:auth');
     //# if we go back and generate types for DB objects, toggle the following line
     // const supabase = createSupabaseLoadClient<Database>({
@@ -33,10 +31,8 @@ import {
     } = await supabase.auth.getSession();
   
     // avoid missing cookie on first visit from magic link
-    if (!cookie && session?.user.id) {
-      console.log('layout.ts - hackily setting cookie if it was missing - before', cookie)
-      cookie = session.user.id;
-      console.log('layout.ts - hackily setting cookie if it was missing - after', cookie)
+    if (!cookie && session?.user.id) {      
+      cookie = session.user.id;      
     }
 
     return { supabase, session, cookie };

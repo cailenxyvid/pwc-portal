@@ -22,8 +22,7 @@
 	// authentication
 	onMount(() => {		
 		if (!cookie && session?.user.id) {
-			cookie = session.user.id;
-			console.log('layout.svelte - cookie was missing but session was available, setting cookie', cookie)
+			cookie = session.user.id;			
 		}
 		const {
 			data: { subscription },
