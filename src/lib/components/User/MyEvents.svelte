@@ -1,14 +1,14 @@
-<script>
+<script lang="ts    ">
     import { fade } from 'svelte/transition';
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
-
+        
     import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 
     let tabSet = 0;
 </script>
 
 <div class="rounded-sm p-4" transition:fade>
-    <h3>My Events {$myEvents.length}</h3>
+    <h3>My Events</h3>
     
 <TabGroup>
 	<Tab bind:group={tabSet} name="tab1" value={0}>Upcoming</Tab>
@@ -17,10 +17,10 @@
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
             {#if $myEvents.length > 0}
-                {#each $myEvents as event}
+                {#each $myEvents as row}
                 <div class="text-primary-500 underline">
                     <i class="fa fa-play"></i>
-                    {event.event.title}
+                    {row.event.title}
                 </div>            
                 {/each}
             {:else}
@@ -28,10 +28,10 @@
             {/if}
         {:else if tabSet === 1}
             {#if $myReplayEvents.length > 0}
-                {#each $myReplayEvents as event}
+                {#each $myReplayEvents as row}
                     <div class="text-primary-500 underline">
                         <i class="fa fa-play"></i>
-                        {event.event.title}
+                        {row.event.title}
                     </div>            
                 {/each}
             {:else}

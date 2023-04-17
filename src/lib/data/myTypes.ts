@@ -1,0 +1,34 @@
+export type Event = {
+    id: number,
+    title: string,
+    content: string,
+    content_replay: string,
+    xyp_id: string,
+    calendar_id: string,
+    event_start: Date,
+    status: string,    
+}
+
+export type MyEvent = {
+    attendee: string,
+    event: Event
+}
+
+export type Profile = {
+    id: string,
+    email: string,
+    first_name: string,
+    last_name: string,
+    company: string,
+    job_title: string,
+    job_level: string,
+    country: string,
+    updated_at: Date,    
+}
+
+export interface AssociativeArray {
+    [key: string]: string
+ }
+// usage:
+//  var associative_array: AssociativeArray[] = []
+//  associative_array['key'] = 'value'
