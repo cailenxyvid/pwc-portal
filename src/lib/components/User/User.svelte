@@ -14,6 +14,7 @@
 
 	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
+	import type { MyEvent } from '$lib/data/myTypes';
 
 	export let session: Session | null;
 	export let cookie: string | undefined;
@@ -47,8 +48,13 @@
 		}
     }
 	
-	const loadProfile = async () => {		
+	const loadProfile = async (email: string | null = null) => {		
 		if (cookie) {
+			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
+			// profile = data;		
+			$myProfile = data;	
+			return data;
+		} else if (email) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
 			// profile = data;		
 			$myProfile = data;	
@@ -80,6 +86,7 @@
 		} else if (type == 'replay') {
 			$myReplayEvents = data;
 		}
+		console.log('myevents data', typeof data)
 		return data;
 	}
 

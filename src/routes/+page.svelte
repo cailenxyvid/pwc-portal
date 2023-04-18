@@ -1,37 +1,24 @@
 <script lang="ts">
 	import { supabase } from '$lib/data/supabase';
-	import { onMount } from 'svelte';
-	import { toastStore } from '@skeletonlabs/skeleton';
-	import type { ToastSettings } from '@skeletonlabs/skeleton';		
+	import { toastStore } from '@skeletonlabs/skeleton';			
 
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
 
-	import { myEvents } from '$lib/data/myEvents';
+	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
+	import type { MyEvent, Event } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';
+	
 
   	export let data: PageData;
 
-	let user_id:any; //#todo - wire in session correctly
-
-	onMount(()=>{
-		//loadEvents()
-		
-	// const t: ToastSettings = {
-	// 	message: 'This message will have a colorful background.',
-	// 	// Provide any utility or variant background style:
-	// 	background: 'variant-filled-primary text-white',
-	// 	timeout: 10000
-	// };
-
-	// toastStore.trigger(t)
-
-	});
+	let user_id:any;
 
 	//# this function exists in two places. fix that.
 	let loadEvents = async () => {
 		if (!cookie) return;
+		
 		let { data } = await supabase
 			.from("registration")
 			.select(`
@@ -44,21 +31,25 @@
 			.eq('attendee', cookie)
 			.eq('event.status', 'pending');
 		
-		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
-		
-		$myEvents = data; //# todo make Types
+		if (data) {
+			data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events		
+			$myEvents = data as MyEvent[];												
+		} 
+		return data;
 	}
 
 	let registerXyp = async () => {
 		
 		if (!$myProfile) {
 				console.error('Missing user profile!');
-				return;
+				return false;
 		}
 		
-		// get xyvid event ids
-		let x_ids = selectedEvents.map((id) => events?.find((event) => event.id == id).xyp_id);
-
+		// get xyvid event ids				
+		let x_ids = selectedEvents.map((id) => {
+			const event = events?.find((event) => event.id === id);
+			return event ? event.xyp_id : null;
+		});
 
 		//# currently the api will 500 if any of these are empty
 		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
@@ -94,17 +85,19 @@
 				// 'Accept': '*/*',
 				'x-api-key': xyp_api_key
 			},
-			body: JSON.stringify(x_body),
-			
+			body: JSON.stringify(x_body),			
 		})
-		
-		return true;
+		console.log('XYP registration', x_reg);
+		if (x_reg.ok) {
+			return true;
+		} else {
+			console.error("Error completing XYP registration!", x_reg.statusText);
+		}						
 	}
 
 	let registerEvents = async () => {
-		if (selectedEvents.length > 0) {
-			// const {data} = await supabase.auth.getUser();
-			// user_id = data.user?.id;
+		if (!cookie) { return; }
+		if (selectedEvents.length > 0) {			
 			user_id = cookie;
 
 			// complete XYP registration first, only update records if success
@@ -169,11 +162,12 @@
 	}
 
 	let selectedEvents:string[] = [];
-	let enableRegister = false;
+	let enableRegister: string | undefined | boolean = false;
 
 	let { events, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ events } = data);
 	$: enableRegister = (selectedEvents.length > 0 && cookie);
+	// $: events = events as Event[];
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
