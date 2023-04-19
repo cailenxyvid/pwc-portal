@@ -1,8 +1,8 @@
 <script lang='ts'>
 	// skeleton.dev and branded theme styles - changing the order of these may break things
-	import '../theme.postcss';
+	import '../../theme.postcss';
 	import '@skeletonlabs/skeleton/styles/all.css';
-	import '../app.postcss'; // do explict global overrides here, if needed
+	import '../../app.postcss'; // do explict global overrides here, if needed
 
 	import { AppShell } from '@skeletonlabs/skeleton';	
 	import { Toast } from '@skeletonlabs/skeleton';
