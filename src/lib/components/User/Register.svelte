@@ -6,12 +6,12 @@
 	export let session: Session | null;
     export let profile: any;
 
-    export let updateProfile: any
+    export let updateProfile: any;
 </script>
 
 {#if session}
 <strong class="text-lg text-primary-500">
-			Please complete the registration form to continue.
+    Please complete the registration form to continue.
 </strong>
 
 <div class="w-full flex-col space-y-4 mt-10">    

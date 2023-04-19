@@ -31,7 +31,8 @@
 		const { error } = await supabase
 			.from('attendee')
 			.update(data)
-			.eq('id', session?.user.id)
+			.eq('id', session?.user.id);
+
 		if (error) {
 			console.error(error);
 			toastStore.trigger({
@@ -40,6 +41,7 @@
 			});
 		} else {
 			loadProfile();
+			showForm = false;
 			toastStore.trigger({
 				message: 'Profile updated!',
 				background: 'variant-filled-success text-white',
@@ -54,7 +56,7 @@
 			$myProfile = data as Profile;	
 			return data;
 		} else if (email) {
-			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();			
+			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
 			$myProfile = data as Profile;	
 			return data;
 		} else {
@@ -62,6 +64,7 @@
 		}
 	}
 
+	//# this function exists in two places. fix that.
 	let loadEvents = async (type:string) => {
 		if (!cookie) return;
 		let { data } = await supabase
@@ -98,7 +101,9 @@
 		if (!cookie && session?.user) {
 			cookie = session.user.id;			
 		} 
-	});		
+	});	
+	
+	let showForm = false;
 </script>
 
 <div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">	
@@ -106,8 +111,14 @@
 	{#await loadProfile()}
 		<Loading />
 	{:then profile} 
-		{#if profile?.email}
+		{#if profile?.email && !showForm}
 		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
+		<div class="text-sm">
+			<button on:click={()=>{ showForm = !showForm }}>
+				Edit my Information
+				<i class="fa fa-chevron-right"></i>
+			</button>
+		</div>
 		<MyEvents />
 		{:else}				
 		<Register {session} {profile} {updateProfile} />
