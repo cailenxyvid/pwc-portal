@@ -9,7 +9,7 @@
     export let updateProfile: any;
 </script>
 
-{#if session}
+{#if session?.user.id}
 <strong class="text-lg text-primary-500">
     Please complete the registration form to continue.
 </strong>
