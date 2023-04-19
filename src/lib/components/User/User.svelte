@@ -14,7 +14,7 @@
 
 	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
-	import type { MyEvent } from '$lib/data/myTypes';
+	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
 
 	export let session: Session | null;
 	export let cookie: string | undefined;
@@ -22,10 +22,10 @@
 	const updateProfile = async (e:any) => {
 		const formData = new FormData(e.target);
 
-		const data = {};
+		const data: AssociativeArray = {};
 		for (let field of formData) {
 			const [key, value] = field;
-			data[key] = value; //# todo: refactor for TS. this shortcut works for now, despite complaining 
+			data[key] = value; 
 		}		
 
 		const { error } = await supabase
@@ -50,14 +50,12 @@
 	
 	const loadProfile = async (email: string | null = null) => {		
 		if (cookie) {
-			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
-			// profile = data;		
-			$myProfile = data;	
+			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();			
+			$myProfile = data as Profile;	
 			return data;
 		} else if (email) {
-			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();
-			// profile = data;		
-			$myProfile = data;	
+			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();			
+			$myProfile = data as Profile;	
 			return data;
 		} else {
 			return;
@@ -78,21 +76,23 @@
 			.eq('attendee', cookie)
 			.eq('event.status', type);
 		
-		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
+		if (data) {
+			data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
 		
-		//# 
-		if (type == 'pending') {
-			$myEvents = data;
-		} else if (type == 'replay') {
-			$myReplayEvents = data;
+			//# don't love this
+			if (type == 'pending') {
+				$myEvents = data as MyEvent[];
+			} else if (type == 'replay') {
+				$myReplayEvents = data as MyEvent[];
+			}
+			return data as MyEvent[];
 		}
-		console.log('myevents data', typeof data)
-		return data;
+		return null;							
 	}
 
 	onMount(async () => {						
-		$myEvents = loadEvents('pending');
-		$myReplayEvents = loadEvents('replay');
+		loadEvents('pending');
+		loadEvents('replay');
 
 		//# we really shouldn't have to check this so far in
 		if (!cookie && session?.user) {

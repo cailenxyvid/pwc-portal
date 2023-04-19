@@ -1,5 +1,5 @@
 export type Event = {
-    id: number,
+    id: string,
     title: string,
     content: string,
     content_replay: string,
@@ -27,7 +27,7 @@ export type Profile = {
 }
 
 export interface AssociativeArray {
-    [key: string]: string
+    [key: string]: any;
  }
 // usage:
 //  var associative_array: AssociativeArray[] = []

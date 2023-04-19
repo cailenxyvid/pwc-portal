@@ -4,16 +4,16 @@
 
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
 
-	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
+	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
-	import type { MyEvent, Event } from '$lib/data/myTypes';
+	import type { MyEvent } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';
 	
 
   	export let data: PageData;
 
-	let user_id:any;
+	let user_id: string;
 
 	//# this function exists in two places. fix that.
 	let loadEvents = async () => {
