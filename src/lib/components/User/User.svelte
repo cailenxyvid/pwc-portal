@@ -73,7 +73,8 @@
 				attendee,
 				event (
 					title,
-					id
+					id,
+					xyp_id
 				)
 				`)			
 			.eq('attendee', cookie)
@@ -119,7 +120,7 @@
 				<i class="fa fa-chevron-right"></i>
 			</button>
 		</div>
-		<MyEvents />
+		<MyEvents {profile} />
 		{:else}				
 		<Register {session} {profile} {updateProfile} />
 		{/if}

@@ -25,7 +25,8 @@
 				attendee,
 				event (
 					title,
-					id
+					id,
+					xyp_id
 				)
 				`)			
 			.eq('attendee', cookie)
@@ -45,9 +46,9 @@
 				return false;
 		}
 		
-		// get xyvid event ids				
+		// get xyvid event ids						
 		let x_ids = selectedEvents.map((id) => {
-			const event = events?.find((event) => event.id === id);
+			const event = events?.find((event) => event.id == id);			
 			return event ? event.xyp_id : null;
 		});
 
@@ -87,8 +88,19 @@
 			},
 			body: JSON.stringify(x_body),			
 		})
-		console.log('XYP registration', x_reg);
+		
 		if (x_reg.ok) {
+			let response = await x_reg.json();
+			
+			const { error } = await supabase
+				.from('attendee')
+				.update({ xyp_attnum: response[0].AttendeeID })
+				.eq('id', cookie);
+
+			if (error) {
+				console.error('Error updating attnum after event registration!', error)
+				return false;
+			}
 			return true;
 		} else {
 			console.error("Error completing XYP registration!", x_reg.statusText);
@@ -101,11 +113,10 @@
 			user_id = cookie;
 
 			// complete XYP registration first, only update records if success
-			// if (!registerXyp()) {
-			// 	console.error('Error registering with XYP');
-			// 	return;
-			// }	
-			registerXyp()
+			if (!registerXyp()) {
+				console.error('Error registering with XYP');
+				return;
+			}				
 			
 			for (let event_id of selectedEvents) {				
 				const { data, error } = await supabase

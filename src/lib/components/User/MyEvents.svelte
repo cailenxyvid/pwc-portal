@@ -1,8 +1,11 @@
-<script lang="ts    ">
+<script lang="ts">
     import { fade } from 'svelte/transition';
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
         
     import { myEvents, myReplayEvents } from '$lib/data/myEvents';
+    import type { Profile } from '$lib/data/myTypes';
+
+    export let profile: Profile;
 
     let tabSet = 0;
 </script>
@@ -20,7 +23,7 @@
                 {#each $myEvents as row}
                 <div class="text-primary-500 underline">
                     <i class="fa fa-play"></i>
-                    {row.event.title}
+                    <a href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={profile.email}&directEntry=true">{row.event.title}</a>
                 </div>            
                 {/each}
             {:else}
@@ -30,7 +33,7 @@
             {#if $myReplayEvents.length > 0}
                 {#each $myReplayEvents as row}
                     <div class="text-primary-500 underline">
-                        <i class="fa fa-play"></i>
+                        <i class="fa fa-play"></i>                        
                         {row.event.title}
                     </div>            
                 {/each}

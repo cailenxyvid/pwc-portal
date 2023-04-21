@@ -23,6 +23,7 @@ export type Profile = {
     job_title: string,
     job_level: string,
     country: string,
+    xyp_attnum: string,
     updated_at: Date,    
 }
 
