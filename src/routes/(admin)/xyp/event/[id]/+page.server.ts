@@ -11,13 +11,8 @@ export const actions = {
       
       for (let field of form) {
         const [key, value] = field;
-        data[key] = value;    
-        console.log('-' + key)     
+        data[key] = value;            
       }
-
-      // data.event_start = data.event_start + 'T' + data.event_time;
-      // delete data.event_time
-console.log(data.event_start, 'ID')
 
       const result = await supabase
         .from('event')

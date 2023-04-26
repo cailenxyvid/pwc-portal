@@ -1,5 +1,5 @@
 <script>
-    import { page } from '$app/stores';
+    // import { page } from '$app/stores';
     import { AppBar } from '@skeletonlabs/skeleton';
 
 </script>
@@ -7,7 +7,7 @@
 <AppBar background="bg-primary-500">
 	<svelte:fragment slot="lead">
         <div class="p-1">
-            <h1>TiL Content Admin</h1>
+            <h1>TiL Admin</h1>
         </div>
     </svelte:fragment>
     <!-- <img src={tliLogo} alt="Trust Leadership Institute Logo" title="Trust Leadership Institute" class="min-w-[65px] max-w-[200px]" /> -->
@@ -16,12 +16,12 @@
         <a href="/xyp/replay" class="topnav {$page.route.id === '/(admin)/xyp/replay' ? 'active' : ''}">Replay&nbsp;Events</a>
     </div> -->
 	<svelte:fragment slot="trail">
-        ?
+        &nbsp;
     </svelte:fragment>
 </AppBar>
 
 <style>  
-    .topnav:hover,.active {
+    /* .topnav:hover,.active {
         border-bottom: 5px solid #fff;
-    }
+    } */
 </style>

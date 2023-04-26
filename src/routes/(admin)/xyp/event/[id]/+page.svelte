@@ -9,5 +9,6 @@
 </script>
 
 <div class="container p-10">
+    <h2 class="mb-2">Edit Event</h2>
     <EventForm {event} />
 </div>
