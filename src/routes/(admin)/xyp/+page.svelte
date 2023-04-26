@@ -5,7 +5,7 @@
 	
     export let data: PageData;
 
-    let { events } = data 
+    let { events } = data;
 </script>
 
 <div class="container p-12 items-center">

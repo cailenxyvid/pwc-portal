@@ -11,10 +11,10 @@
         </div>
     </svelte:fragment>
     <!-- <img src={tliLogo} alt="Trust Leadership Institute Logo" title="Trust Leadership Institute" class="min-w-[65px] max-w-[200px]" /> -->
-	<div class="ml-4 md:ml-12 md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden sm:inline">                
+	<!-- <div class="ml-4 md:ml-12 md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden sm:inline">                
         <a href="/xyp/events" class="topnav {$page.route.id === '/(admin)/xyp/events' ? 'active' : ''}">Upcoming&nbsp;Events</a>
         <a href="/xyp/replay" class="topnav {$page.route.id === '/(admin)/xyp/replay' ? 'active' : ''}">Replay&nbsp;Events</a>
-    </div>
+    </div> -->
 	<svelte:fragment slot="trail">
         ?
     </svelte:fragment>

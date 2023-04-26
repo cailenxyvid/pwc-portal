@@ -25,7 +25,7 @@
 		const data: AssociativeArray = {};
 		for (let field of formData) {
 			const [key, value] = field;
-			data[key] = value; 
+			data[key] = value; 			
 		}		
 
 		const { error } = await supabase
@@ -54,11 +54,11 @@
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();			
 			$myProfile = data as Profile;	
-			return data;
+			return data as Profile;
 		} else if (email) {
 			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
 			$myProfile = data as Profile;	
-			return data;
+			return data as Profile;
 		} else {
 			return;
 		}
