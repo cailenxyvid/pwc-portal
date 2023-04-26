@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Editor from '@tinymce/tinymce-svelte';
     import type { Event } from "$lib/data/myTypes";
 
     export let event: Event = {
@@ -61,12 +62,14 @@
         <div>
             <label class="label">
                 <span>Event Pending Content</span>
-                <textarea class="w-full h-48" name="content" bind:value={event.content}></textarea>
+                <Editor bind:value={event.content} />
+                <textarea class="w-full h-48" name="content" bind:value={event.content}></textarea>                
             </label>            
         </div>
         <div>
             <label class="label">
                 <span>Event Replay Content</span>
+                <Editor bind:value={event.content_replay} />
                 <textarea class="w-full h-48" name="content_replay" bind:value={event.content_replay}></textarea>
             </label>            
         </div>
