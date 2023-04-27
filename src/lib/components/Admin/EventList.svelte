@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Event } from "$lib/data/myTypes";
+	import ToggleEventStatus from "./ToggleEventStatus.svelte";
     export let events: Event[];
 </script>
 
@@ -9,14 +10,8 @@
         <a href="/xyp/event/{event.id}" class="bg-surface-300 shadow-lg p-2 rounded-md">
             <button><i class="fa fa-pencil"></i></button>                        
         </a>
-        <div class="btn-group variant-filled-secondary">
-            <button title="Mark as pending event" disabled={event.status === 'pending'}>
-                <i class="fa-solid fa-video-plus"></i>
-            </button>
-            <button title="Mark as replay event"  disabled={event.status === 'replay'}>
-                <i class="fa-solid fa-file-video"></i>
-            </button>            
-        </div>
+        <ToggleEventStatus {event} />
+        <span class="ml-2 w-36 inline-block" title="{new Date(event.event_start).toString()}">{new Date(event.event_start).toDateString()}</span>
         <span class="text-xl text-primary-500">{event.title}</span>        
     </div>
     {/each}
