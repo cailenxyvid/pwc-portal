@@ -16,7 +16,9 @@
         <a href="/xyp/replay" class="topnav {$page.route.id === '/(admin)/xyp/replay' ? 'active' : ''}">Replay&nbsp;Events</a>
     </div> -->
 	<svelte:fragment slot="trail">
-        &nbsp;
+        <a href="/xyp">
+            <i class="fa fa-home"></i>
+        </a>
     </svelte:fragment>
 </AppBar>
 

@@ -16,7 +16,8 @@ export const actions = {
 
       const result = await supabase
         .from('event')
-        .insert(data);
+        .insert(data)
+        .select();
         
       if (result.error) {
         console.error(result.error);
@@ -24,7 +25,8 @@ export const actions = {
           message: 'Error creating event'
         });
       } else {
-        console.log('event created?', result)
+        console.log(result.data);
+        return { success: true, new_event: result.data[0].id }
       }
     }
 } satisfies Actions;

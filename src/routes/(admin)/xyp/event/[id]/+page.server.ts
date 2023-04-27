@@ -24,8 +24,8 @@ export const actions = {
         throw error(500, {
           message: 'Error saving event'
         });
-      } else {
-        console.log('event saved?', result)
+      } else {        
+        return { success: true }
       }
     }
 } satisfies Actions;
