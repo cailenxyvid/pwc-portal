@@ -34,7 +34,7 @@
 		
 		if (data) {
 			data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events		
-			$myEvents = data as MyEvent[];												
+			$myEvents = data as MyEvent[];
 		} 
 		return data;
 	}
@@ -54,8 +54,7 @@
 
 		//# currently the api will 500 if any of these are empty
 		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
-		let x_body = {
-			// events: [ "152119" ],
+		let x_body = {			
 			events: x_ids,
 			fname: $myProfile.first_name ? $myProfile.first_name : '.', //# if someday there is a weird bug with a bunch of '.' in data, i am so sorry
 			lname: $myProfile.last_name ? $myProfile.last_name : '.',
@@ -66,6 +65,7 @@
 			jobtitle: $myProfile.job_title ? $myProfile.job_title : '.',
 		}		
 
+		// expected format:
 		// x_body = {
 		// 	"events": [
 		// 		"152109"
@@ -189,7 +189,7 @@
 	<div class="w-full text-center mb-10 absolute">		
 		<button on:click={registerEvents} disabled={!enableRegister} class="{enableRegister ? 'bg-primary-500' : 'bg-primary-400'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
 	</div>
-	<div class="w-full flex flex-col md:flex-row space-x-6 mt-20">
+	<div class="w-full flex flex-col space-x-6 mt-20">
 		{#each events as event}
 		<UpcomingEvent {event} {toggleEvent} />
 		{/each}
