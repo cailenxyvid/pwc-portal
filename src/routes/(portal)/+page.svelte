@@ -12,11 +12,16 @@
 	import type { PageData } from './$types';
 	
 
-  	export let data: PageData;
+  	export let data: PageData;	
 
-	let user_id: string;
-
-	// $: user_id = $myProfile.id
+	let displayError = (message:string) => {
+		console.log(message);
+		toastStore.trigger({
+			message: message,
+			background: 'variant-filled-error',
+			timeout: 10000
+		});
+	}
 
 	//# this function exists in two places. fix that.
 	let loadEvents = async () => {
@@ -31,7 +36,7 @@
 					id,
 					xyp_id
 				)
-				`)			
+				`)
 			.eq('attendee', $myProfile.id)
 			.eq('event.status', 'pending');
 		
@@ -110,44 +115,38 @@
 		}						
 	}
 
-	let registerEvents = async () => {
-		// if (!cookie) { return; }
-		if (selectedEvents.length > 0) {			
-			// user_id = cookie;
+	let registerEvents = async () => {		
+		if (selectedEvents.length > 0) {						
 
 			// complete XYP registration first, only update records if success
 			if (!registerXyp()) {
-				console.error('Error registering with XYP');
+				displayError('Error registering with XYP');
 				return;
 			}				
 			
 			for (let event_id of selectedEvents) {				
 				const { data, error } = await supabase
 				.from('registration')
-				.upsert({ event: event_id, attendee: $myProfile.id })
-				// .upsert({ event: event_id, attendee: user_id }, { onConflict: 'event, attendee' })
+				.upsert({ event: event_id, attendee: $myProfile.id })				
 				.select();
 
-				if (error) {
-					console.error(error.message);
-					toastStore.trigger({
-						message: error.message,
-						background: 'variant-filled-error text-white',
-						timeout: 10000
-					});
+				if (error) {					
+					displayError(error.message);					
+					console.log(error);
 				}
 			}
 			await loadEvents();
 			selectedEvents = [];
 			toastStore.trigger({
 				message: 'You are registered! Please check your email for confirmation.',
-				background: 'variant-filled-success text-white',
+				background: 'variant-filled-success',
 				timeout: 10000
 			});
 		} else {			
 			toastStore.trigger({
 				message: 'No Events selected!',
 				background: 'variant-filled-warning',
+				timeout: 10000
 			});
 		}
 	}
@@ -181,9 +180,7 @@
 	let { events, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ events } = data);
 	// $: enableRegister = (selectedEvents.length > 0 && cookie);
-	$: enableRegister = (selectedEvents.length > 0); //#! reenable the check for cookie once it's passed back up to this level
-	
-	// $: events = events as Event[];
+	$: enableRegister = (selectedEvents.length > 0 && $myProfile.first_name); //#! reenable the check for cookie once it's passed back up to this level
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	

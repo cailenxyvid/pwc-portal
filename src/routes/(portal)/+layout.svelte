@@ -41,14 +41,14 @@
 	
 	<svelte:fragment slot="sidebarRight">
 		<div class="h-full w-full p-10 hidden md:block bg-white">
-			<User {session} {cookie} />
+			<User {cookie} />
 		</div>
 	</svelte:fragment>
 	
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">
 		<div class="block md:hidden bg-white">
-			<User {session} {cookie} />
+			<User {cookie} />
 		</div>
 	</svelte:fragment>
 	

@@ -16,7 +16,7 @@
 	import { myProfile } from '$lib/data/myProfile';
 	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
 
-	export let session: Session | null;
+	// export let session: Session | null;
 	export let cookie: string | undefined;
 	
 	const setCookie = (user_id:string) => {
@@ -55,6 +55,24 @@
 		}
     }
 	
+	const createProfile = async (email: string) => {
+		const { data, error } = await supabase
+        .from('attendee')
+        .insert({ email: email})
+        .select();
+
+		if (error) {
+			console.log(error);
+			toastStore.trigger({
+				message: 'Error registering your email!',
+				background: 'variant-filled-warning',
+			});
+		} else {
+			setCookie(data[0].id)
+			loadProfile();
+		}
+	}
+
 	const loadProfile = async (email: string | null = null) => {		
 		if (cookie) {
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();			
@@ -63,6 +81,9 @@
 		} else if (email) {
 			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
 			$myProfile = data as Profile;	
+			if (!$myProfile?.id) {
+				createProfile(email);
+			}
 			return data as Profile;
 		} else {
 			return false;
@@ -88,7 +109,7 @@
 		if (data) {
 			data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
 		
-			//# don't love this
+			//# don't love this - doesn't handle n types
 			if (type == 'pending') {
 				$myEvents = data as MyEvent[];
 			} else if (type == 'replay') {
@@ -104,12 +125,13 @@
 		loadEvents('replay');
 
 		//# we really shouldn't have to check this so far in
-		if (!cookie && session?.user) {
-			cookie = session.user.id;			
-		} 
+		// if (!cookie && session?.user) {
+		// 	cookie = session.user.id;			
+		// } 
 	});	
 	
 	let showForm = false;
+	$: if ($myProfile && !$myProfile.first_name) { showForm = true } //# ugly
 </script>
 
 <div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">	
@@ -127,10 +149,11 @@
 		</div>
 		<MyEvents {profile} />
 		{:else}				
-		<EditProfile {profile} {updateProfile} />
+		<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
+		<EditProfile profile={$myProfile} {updateProfile} />
 		{/if}
 	{/await}	
 {:else}
-	<BypassLogin {loadProfile} {setCookie} />
+	<BypassLogin {loadProfile} />
 {/if}	
 </div>
