@@ -6,6 +6,7 @@
 
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
+
 	import type { MyEvent } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';
@@ -15,10 +16,12 @@
 
 	let user_id: string;
 
+	// $: user_id = $myProfile.id
+
 	//# this function exists in two places. fix that.
 	let loadEvents = async () => {
-		if (!cookie) return;
-		
+		// if (!cookie) return;
+				
 		let { data } = await supabase
 			.from("registration")
 			.select(`
@@ -29,7 +32,7 @@
 					xyp_id
 				)
 				`)			
-			.eq('attendee', cookie)
+			.eq('attendee', $myProfile.id)
 			.eq('event.status', 'pending');
 		
 		if (data) {
@@ -95,7 +98,7 @@
 			const { error } = await supabase
 				.from('attendee')
 				.update({ xyp_attnum: response[0].AttendeeID })
-				.eq('id', cookie);
+				.eq('id', $myProfile.id);
 
 			if (error) {
 				console.error('Error updating attnum after event registration!', error)
@@ -108,9 +111,9 @@
 	}
 
 	let registerEvents = async () => {
-		if (!cookie) { return; }
+		// if (!cookie) { return; }
 		if (selectedEvents.length > 0) {			
-			user_id = cookie;
+			// user_id = cookie;
 
 			// complete XYP registration first, only update records if success
 			if (!registerXyp()) {
@@ -121,7 +124,7 @@
 			for (let event_id of selectedEvents) {				
 				const { data, error } = await supabase
 				.from('registration')
-				.upsert({ event: event_id, attendee: user_id })
+				.upsert({ event: event_id, attendee: $myProfile.id })
 				// .upsert({ event: event_id, attendee: user_id }, { onConflict: 'event, attendee' })
 				.select();
 
@@ -177,7 +180,9 @@
 
 	let { events, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ events } = data);
-	$: enableRegister = (selectedEvents.length > 0 && cookie);
+	// $: enableRegister = (selectedEvents.length > 0 && cookie);
+	$: enableRegister = (selectedEvents.length > 0); //#! reenable the check for cookie once it's passed back up to this level
+	
 	// $: events = events as Event[];
 </script>
     
