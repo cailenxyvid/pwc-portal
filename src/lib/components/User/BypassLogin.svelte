@@ -18,6 +18,7 @@
     let emailSent = false;
 
     const loginAction = async (email:string) => {
+        await supabase.auth.signInWithOtp({ email });
         profile = await loadProfile(email);
         console.log(profile)
         if (profile) {
