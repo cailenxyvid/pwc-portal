@@ -7,9 +7,9 @@
 
 	import { toastStore } from '@skeletonlabs/skeleton';
 
-	import Register from './Register.svelte';
+	import EditProfile from './EditProfile.svelte';
 	import MyEvents from './MyEvents.svelte';
-	import Login from './Login.svelte';
+	import BypassLogin from './BypassLogin.svelte';
 	import Loading from '../Loading.svelte';
 
 	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
@@ -19,6 +19,11 @@
 	export let session: Session | null;
 	export let cookie: string | undefined;
 	
+	const setCookie = (user_id:string) => {
+		cookie = user_id;
+		document.cookie = "xyp_user="+user_id;
+	}
+
 	const updateProfile = async (e:any) => {
 		const formData = new FormData(e.target);
 
@@ -31,20 +36,20 @@
 		const { error } = await supabase
 			.from('attendee')
 			.update(data)
-			.eq('id', session?.user.id);
+			.eq('id', cookie);
 
 		if (error) {
 			console.error(error);
 			toastStore.trigger({
 				message: 'Error updating profile!',
-				background: 'variant-filled-warning text-white',
+				background: 'variant-filled-warning',
 			});
 		} else {
 			loadProfile();
 			showForm = false;
 			toastStore.trigger({
 				message: 'Profile updated!',
-				background: 'variant-filled-success text-white',
+				background: 'variant-filled-success',
 				timeout: 10000
 			});
 		}
@@ -60,7 +65,7 @@
 			$myProfile = data as Profile;	
 			return data as Profile;
 		} else {
-			return;
+			return false;
 		}
 	}
 
@@ -112,7 +117,7 @@
 	{#await loadProfile()}
 		<Loading />
 	{:then profile} 
-		{#if profile?.email && !showForm}
+		{#if profile && !showForm}
 		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
 		<div class="text-sm">
 			<button on:click={()=>{ showForm = !showForm }}>
@@ -122,10 +127,10 @@
 		</div>
 		<MyEvents {profile} />
 		{:else}				
-		<Register {session} {profile} {updateProfile} />
+		<EditProfile {profile} {updateProfile} />
 		{/if}
 	{/await}	
 {:else}
-	<Login {session} />
+	<BypassLogin {loadProfile} {setCookie} />
 {/if}	
 </div>

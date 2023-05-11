@@ -8,6 +8,7 @@ export const load: LayoutServerLoad = async ({ locals: { getSession }, cookies }
   if (session?.user.id) {
     cookies.set('xyp_user', session.user.id);    
   }
+  cookies.set('hello', 'test')
 
   return {
     session: getSession(),
