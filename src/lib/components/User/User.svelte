@@ -83,6 +83,8 @@
 			$myProfile = data as Profile;	
 			if (!$myProfile?.id) {
 				createProfile(email);
+			} else {
+				setCookie($myProfile.id);
 			}
 			return data as Profile;
 		} else {
