@@ -75,9 +75,13 @@
 
 	const loadProfile = async (email: string | null = null) => {		
 		if (cookie) {
-			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();			
-			$myProfile = data as Profile;	
-			return data as Profile;
+			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();	
+			if (data) {
+				$myProfile = data as Profile;				
+				return data as Profile;
+			} else {
+				setCookie(''); //# handle incorrect cookies from before auth refactor
+			}
 		} else if (email) {
 			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
 			$myProfile = data as Profile;	
