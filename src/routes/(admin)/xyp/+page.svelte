@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { PageData, ActionData } from './$types';    
+    import type { PageData, ActionData } from './$types'; 
     import { toastStore } from '@skeletonlabs/skeleton';
     import EventList from '$lib/components/Admin/EventList.svelte';
 

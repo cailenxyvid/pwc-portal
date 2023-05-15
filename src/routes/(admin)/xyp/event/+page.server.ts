@@ -25,7 +25,7 @@ export const actions = {
           message: 'Error creating event'
         });
       } else {
-        console.log(result.data);
+        // console.log(result.data);
         return { success: true, new_event: result.data[0].id }
       }
     }
