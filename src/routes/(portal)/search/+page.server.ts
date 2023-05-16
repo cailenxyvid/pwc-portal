@@ -30,6 +30,12 @@ export async function load({ url }) {
         })
         .eq('status', 'past');     
     
+    if (upcoming.error || replay.error || past.error) {
+        console.error(upcoming.error, replay.error, past.error);
+        throw error(500, {
+            message: 'Error getting search results!'
+          });
+    }
     return {
       upcoming: upcoming.data as Event[] ?? [],
       replay: replay.data as Event[] ?? [],
