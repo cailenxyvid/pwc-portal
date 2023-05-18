@@ -12,33 +12,32 @@
 </script>
 
 {#if event}
-<div
-  class="flex flex-col rounded-lg  md:flex-row w-full card">
-  <img
-    class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg"
-    src="{event.image_url}"
-    alt="{event.title}" />
-  <div class="flex flex-col justify-start p-6">
-    <h5
-      class="mb-2 text-2xl text-primary-500">
-      {event.title}
-    </h5>
-    <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
-    <div class="event-register mt-6 mb-4 flex flex-row">
-        {#if alreadyRegistered}
-            <span class="test variant-glass-primary">You are already registered!</span>
-            {:else}
-            <button class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { registerEvent(event) }}>Register</button>
-        {/if}
-        <CalendarButton {event} />
-    </div>
-    <span class="mb-4 text-base italic">
-        <div class="underline font-extrabold">Featured speakers:</div>
-        {@html event.content_speakers}
-    </span>
-    <p class="prose2 text-sm">
-      {@html event.content}
-    </p>
+<div class="flex flex-col md:flex-row w-full card">
+    <img class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg" src="{event.image_url}" alt="{event.title}" />
+    <!-- idk wtf the deal is here -->
+    <!-- <div class="w-2/4">        
+        <img class="m-w-48 w-48" src="{event.image_url}" alt="{event.title}" />
+    </div> -->
+    <div class="flex flex-col justify-start p-6">
+        <h3 class="mb-2 text-primary-500">
+            {event.title}
+        </h3>
+        <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
+        <div class="event-register mt-6 mb-4 flex flex-row">
+            {#if alreadyRegistered}
+                <span class="btn variant-glass-primary">You are already registered!</span>
+                {:else}
+                <button class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { registerEvent(event) }}>Register</button>
+            {/if}
+            <CalendarButton {event} />
+        </div>
+        <span class="mb-4 text-base italic">
+            <div class="underline font-extrabold">Featured speakers:</div>
+            {@html event.content_speakers}
+        </span>
+        <p class="prose2 text-sm">
+        {@html event.content}
+        </p>
   </div>
 </div>
 {:else}

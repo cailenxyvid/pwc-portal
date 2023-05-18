@@ -4,6 +4,7 @@
 
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
 	import EventCard from '$lib/components/EventCard.svelte';
+	import ExpandingEventCard from '$lib/components/ExpandingEventCard.svelte';
 
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
@@ -163,15 +164,18 @@
 		Our monthly webcasts provide trust building blocks at the intersection of emerging topics. Listen to diverse perspectives and prepare for the future. *Pick one topic or choose them all. 
 	</div> -->
 
+	<!-- we could have an optional hero to display here, when there are no upcoming events -->
+
 	<div class="w-full flex flex-col space-x-6 mt-20">
 		{#each pendingEvents as event}
 		<UpcomingEvent {event} {registerEvent} />
 		{/each}
 	</div>	
 
-	<h1 class="my-12">Past Events</h1>
+	<h2 class="my-12">Past Events</h2>
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 		{#each pastEvents as event}
+		<!-- <ExpandingEventCard {event} /> -->
 		<EventCard {event} />
 		{/each}
 	</div>

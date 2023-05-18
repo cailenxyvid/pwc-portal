@@ -3,30 +3,17 @@
     export let event:Event;
 </script>
 
-<div class="card p-2">
-    <div class="card-header2">
-        <img src="{event.image_url}" alt="{event.title}" class="block w-full h-auto">
-        <a href="/event/{event.id}">{event.title}</a>
-    </div>    
-    <div class="event-speakers italic my-4">
-        <div class="underline font-extrabold">Featured speakers:</div>
-        {@html event.content_speakers}
-    </div>
-    <div class="event-replay-notice font-bold mb-2">
-        {#if event.status === 'replay'}
-        The live session has concluded. View the webcast replay!
-        {/if}
-        {#if event.status === 'past'}
-        The live session has concluded, and this session is not available for replay.
-        {/if}
-    </div>
-    <div class="event-content">
-        <div class="text-sm">
-            {#if event.status === 'pending'}
-            {@html event.content}
-            {:else}
-            {@html event.content_replay}
-            {/if}
-        </div>        
-    </div>
+<div
+  class="block rounded-lg card card-hover bg-[#2d2d2d]">
+  <div class="t h-48 overflow-clip">
+    <a href="/event/{event.id}">
+        <img src="{event.image_url}" alt="" class="w-full" />
+      </a>
+  </div>
+  <div class="p-6">
+    <a href="/event/{event.id}" class="text-2xl">{event.title}</a>
+    <p class="mb-4 text-base text-white">
+      {@html event.content_speakers}
+    </p>    
+  </div>
 </div>
