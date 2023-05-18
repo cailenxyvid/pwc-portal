@@ -19,7 +19,7 @@
         <CalendarButton {event} />
     </div>    
     <div class="event-register mt-6 mb-4 inline-flex items-center">
-        <button class="variant-filled-primary" on:click={() => { registerEvent(event) }}>Register</button>
+        <button class="variant-filled-primary p-2 text-xl" on:click={() => { registerEvent(event) }}>Register</button>
     </div>
     <div class="event-speakers">
         {@html event.content_speakers}
