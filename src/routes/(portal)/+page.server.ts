@@ -3,10 +3,12 @@ import { xyp_api_key, xyp_registration_url, xyp_portal_url } from '$env/static/p
 import type { Event } from "$lib/data/myTypes";
 
 export async function load() {
-  const { data } = await supabase.from("event").select().eq('status', 'pending');
-  
+  const pending = await supabase.from("event").select().eq('status', 'pending');
+  const past = await supabase.from("event").select().neq('status', 'pending');
+
   return {
-    events: data as Event[] ?? [],
+    pendingEvents: pending.data as Event[] ?? [],
+    pastEvents: past.data as Event[] ?? [],
     xyp_api_key: xyp_api_key,
     xyp_registration_url: xyp_registration_url,
     xyp_portal_url: xyp_portal_url

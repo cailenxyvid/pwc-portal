@@ -3,6 +3,7 @@
 	import { toastStore } from '@skeletonlabs/skeleton';			
 
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
+	import EventCard from '$lib/components/EventCard.svelte';
 
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
@@ -32,7 +33,7 @@
 	}
 
 	const displaySuccess = (message:string) => {
-		console.warn(message);
+		console.log(message);
 		toastStore.trigger({
 			message: message,
 			background: 'variant-filled-success',
@@ -152,8 +153,8 @@
 	}
 
 
-	let { events, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
-    $: ({ events } = data);	
+	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
+    $: ({ pendingEvents, pastEvents } = data);	
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
@@ -163,8 +164,15 @@
 	</div>
 
 	<div class="w-full flex flex-col space-x-6 mt-20">
-		{#each events as event}
+		{#each pendingEvents as event}
 		<UpcomingEvent {event} {registerEvent} />
 		{/each}
 	</div>	
+
+	<h1 class="m-12">Past Events</h1>
+	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+		{#each pastEvents as event}
+		<EventCard {event} />
+		{/each}
+	</div>
 </div>

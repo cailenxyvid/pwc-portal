@@ -29,7 +29,7 @@
         {@html highlight(event.content)}        
         {:else}
         {@html highlight(event.content_replay)}
-        {/if}
+        {/if}        
     </div>
 </div>
 {/key}

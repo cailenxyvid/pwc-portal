@@ -3,9 +3,28 @@
     export let event:Event;
 </script>
 
-<div class="card p-2 overflow-scroll overflow-ellipsis text-xs">
-    <a class="block" href="/event/{event.id}">{event.title}</a>
-    <div class="">
-        {@html event.content}
+<div class="card p-2">
+    <div class="card-header">
+        <a href="/event/{event.id}">{event.title}</a>
+    </div>    
+    <div class="event-speakers">
+        {@html event.content_speakers}
+    </div>
+    <div class="event-replay-notice">
+        {#if event.status === 'replay'}
+        The live session has concluded. View the webcast replay!
+        {/if}
+        {#if event.status === 'past'}
+        The live session has concluded, and this session is not available for replay.
+        {/if}
+    </div>
+    <div class="event-content">
+        <div class="prose">
+            {#if event.status === 'pending'}
+            {@html event.content}
+            {:else}
+            {@html event.content_replay}
+            {/if}
+        </div>        
     </div>
 </div>
