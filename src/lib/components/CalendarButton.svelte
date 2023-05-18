@@ -12,7 +12,7 @@
         <i class="fa-solid fa-chevron-{show ? 'up' : 'down'}"></i>
     </button>
     {#if show}
-        <div class="pl-10 pt-6">
+        <div class="p-6 pl-10 rounded-sm absolute right-0 bg-surface-200">
             <a href="https://www.addevent.com/event/{event.calendar_id}+outlook" class="block">Outlook</a>
             <a href="https://www.addevent.com/event/{event.calendar_id}+google" class="block">Google</a>
             <a href="https://www.addevent.com/event/{event.calendar_id}+apple" class="block">Apple</a>

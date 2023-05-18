@@ -29,7 +29,9 @@
                 {:else}
                 <button class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { registerEvent(event) }}>Register</button>
             {/if}
-            <CalendarButton {event} />
+            <span class="relative card">
+                <CalendarButton {event} />
+            </span>            
         </div>
         <span class="mb-4 text-base italic">
             <div class="underline font-extrabold">Featured speakers:</div>
