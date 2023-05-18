@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { PageData } from './$types';
-    import EventCard from '$lib/components/EventCard.svelte';
+    import type { PageData } from './$types';    
+    import SearchEventCard from '$lib/components/SearchEventCard.svelte';
 
     export let data: PageData;    
-
+    
     $: ({ upcoming, replay, past, faq } = data);
 </script>
 
@@ -13,7 +13,7 @@
         <h4>{upcoming.length} results found.</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
             {#each upcoming as event}
-            <EventCard {event} />
+            <SearchEventCard {event} />
             {/each}
         </div>
     </div>
@@ -22,7 +22,7 @@
         <h4>{replay.length} results found.</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
             {#each replay as event}
-            <EventCard {event} />
+            <SearchEventCard {event} />
             {/each}
         </div>    
     </div>
@@ -31,7 +31,7 @@
         <h4>{past.length} results found.</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
             {#each past as event}
-            <EventCard {event} />
+            <SearchEventCard {event} />
             {/each}
         </div>
     </div>

@@ -5,10 +5,11 @@ import { supabase } from "$lib/data/supabase";
 export async function load({ url }) {
     let params = await url.searchParams;
     let q = params.get('queryString') as string;
+    //# depends on custom search column function (event_search_cols) in postgres
     const upcoming = await supabase
         .from('event')
         .select()
-        .textSearch('title', q, {
+        .textSearch('event_search_cols', q, {
             type: 'plain',
             config: 'english'
         })
@@ -16,7 +17,7 @@ export async function load({ url }) {
     const replay = await supabase
         .from('event')
         .select()
-        .textSearch('title', q, {
+        .textSearch('event_search_cols', q, {
             type: 'plain',
             config: 'english'
         })
@@ -24,7 +25,7 @@ export async function load({ url }) {
     const past = await supabase
         .from('event')
         .select()
-        .textSearch('title', q, {
+        .textSearch('event_search_cols', q, {
             type: 'plain',
             config: 'english'
         })
