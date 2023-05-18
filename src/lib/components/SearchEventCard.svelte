@@ -16,10 +16,20 @@
 </script>
 
 {#key query}
-<div class="card p-2 overflow-scroll overflow-ellipsis text-xs">
+<div class="card p-2">
     <a class="block" href="/event/{event.id}">{@html highlight(event.title)}</a>
+    <div class="event_speakers">
+        <div class="bold underline">Featured speakers: </div>
+        <div class="prose">
+            {@html highlight(event.content_speakers)}
+        </div>
+    </div>
     <div class="prose">
-        {@html highlight(event.content)}
+        {#if event.status === 'pending'}
+        {@html highlight(event.content)}        
+        {:else}
+        {@html highlight(event.content_replay)}
+        {/if}
     </div>
 </div>
 {/key}
