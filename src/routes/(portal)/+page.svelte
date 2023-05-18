@@ -70,6 +70,11 @@
 			displayError('Missing user profile!');
 			return false;
 		}
+
+		if (!x_id) {
+			displayError('Missing XyvidPro Event ID!');
+			return false;
+		}
 		
 		//# currently the api will 500 if any of these are empty
 		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
@@ -117,22 +122,22 @@
 				.eq('id', $myProfile.id);
 
 			if (error) {
-				displayError('Error updating attnum after event registration!')
+				displayError('Error updating XYP attnum after event registration!')
 				console.error(error);
 				return false;
 			}
 			return true;
 		} else {
-			displayError('Error completing XYP registration!');
+			displayError('Unknown error completing XYP registration!');
 			console.error(x_reg.statusText);
 		}						
 	}
 
 	const registerEvent = async (event:Event) => {
 		// complete XYP registration first, only update records if success
-		if (!registerXyp(event.xyp_id)) {
-				displayError('Error registering with XYP');
-				return;
+		if (! await registerXyp(event.xyp_id)) {
+			displayError('Error registering with XYP');
+			return;
 		}
 		const { data, error } = await supabase
 			.from('registration')
