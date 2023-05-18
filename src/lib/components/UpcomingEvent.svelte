@@ -32,10 +32,11 @@
         {/if}
         <CalendarButton {event} />
     </div>
-    <p class="mb-4 text-base">
-      {@html event.content_speakers}
-    </p>
-    <p class="prose">
+    <span class="mb-4 text-base italic">
+        <div class="underline font-extrabold">Featured speakers:</div>
+        {@html event.content_speakers}
+    </span>
+    <p class="prose2 text-sm">
       {@html event.content}
     </p>
   </div>

@@ -12,7 +12,7 @@
         <div class="underline font-extrabold">Featured speakers:</div>
         {@html event.content_speakers}
     </div>
-    <div class="event-replay-notice">
+    <div class="event-replay-notice font-bold mb-2">
         {#if event.status === 'replay'}
         The live session has concluded. View the webcast replay!
         {/if}
@@ -21,7 +21,7 @@
         {/if}
     </div>
     <div class="event-content">
-        <div class="prose">
+        <div class="text-sm">
             {#if event.status === 'pending'}
             {@html event.content}
             {:else}
