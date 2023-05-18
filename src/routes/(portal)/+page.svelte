@@ -158,10 +158,10 @@
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
-	<div class="mx-auto w-2/3 mb-4">
+	<!-- <div class="mx-auto w-2/3 mb-4">
 		<div style="font-family: georgia, palatino; font-size: 48px; color: rgb(0, 0, 0);" class="text-center">Trust in Action</div>
 		Our monthly webcasts provide trust building blocks at the intersection of emerging topics. Listen to diverse perspectives and prepare for the future. *Pick one topic or choose them all. 
-	</div>
+	</div> -->
 
 	<div class="w-full flex flex-col space-x-6 mt-20">
 		{#each pendingEvents as event}

@@ -8,7 +8,8 @@ export type Event = {
     xyp_id: string,
     calendar_id: string,
     event_start: Date,
-    status: string,    
+    status: string,
+    image_url: string,  
 }
 
 export type MyEvent = {

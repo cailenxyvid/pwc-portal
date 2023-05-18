@@ -12,6 +12,38 @@
 </script>
 
 {#if event}
+<div
+  class="flex flex-col rounded-lg  md:flex-row w-full card">
+  <img
+    class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg"
+    src="{event.image_url}"
+    alt="{event.title}" />
+  <div class="flex flex-col justify-start p-6">
+    <h5
+      class="mb-2 text-2xl text-primary-500">
+      {event.title}
+    </h5>
+    <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
+    <div class="event-register mt-6 mb-4 flex flex-row">
+        {#if alreadyRegistered}
+            <span class="test variant-glass-primary">You are already registered!</span>
+            {:else}
+            <button class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { registerEvent(event) }}>Register</button>
+        {/if}
+        <CalendarButton {event} />
+    </div>
+    <p class="mb-4 text-base">
+      {@html event.content_speakers}
+    </p>
+    <p class="prose">
+      {@html event.content}
+    </p>
+  </div>
+</div>
+{:else}
+<div class="text-error-500 text-xl">Error Loading Event</div>
+{/if}
+<!-- {#if event}
 <div class="w-full card p-4 shadow-lg">
     <div class="event-title text-primary-500 text-2xl">{event.title}</div>
     <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
@@ -28,8 +60,6 @@
         {@html event.content}        
     </div>    
 </div>
-
-
 {:else}
 <div class="text-error-500 text-xl">Error Loading Event</div>
-{/if}
+{/if} -->

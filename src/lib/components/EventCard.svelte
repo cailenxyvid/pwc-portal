@@ -5,6 +5,7 @@
 
 <div class="card p-2">
     <div class="card-header">
+        <img src="{event.image_url}" alt="{event.title}" class="block w-full h-auto">
         <a href="/event/{event.id}">{event.title}</a>
     </div>    
     <div class="event-speakers">
