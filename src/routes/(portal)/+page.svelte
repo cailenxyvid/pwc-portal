@@ -7,15 +7,14 @@
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
 
-	import type { MyEvent } from '$lib/data/myTypes';
+	import type { MyEvent, Event } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';
 	
-
   	export let data: PageData;	
 
-	let displayError = (message:string) => {
-		console.log(message);
+	const displayError = (message:string) => {
+		console.error(message);
 		toastStore.trigger({
 			message: message,
 			background: 'variant-filled-error',
@@ -23,8 +22,26 @@
 		});
 	}
 
+	const displayWarning = (message:string) => {
+		console.warn(message);
+		toastStore.trigger({
+			message: message,
+			background: 'variant-filled-warning',
+			timeout: 10000
+		});
+	}
+
+	const displaySuccess = (message:string) => {
+		console.warn(message);
+		toastStore.trigger({
+			message: message,
+			background: 'variant-filled-success',
+			timeout: 10000
+		});
+	}
+
 	//# this function exists in two places. fix that.
-	let loadEvents = async () => {
+	const loadEvents = async () => {
 		// if (!cookie) return;
 				
 		let { data } = await supabase
@@ -47,23 +64,17 @@
 		return data;
 	}
 
-	let registerXyp = async () => {
+	const registerXyp = async (x_id:string) => {
 		
 		if (!$myProfile) {
-				console.error('Missing user profile!');
-				return false;
+			displayError('Missing user profile!');
+			return false;
 		}
 		
-		// get xyvid event ids						
-		let x_ids = selectedEvents.map((id) => {
-			const event = events?.find((event) => event.id == id);			
-			return event ? event.xyp_id : null;
-		});
-
 		//# currently the api will 500 if any of these are empty
 		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle	
 		let x_body = {			
-			events: x_ids,
+			events: [ x_id ],
 			fname: $myProfile.first_name ? $myProfile.first_name : '.', //# if someday there is a weird bug with a bunch of '.' in data, i am so sorry
 			lname: $myProfile.last_name ? $myProfile.last_name : '.',
 			company: $myProfile.company ? $myProfile.company : '.',
@@ -106,81 +117,38 @@
 				.eq('id', $myProfile.id);
 
 			if (error) {
-				console.error('Error updating attnum after event registration!', error)
+				displayError('Error updating attnum after event registration!')
+				console.error(error);
 				return false;
 			}
 			return true;
 		} else {
-			console.error("Error completing XYP registration!", x_reg.statusText);
+			displayError('Error completing XYP registration!');
+			console.error(x_reg.statusText);
 		}						
 	}
 
-	let registerEvents = async () => {		
-		if (selectedEvents.length > 0) {						
-
-			// complete XYP registration first, only update records if success
-			if (!registerXyp()) {
+	const registerEvent = async (event:Event) => {
+		// complete XYP registration first, only update records if success
+		if (!registerXyp(event.xyp_id)) {
 				displayError('Error registering with XYP');
 				return;
-			}				
-			
-			for (let event_id of selectedEvents) {				
-				const { data, error } = await supabase
-				.from('registration')
-				.upsert({ event: event_id, attendee: $myProfile.id })				
-				.select();
+		}
+		const { data, error } = await supabase
+			.from('registration')
+			.upsert({ event: event.id, attendee: $myProfile.id })				
+			.select();
 
-				if (error) {					
-					displayError(error.message);					
-					console.log(error);
-				}
+			if (error) {					
+				displayError(error.message);										
 			}
 			await loadEvents();
-			selectedEvents = [];
-			toastStore.trigger({
-				message: 'You are registered! Please check your email for confirmation.',
-				background: 'variant-filled-success',
-				timeout: 10000
-			});
-		} else {			
-			toastStore.trigger({
-				message: 'No Events selected!',
-				background: 'variant-filled-warning',
-				timeout: 10000
-			});
-		}
+			displaySuccess('You are registered! Please check your email for confirmation.');
 	}
 
-	let addEvent = (event_id:string) => {		
-		if (!selectedEvents.some(e => e === event_id)) {
-			selectedEvents.push(event_id)
-			selectedEvents = selectedEvents;			
-   		}		  
-	}
-
-	let removeEvent = (event_id:string) => {
-		let index = selectedEvents.indexOf(event_id);		
-		if (index >= 0) {
-			selectedEvents = selectedEvents.splice(index+1);
-		}		
-	}
-
-	let toggleEvent = (e:any) => {
-		let event_id = e.target.value;
-		if (e.target.checked) {
-			addEvent(event_id);
-		} else {
-			removeEvent(event_id)
-		}
-	}
-
-	let selectedEvents:string[] = [];
-	let enableRegister: string | undefined | boolean = false;
 
 	let { events, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
-    $: ({ events } = data);
-	// $: enableRegister = (selectedEvents.length > 0 && cookie);
-	$: enableRegister = (selectedEvents.length > 0 && $myProfile.first_name); //#! reenable the check for cookie once it's passed back up to this level
+    $: ({ events } = data);	
 </script>
     
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
@@ -188,12 +156,10 @@
 		<div style="font-family: georgia, palatino; font-size: 48px; color: rgb(0, 0, 0);" class="text-center">Trust in Action</div>
 		Our monthly webcasts provide trust building blocks at the intersection of emerging topics. Listen to diverse perspectives and prepare for the future. *Pick one topic or choose them all. 
 	</div>
-	<div class="w-full text-center mb-10 absolute">		
-		<button on:click={registerEvents} disabled={!enableRegister} class="{enableRegister ? 'bg-primary-500' : 'bg-primary-400'} text-white rounded-sm p-2 text-xl">Register for selected events</button>
-	</div>
+
 	<div class="w-full flex flex-col space-x-6 mt-20">
 		{#each events as event}
-		<UpcomingEvent {event} {toggleEvent} />
+		<UpcomingEvent {event} {registerEvent} />
 		{/each}
 	</div>	
 </div>

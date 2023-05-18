@@ -5,7 +5,7 @@
     import CalendarButton from "./CalendarButton.svelte";
 
     export let event: Event;
-    export let toggleEvent: any;
+    export let registerEvent: any;
 
     let alreadyRegistered = false;
     $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) }
@@ -18,23 +18,14 @@
     <div class="event-calendar mt-4 mb-4">
         <CalendarButton {event} />
     </div>    
-    <div class="event-register mt-6 mb-4">
-        <label class="inline-flex items-center">
-            <input on:change={toggleEvent} value={event.id} checked={alreadyRegistered} disabled={alreadyRegistered} type="checkbox" class="w-8 h-8 text-primary-500" />
-            <span class="ml-2">{alreadyRegistered ? 'You are registered!' : 'Select this event'}</span>
-          </label>
+    <div class="event-register mt-6 mb-4 inline-flex items-center">
+        <button class="variant-filled-primary" on:click={() => { registerEvent(event) }}>Register</button>
+    </div>
+    <div class="event-speakers">
+        {@html event.content_speakers}
     </div>
     <div class="event-content">        
-        {@html event.content}
-        <!-- <Accordion>
-            <AccordionItem>
-                <svelte:fragment slot="lead">(icon)</svelte:fragment>
-                <svelte:fragment slot="summary">Read more</svelte:fragment>
-                <svelte:fragment slot="content">
-                    {@html event.content}
-                </svelte:fragment>
-            </AccordionItem>
-        </Accordion> -->
+        {@html event.content}        
     </div>    
 </div>
 
