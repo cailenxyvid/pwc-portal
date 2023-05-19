@@ -12,7 +12,7 @@
 </script>
 
 {#if event}
-<div class="flex flex-col md:flex-row w-full card">
+<div class="flex flex-col md:flex-row w-full card bg-white">
     <!-- <img class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg" src="{event.image_url}" alt="{event.title}" /> -->
     <!-- idk wtf the deal is here -->
     <div class="w-2/4">        
