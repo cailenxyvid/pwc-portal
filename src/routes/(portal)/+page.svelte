@@ -169,7 +169,7 @@
 
 	<!-- we could have an optional hero to display here, when there are no upcoming events -->	
 
-	<div class="w-full flex flex-col space-x-6 mt-20">
+	<div class="w-full flex flex-col space-x-6 mt-8">
 		{#each pendingEvents as event}
 		<UpcomingEvent {event} {registerEvent} />
 		{/each}
