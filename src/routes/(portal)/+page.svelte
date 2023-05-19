@@ -158,8 +158,15 @@
     $: ({ pendingEvents, pastEvents } = data);	
 </script>
     
-<div class="w-full">
+<!-- <div class="w-full">
 	<img src="/mockup-hero.png" alt="" />
+</div> -->
+
+<div id="demo-hero" class="t h-96 relative">
+	<div class="absolute bottom-8 left-8 p-4">
+		<h2 class="bg-[#2d2d2d] text-white p-4">Trust Leadership Institute</h2>
+		<span class="bg-[#2d2d2d] text-white p-4">It’s time for a new era of leadership</span>		
+	</div>
 </div>
 <div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
 	<!-- <div class="mx-auto w-2/3 mb-4">
