@@ -142,6 +142,10 @@
 			displayWarning('Please enter your email to register!');
 			return false;
 		}
+		if (!$myProfile.first_name) {
+			displayWarning('Please enter your information to register!');
+			return false;
+		}
 		// complete XYP registration first, only update records if success
 		if (! await registerXyp(event.xyp_id)) {
 			displayError('Error registering with XYP');
