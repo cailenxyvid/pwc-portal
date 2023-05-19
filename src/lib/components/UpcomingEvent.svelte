@@ -7,15 +7,13 @@
     export let event: Event;
     export let registerEvent: any;
 
-    let disableButton = false;
+    export let disableButton = false;
     let alreadyRegistered = false;
     $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) }
 </script>
 
 {#if event}
 <div class="flex flex-col md:flex-row w-full card bg-white">
-    <!-- <img class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg" src="{event.image_url}" alt="{event.title}" /> -->
-    <!-- idk wtf the deal is here -->
     <div class="w-full">        
         <img class="w-full" src="{event.image_url}" alt="{event.title}" />
     </div>

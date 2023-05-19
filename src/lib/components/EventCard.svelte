@@ -17,9 +17,3 @@
     </p>    
   </div>
 </div>
-
-<style>
-    .card-link {
-        color: white;
-    }
-</style>

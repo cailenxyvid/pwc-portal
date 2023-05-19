@@ -136,6 +136,12 @@
 	}
 
 	const registerEvent = async (event:Event) => {
+		disableButton = true;
+		setTimeout(() => { disableButton = false }, 3000);
+		if (!$myProfile) {
+			displayWarning('Please enter your email to register!');
+			return false;
+		}
 		// complete XYP registration first, only update records if success
 		if (! await registerXyp(event.xyp_id)) {
 			displayError('Error registering with XYP');
@@ -154,31 +160,22 @@
 	}
 
 
+	let disableButton = false;
+
 	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ pendingEvents, pastEvents } = data);	
 </script>
     
-<!-- <div class="w-full">
-	<img src="/mockup-hero.png" alt="" />
-</div> -->
-
 <div id="demo-hero" class="t h-96 relative">
 	<div class="absolute bottom-8 left-8 p-4">
 		<h2 class="bg-[#2d2d2d] text-white p-4">Trust Leadership Institute</h2>
 		<span class="bg-[#2d2d2d] text-white p-4">It’s time for a new era of leadership</span>		
 	</div>
 </div>
-<div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">	
-	<!-- <div class="mx-auto w-2/3 mb-4">
-		<div style="font-family: georgia, palatino; font-size: 48px; color: rgb(0, 0, 0);" class="text-center">Trust in Action</div>
-		Our monthly webcasts provide trust building blocks at the intersection of emerging topics. Listen to diverse perspectives and prepare for the future. *Pick one topic or choose them all. 
-	</div> -->
-
-	<!-- we could have an optional hero to display here, when there are no upcoming events -->	
-
+<div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">		
 	<div class="w-full flex flex-col space-x-6 mt-8">
 		{#each pendingEvents as event}
-		<UpcomingEvent {event} {registerEvent} />
+		<UpcomingEvent {event} {registerEvent} {disableButton} />
 		{/each}
 	</div>	
 
