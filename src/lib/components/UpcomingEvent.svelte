@@ -13,11 +13,11 @@
 
 {#if event}
 <div class="flex flex-col md:flex-row w-full card">
-    <img class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg" src="{event.image_url}" alt="{event.title}" />
+    <!-- <img class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg" src="{event.image_url}" alt="{event.title}" /> -->
     <!-- idk wtf the deal is here -->
-    <!-- <div class="w-2/4">        
-        <img class="m-w-48 w-48" src="{event.image_url}" alt="{event.title}" />
-    </div> -->
+    <div class="w-2/4">        
+        <img class="" src="{event.image_url}" alt="{event.title}" />
+    </div>
     <div class="flex flex-col justify-start p-6">
         <h3 class="mb-2 text-primary-500">
             {event.title}
