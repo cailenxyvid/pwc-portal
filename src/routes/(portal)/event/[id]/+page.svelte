@@ -29,6 +29,18 @@
         {/if}
         <CalendarButton {event} />
     </div> -->
+    {#if event.status !== 'pending'}
+    <h4 class="text-error-500 my-4">This event does not qualify for CPE credit. </h4>
+    {/if}
+    
+    <div class="event-replay-notice font-bold mb-2">
+        {#if event.status === 'replay'}
+        The live session has concluded. View the webcast replay!
+        {/if}
+        {#if event.status === 'past'}
+        The live session has concluded, and this session is not available for replay.
+        {/if}
+    </div>
     <span class="mb-4 text-base italic">
         <div class="underline font-extrabold">Featured speakers:</div>
         {@html event.content_speakers}
