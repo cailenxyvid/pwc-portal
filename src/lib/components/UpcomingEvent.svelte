@@ -15,8 +15,8 @@
 <div class="flex flex-col md:flex-row w-full card bg-white">
     <!-- <img class="w-full rounded-t-lg md:w-2/4 md:rounded-none md:rounded-l-lg" src="{event.image_url}" alt="{event.title}" /> -->
     <!-- idk wtf the deal is here -->
-    <div class="w-2/4">        
-        <img class="" src="{event.image_url}" alt="{event.title}" />
+    <div class="w-full">        
+        <img class="w-full" src="{event.image_url}" alt="{event.title}" />
     </div>
     <div class="flex flex-col justify-start p-6">
         <h3 class="mb-2 text-primary-500">
