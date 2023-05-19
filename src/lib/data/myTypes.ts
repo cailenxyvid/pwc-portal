@@ -10,6 +10,8 @@ export type Event = {
     event_start: Date,
     status: string,
     image_url: string,  
+    hidden: boolean,
+    featured: boolean,
 }
 
 export type MyEvent = {

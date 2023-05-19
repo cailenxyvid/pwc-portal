@@ -4,7 +4,7 @@ import type { Event } from "$lib/data/myTypes";
 
 export async function load() {
   const pending = await supabase.from("event").select().eq('status', 'pending');
-  const past = await supabase.from("event").select().neq('status', 'pending');
+  const past = await supabase.from("event").select().neq('status', 'pending').order('featured').order('event_start', {ascending: false});
 
   return {
     pendingEvents: pending.data as Event[] ?? [],

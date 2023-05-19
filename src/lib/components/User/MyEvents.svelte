@@ -16,7 +16,7 @@
         {#each $myEvents as row}
         <div class="text-primary-500 underline">
             <i class="fa fa-play"></i>
-            <a href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={profile.email}&directEntry=true">{row.event.title}</a>
+            <a target="_blank" href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={profile.email}&directEntry=true">{row.event.title}</a>
         </div>            
         {/each}
     {:else}
