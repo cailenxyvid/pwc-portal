@@ -7,6 +7,7 @@
     export let event: Event;
     export let registerEvent: any;
 
+    let disableButton = false;
     let alreadyRegistered = false;
     $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) }
 </script>
@@ -27,7 +28,10 @@
             {#if alreadyRegistered}
                 <span class="btn variant-glass-primary">You are already registered!</span>
                 {:else}
-                <button class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { registerEvent(event) }}>Register</button>
+                <button disabled={disableButton} class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { 
+                    disableButton = true;
+                    registerEvent(event);
+                    }}>Register</button>
             {/if}
             <span class="relative card">
                 <CalendarButton {event} />
