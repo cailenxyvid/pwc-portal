@@ -30,7 +30,14 @@ export async function load({ url }) {
             config: 'english'
         })
         .eq('status', 'past');     
-    
+    const faq = await supabase
+        .from('faq')
+        .select()
+        .textSearch('faq_search_cols', q, {
+            type: 'plain',
+            config: 'english'
+        });
+        
     if (upcoming.error || replay.error || past.error) {
         console.error(upcoming.error, replay.error, past.error);
         throw error(500, {
@@ -41,6 +48,6 @@ export async function load({ url }) {
       upcoming: upcoming.data as Event[] ?? [],
       replay: replay.data as Event[] ?? [],
       past: past.data as Event[] ?? [],
-      faq: []
+      faq: faq.data ?? []
     };
 }
