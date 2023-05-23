@@ -136,6 +136,8 @@
 				console.log('setting cookie client side', $myProfile.id)
 				setCookie($myProfile.id);
 			}
+			loadEvents('pending');
+			loadEvents('replay');
 			return data as Profile;
 		} else {
 			return false;
