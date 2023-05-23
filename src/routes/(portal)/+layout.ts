@@ -16,24 +16,25 @@ import {
       cookie = data.cookie;
     }        
 
-    depends('supabase:auth');
+    // depends('supabase:auth');
     //# if we go back and generate types for DB objects, toggle the following line
     // const supabase = createSupabaseLoadClient<Database>({
-    const supabase = createSupabaseLoadClient({
-      supabaseUrl: PUBLIC_SUPABASE_URL,
-      supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
-      event: { fetch },
-      serverSession: data.session
-    });
+    // const supabase = createSupabaseLoadClient({
+    //   supabaseUrl: PUBLIC_SUPABASE_URL,
+    //   supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
+    //   event: { fetch },
+    //   serverSession: data.session
+    // });
   
-    const {
-      data: { session }
-    } = await supabase.auth.getSession();
+    // const {
+    //   data: { session }
+    // } = await supabase.auth.getSession();
   
     // avoid missing cookie on first visit from magic link
-    if (!cookie && session?.user.id) {      
-      cookie = session.user.id;      
-    }
+    // if (!cookie && session?.user.id) {      
+    //   cookie = session.user.id;      
+    // }
 
-    return { supabase, session, cookie };
+    // return { supabase, session, cookie };
+    return { cookie };
   };

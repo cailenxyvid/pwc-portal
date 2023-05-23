@@ -17,21 +17,22 @@
 
 	export let data: LayoutData;
 
-	$: ({ supabase, cookie, session } = data);
+	// $: ({ supabase, cookie, session } = data);
+	$: ({ cookie } = data);
 
 	// authentication
-	onMount(() => {		
-		if (!cookie && session?.user.id) {
-			cookie = session.user.id;			
-		}
-		const {
-			data: { subscription },
-			} = supabase.auth.onAuthStateChange(() => {
-				invalidate('supabase:auth');
-			});
+	// onMount(() => {		
+	// 	if (!cookie && session?.user.id) {
+	// 		cookie = session.user.id;			
+	// 	}
+	// 	const {
+	// 		data: { subscription },
+	// 		} = supabase.auth.onAuthStateChange(() => {
+	// 			invalidate('supabase:auth');
+	// 		});
 
-		return () => subscription.unsubscribe();
-	});
+	// 	return () => subscription.unsubscribe();
+	// });
 </script>
 
 <AppShell slotSidebarRight="md:w-1/4">

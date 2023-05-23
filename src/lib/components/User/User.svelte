@@ -21,7 +21,7 @@
 	
 	const setCookie = (user_id:string) => {
 		cookie = user_id;
-		document.cookie = "xyp_user="+user_id;
+		document.cookie = "xyp_user_id="+user_id;
 	}
 
 	const updateProfile = async (e:any) => {
@@ -75,12 +75,14 @@
 
 	const loadProfile = async (email: string | null = null) => {		
 		if (cookie) {
+			console.log('found cookie', cookie)
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();	
 			if (data) {
 				$myProfile = data as Profile;				
 				return data as Profile;
 			} else {
 				setCookie(''); //# handle incorrect cookies from before auth refactor
+				console.error('cookie bad!')
 			}
 		} else if (email) {
 			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
@@ -88,6 +90,7 @@
 			if (!$myProfile?.id) {
 				createProfile(email);
 			} else {
+				console.log('setting cookie client side', $myProfile.id)
 				setCookie($myProfile.id);
 			}
 			return data as Profile;
