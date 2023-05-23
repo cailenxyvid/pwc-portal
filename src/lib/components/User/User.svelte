@@ -18,6 +18,49 @@
 
 	// export let session: Session | null;
 	export let cookie: string | undefined;
+
+	const resetUser = async () => {
+		let registration = await supabase
+			.from('registration')
+			.delete()
+			.eq('attendee', cookie)
+		if (registration.error) {
+			toastStore.trigger({
+				message: 'Error deleting registration data!',
+				background: 'variant-filled-warning',
+			});
+		} else {
+			toastStore.trigger({
+				message: 'Registration data reset!',
+				background: 'variant-filled-success',
+			});
+		}
+
+		$myProfile.email = ''
+		$myProfile.id = ''
+		let profile = await supabase
+			.from('attendee')
+			.delete()
+			.eq('id', cookie)
+		if (profile.error) {
+			toastStore.trigger({
+				message: 'Error deleting user profile data!',
+				background: 'variant-filled-warning',
+			});
+		} else {
+			toastStore.trigger({
+				message: 'User profile reset!',
+				background: 'variant-filled-success',
+			});
+		}
+
+		setCookie('')
+		cookie = undefined;
+		toastStore.trigger({
+				message: 'Cookie reset!',
+				background: 'variant-filled-success',
+			});
+	}
 	
 	const setCookie = (user_id:string) => {
 		cookie = user_id;
@@ -144,12 +187,16 @@
 </script>
 
 <div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">	
-{#if cookie}  
+{#if cookie && cookie.length > 0}  
 	{#await loadProfile()}
 		<Loading />
 	{:then profile} 
 		{#if profile && !showForm}
 		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
+		
+		<!-- FOR TESTING ONLY - REMOVE THIS -->
+		<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
+
 		<div class="text-sm">
 			<button on:click={()=>{ showForm = !showForm }}>
 				Edit my Information

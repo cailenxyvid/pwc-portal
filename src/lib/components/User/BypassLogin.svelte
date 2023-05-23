@@ -8,8 +8,11 @@
 
 </script>
 
+<LoginForm loginAction={loadProfile} />
+
+<!-- 
 {#if $myProfile?.email}
 <strong class="text-lg text-primary-500 text-center">Welcome {$myProfile.email}</strong>    	 
 {:else}
 <LoginForm loginAction={loadProfile} />
-{/if}
+{/if} -->
