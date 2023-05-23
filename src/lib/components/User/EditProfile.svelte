@@ -27,7 +27,7 @@
         <label for="job_level">
             <div class="font-bold">Job Level*</div>
             <select class="w-full" name="job_level" id="job_level" bind:value={profile.job_level}>
-                <option value="None">Select One</option>
+                <!-- <option value="None">Select One</option> -->
                 <option value="Corporate Board Member">Corporate Board Member</option>
                 <option value="C Level">C Level</option>
                 <option value="Business Unit Leader">Business Unit Leader</option>
