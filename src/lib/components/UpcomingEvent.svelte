@@ -9,7 +9,7 @@
 
     export let disableButton = false;
     let alreadyRegistered = false;
-    $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) }
+    $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) } else { alreadyRegistered = false }
 </script>
 
 {#if event}

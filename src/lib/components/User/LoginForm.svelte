@@ -4,6 +4,7 @@
     };
     let email = '';
     let submit = () => {
+        console.log('firing loginAction for email: ' + email)
         loginAction(email)
     }
 </script>

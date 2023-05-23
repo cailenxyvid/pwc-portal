@@ -62,6 +62,7 @@
 				message: 'Cookie reset!',
 				background: 'variant-filled-success',
 			});
+		console.log('done with resetUser', cookie, $myProfile, $myEvents)
 	}
 	
 	const setCookie = (user_id:string) => {
@@ -118,9 +119,9 @@
 		}
 	}
 
-	const loadProfile = async (email: string | null = null) => {		
-		if (cookie) {
-			console.log('found cookie', cookie)
+	const loadProfile = async (email: string | null = null) => {
+		console.log('loadProfile, checking cookie', cookie)
+		if (cookie) {			
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();	
 			if (data) {
 				$myProfile = data as Profile;				
