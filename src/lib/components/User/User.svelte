@@ -36,6 +36,8 @@
 			});
 		}
 
+		loadEvents('pending');
+		loadEvents('replay');
 		$myProfile.email = ''
 		$myProfile.id = ''
 		let profile = await supabase
