@@ -35,7 +35,7 @@
         <label for="job_level">
             <div class="font-bold">Job Level*</div>
             <select class="w-full" name="job_level" id="job_level">
-                <option value="">Select One</option>
+                <!-- <option value="">Select One</option> -->
                 <option value="Corporate Board Member">Corporate Board Member</option>
                 <option value="C Level">C Level</option>
                 <option value="Business Unit Leader">Business Unit Leader</option>
