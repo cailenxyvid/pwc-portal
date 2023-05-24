@@ -26,7 +26,7 @@
         </label>
         <label for="job_level">
             <div class="font-bold">Job Level*</div>
-            <select class="w-full" name="job_level" id="job_level" bind:value={profile.job_level}>
+            <select class="w-full" name="job_level" id="job_level" value={profile?.job_level} required>
                 <!-- <option value="None">Select One</option> -->
                 <option value="Corporate Board Member">Corporate Board Member</option>
                 <option value="C Level">C Level</option>
@@ -44,7 +44,7 @@
         </label>
         <label for="country">
             <div class="font-bold">Country*</div>
-            <select name="country" id="country" class="w-full" bind:value={profile.country}>   
+            <select name="country" id="country" class="w-full" value={profile?.country}>   
                 <option value="US">United States</option>             
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Åland Islands</option>
