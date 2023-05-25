@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	import type { Session } from '@supabase/supabase-js';
 	import { supabase } from '$lib/data/supabase';
-
 	import { toastStore } from '@skeletonlabs/skeleton';
+
+	import { loadMyEvents } from '$lib/util/loadMyEvents';
 
 	import EditProfile from './EditProfile.svelte';
 	import MyEvents from './MyEvents.svelte';
@@ -14,10 +14,16 @@
 
 	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
-	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
 
-	// export let session: Session | null;
+	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
+	
 	export let cookie: string | undefined;
+
+	const populateUserEvents = async () => {		
+		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.		
+		$myEvents = await loadMyEvents($myProfile.id, 'pending');
+		$myReplayEvents = await loadMyEvents($myProfile.id, 'replay');
+	}
 
 	const resetUser = async () => {
 		let registration = await supabase
@@ -36,8 +42,7 @@
 			});
 		}
 
-		loadEvents('pending');
-		loadEvents('replay');
+		populateUserEvents();
 		$myProfile.email = ''
 		$myProfile.id = ''
 		let profile = await supabase
@@ -71,6 +76,7 @@
 	}
 
 	const updateProfile = async (e:any) => {
+		const myBrowser = navigator.userAgent;
 		const formData = new FormData(e.target);
 
 		const data: AssociativeArray = {};
@@ -79,6 +85,8 @@
 			data[key] = value; 			
 		}		
 
+		data.user_browser = myBrowser ?? '';
+		
 		const { error } = await supabase
 			.from('attendee')
 			.update(data)
@@ -127,7 +135,7 @@
 				$myProfile = data as Profile;				
 				return data as Profile;
 			} else {
-				setCookie(''); //# handle incorrect cookies from before auth refactor
+				setCookie(''); //# handle incorrect cookies from before auth refactor (and now the damn "reset user" button)
 				console.error('cookie bad!')
 			}
 		} else if (email) {
@@ -139,52 +147,15 @@
 				console.log('setting cookie client side', $myProfile.id)
 				setCookie($myProfile.id);
 			}
-			loadEvents('pending');
-			loadEvents('replay');
+			populateUserEvents();
 			return data as Profile;
 		} else {
 			return false;
 		}
 	}
 
-	//# this function exists in two places. fix that.
-	let loadEvents = async (type:string) => {
-		if (!cookie) return;
-		let { data } = await supabase
-			.from("registration")
-			.select(`
-				attendee,
-				event (
-					title,
-					id,
-					xyp_id
-				)
-				`)			
-			.eq('attendee', cookie)
-			.eq('event.status', type);
-		
-		if (data) {
-			data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events
-		
-			//# don't love this - doesn't handle n types
-			if (type == 'pending') {
-				$myEvents = data as MyEvent[];
-			} else if (type == 'replay') {
-				$myReplayEvents = data as MyEvent[];
-			}
-			return data as MyEvent[];
-		}
-		return null;							
-	}
-
 	onMount(async () => {						
-		loadEvents('pending');
-		loadEvents('replay');
-
-		//# we really shouldn't have to check this so far in
-		// if (!cookie && session?.user) {
-		// 	cookie = session.user.id;			
-		// } 
+		populateUserEvents();
 	});	
 	
 	let showForm = false;

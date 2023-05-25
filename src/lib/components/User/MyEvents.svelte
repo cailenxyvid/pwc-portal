@@ -4,8 +4,7 @@
     import { myEvents, myReplayEvents } from '$lib/data/myEvents';
     import type { Profile } from '$lib/data/myTypes';
 
-    export let profile: Profile;
-    
+    export let profile: Profile;    
 </script>
 
 <div class="rounded-sm p-4" transition:fade>

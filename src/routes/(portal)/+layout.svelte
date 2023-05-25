@@ -12,27 +12,9 @@
 	
 	import type { LayoutData } from './$types';
 
-	import { invalidate } from '$app/navigation';	
-	import { onMount } from 'svelte';	
-
 	export let data: LayoutData;
 
-	// $: ({ supabase, cookie, session } = data);
 	$: ({ cookie } = data);
-
-	// authentication
-	// onMount(() => {		
-	// 	if (!cookie && session?.user.id) {
-	// 		cookie = session.user.id;			
-	// 	}
-	// 	const {
-	// 		data: { subscription },
-	// 		} = supabase.auth.onAuthStateChange(() => {
-	// 			invalidate('supabase:auth');
-	// 		});
-
-	// 	return () => subscription.unsubscribe();
-	// });
 </script>
 
 <AppShell slotSidebarRight="md:w-1/4">
