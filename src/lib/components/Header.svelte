@@ -7,20 +7,22 @@
     import SearchBar from './SearchBar.svelte';
 </script>
 
-<AppBar background="bg-transparent">
+<AppBar background="bg-[#464646]">
 	<svelte:fragment slot="lead">
-        <div class="p-1">
+        <div class="p-1 w-48 py-8">
             <!-- PwC brand guide requires 65px min width -->
-            <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />            
+            <!-- <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />             -->
+            <img src="/pwc-logo-wht.png" class="h-12 inline" alt="">
+            <img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="">
         </div>        
     </svelte:fragment>
     <!-- <img src={tliLogo} alt="Trust Leadership Institute Logo" title="Trust Leadership Institute" class="min-w-[65px] max-w-[200px]" /> -->
-	<div class="ml-4 md:ml-12 md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden sm:inline">                
+	<div class="ml-4 md:ml-12 md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden sm:inline text-white py-64">                
         <a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Webcasts</a>
         <!-- <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Past&nbsp;Events</a>  -->
         <a href="/faq" class="topnav {$page.route.id === '/faq' ? 'active' : ''}">FAQs</a>
     </div>  
-    <div class="inline-block ml-4 md:ml-12 md:-mb-40 sm:-mb-20">
+    <div class="inline-block ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white">
         <SearchBar />
     </div>
 	<svelte:fragment slot="trail">
@@ -32,10 +34,10 @@
     .topnav {
         /* font-size: x-large; */
         /* margin-right: 3em; */
-        color: #333;
+        color: #fff;
     }
 
     .topnav:hover,.active {
-        border-bottom: 5px solid #333;
+        border-bottom: 5px solid #fff;
     }
 </style>

@@ -17,26 +17,28 @@
 	$: ({ cookie } = data);
 </script>
 
-<AppShell slotSidebarRight="md:w-1/4">
-	<svelte:fragment slot="header">
-		<Header />
-	</svelte:fragment>
+<div class="mx-0 md:mx-64">
+	<AppShell slotSidebarRight="md:w-1/4" slotPageHeader="px-36">
+		<svelte:fragment slot="header">
+			<Header />
+		</svelte:fragment>
+		
+		<!-- <svelte:fragment slot="sidebarRight">
+			<div class="h-full w-full p-10 hidden md:block bg-white">
+				<User {cookie} />
+			</div>
+		</svelte:fragment> -->
+		
+		<!-- using this section to display login/user info on small screens -->
+		<svelte:fragment slot="pageHeader">
+			<div class="block md:hidden bg-white">
+				<User {cookie} />
+			</div>
+		</svelte:fragment>
+		
+		<!-- main content -->
+		<slot />
 	
-	<svelte:fragment slot="sidebarRight">
-		<div class="h-full w-full p-10 hidden md:block bg-white">
-			<User {cookie} />
-		</div>
-	</svelte:fragment>
-	
-	<!-- using this section to display login/user info on small screens -->
-	<svelte:fragment slot="pageHeader">
-		<div class="block md:hidden bg-white">
-			<User {cookie} />
-		</div>
-	</svelte:fragment>
-	
-	<!-- main content -->
-	<slot />
-
-	<Toast />
-</AppShell>
+		<Toast />
+	</AppShell>
+</div>

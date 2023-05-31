@@ -2,6 +2,8 @@
 	import { supabase } from '$lib/data/supabase';
 	import { toastStore } from '@skeletonlabs/skeleton';			
 
+	import { loadMyEvents } from '$lib/util/loadMyEvents';
+
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
 	import EventCard from '$lib/components/EventCard.svelte';
 	import ExpandingEventCard from '$lib/components/ExpandingEventCard.svelte';
@@ -43,28 +45,28 @@
 	}
 
 	//# this function exists in two places. fix that.
-	const loadEvents = async () => {
-		// if (!cookie) return;
+	// const loadEvents = async () => {
+	// 	// if (!cookie) return;
 				
-		let { data } = await supabase
-			.from("registration")
-			.select(`
-				attendee,
-				event (
-					title,
-					id,
-					xyp_id
-				)
-				`)
-			.eq('attendee', $myProfile.id)
-			.eq('event.status', 'pending');
+	// 	let { data } = await supabase
+	// 		.from("registration")
+	// 		.select(`
+	// 			attendee,
+	// 			event (
+	// 				title,
+	// 				id,
+	// 				xyp_id
+	// 			)
+	// 			`)
+	// 		.eq('attendee', $myProfile.id)
+	// 		.eq('event.status', 'pending');
 		
-		if (data) {
-			data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events		
-			$myEvents = data as MyEvent[];
-		} 
-		return data;
-	}
+	// 	if (data) {
+	// 		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events		
+	// 		$myEvents = data as MyEvent[];
+	// 	} 
+	// 	return data;
+	// }
 
 	const registerXyp = async (x_id:string) => {
 		
@@ -159,24 +161,36 @@
 			if (error) {					
 				displayError(error.message);										
 			}
-			await loadEvents();
+			$myEvents = await loadMyEvents($myProfile.id);
 			displaySuccess('You are registered! Please check your email for confirmation.');
 	}
 
 
-	let disableButton = false;
+	let disableButton = true;
 
 	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ pendingEvents, pastEvents } = data);	
 </script>
     
-<div id="demo-hero" class="t h-96 relative">
+<!-- <div id="demo-hero" class="t h-96 relative">
 	<div class="absolute bottom-8 left-8 p-4">
 		<h2 class="bg-[#2d2d2d] text-white p-4">Trust Leadership Institute</h2>
 		<span class="bg-[#2d2d2d] text-white p-4">It’s time for a new era of leadership</span>		
 	</div>
+</div> -->
+
+
+<div class="flex flex-row w-full bg-[#dedede] p-0 relative">
+	<div class="grow absolute bottom-1 text-white md:text-black md:relative p-6 center items-center">
+		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
+		<span class="text-xl md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
+	</div>
+	<div class="bg-primary w-full md:w-2/3 border">
+		<!-- <img src="/TLI-TIA-Header.png" alt=""> -->
+		<img src="header-cropped.png" alt="">
+	</div>
 </div>
-<div class="container h-full mx-auto justify-center pt-2 md:pl-10 md:pr-10 relative">		
+<div class="container h-full justify-center pt-2 md:pl-10 md:pr-10 relative bg-secondary-50">			
 	<div class="w-full flex flex-col space-x-6 mt-8">
 		{#each pendingEvents as event}
 		<UpcomingEvent {event} {registerEvent} {disableButton} />
