@@ -25,9 +25,9 @@
     <div class="inline-block ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white">
         <SearchBar />
     </div>
-	<svelte:fragment slot="trail">
+	<!-- <svelte:fragment slot="trail">
         <Menu />
-    </svelte:fragment>
+    </svelte:fragment> -->
 </AppBar>
 
 <style>

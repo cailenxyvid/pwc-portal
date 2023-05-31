@@ -181,7 +181,7 @@
 
 
 <div class="flex flex-row w-full bg-[#dedede] p-0 relative">
-	<div class="grow absolute bottom-1 text-white md:text-black md:relative p-6 center items-center">
+	<div class="grow absolute bottom-1 text-white md:text-black md:relative p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
 		<span class="text-xl md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
 	</div>
@@ -190,7 +190,7 @@
 		<img src="header-cropped.png" alt="">
 	</div>
 </div>
-<div class="container h-full justify-center pt-2 md:pl-10 md:pr-10 relative bg-secondary-50">			
+<div class="justify-center pt-2 md:pl-10 md:pr-10 relative">			
 	<div class="w-full flex flex-col space-x-6 mt-8">
 		{#each pendingEvents as event}
 		<UpcomingEvent {event} {registerEvent} {disableButton} />
