@@ -4,9 +4,11 @@
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
 
+	import User from '$lib/components/User/User.svelte';
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
 	import EventCard from '$lib/components/EventCard.svelte';
 	import ExpandingEventCard from '$lib/components/ExpandingEventCard.svelte';
+	import HoverEventCard from '$lib/components/HoverEventCard.svelte';
 
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
@@ -181,27 +183,33 @@
 
 
 <div class="flex flex-row w-full bg-[#dedede] p-0 relative">
-	<div class="grow absolute bottom-1 text-white md:text-black md:relative p-6 md:pt-14">
+	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
-		<span class="text-xl md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
+		<span class="text-md md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
 	</div>
 	<div class="bg-primary w-full md:w-2/3 border">
 		<!-- <img src="/TLI-TIA-Header.png" alt=""> -->
 		<img src="header-cropped.png" alt="">
 	</div>
 </div>
-<div class="justify-center pt-2 md:pl-10 md:pr-10 relative">			
-	<div class="w-full flex flex-col space-x-6 mt-8">
-		{#each pendingEvents as event}
-		<UpcomingEvent {event} {registerEvent} {disableButton} />
-		{/each}
+<div id="mainContent" class="justify-center md:pt-2 md:pl-10 bg-red-500">			
+	<div class="w-full flex flex-row space-x-6 md:mt-8">
+		<div class="grow">
+			{#each pendingEvents as event}
+			<UpcomingEvent {event} {registerEvent} {disableButton} />
+			{/each}
+		</div>
+		<div class="w-1/3 md:visible bg-[#dedede] p-6">
+			<User {cookie} />
+		</div>
 	</div>	
 
 	<h2 class="my-12">Past Events</h2>
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 		{#each pastEvents as event}
 		<!-- <ExpandingEventCard {event} /> -->
-		<EventCard {event} />
+		<!-- <EventCard {event} /> -->
+		<HoverEventCard {event} />
 		{/each}
 	</div>
 </div>

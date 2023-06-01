@@ -44,7 +44,7 @@
         </label>
         <label for="country">
             <div class="font-bold">Country*</div>
-            <select name="country" id="country" class="w-full" value={profile?.country}>   
+            <select name="country" id="country" class="w-full" value={profile?.country} required>   
                 <option value="US">United States</option>             
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Åland Islands</option>
@@ -297,6 +297,6 @@
                 <option value="ZW">Zimbabwe</option>
             </select>
         </label>
-        <button type="submit" class="bg-primary-500 text-white rounded-sm p-2 mt-4 w-full">Save</button>
+        <button type="submit" class="bg-primary-500 text-white rounded-sm p-2 mt-4 w-full">Continue</button>
     </form>
 </div>

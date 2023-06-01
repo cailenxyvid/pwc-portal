@@ -13,16 +13,16 @@
 </script>
 
 {#if event}
-<div class="flex flex-col md:flex-row w-full card bg-white">
+<div class="flex flex-col w-full card bg-white mt-8 px-6">
+    <div class="event-date border-b-black border-b text-primary-500 mb-4 mt-2">Up next: {new Date(event.event_start).toLocaleString()} ET</div>
+    <h3 class="mb-2">
+        {event.title}
+    </h3> 
     <div class="w-full">        
         <img class="w-full" src="{event.image_url}" alt="{event.title}" />
     </div>
-    <div class="flex flex-col justify-start p-6">
-        <h3 class="mb-2 text-primary-500">
-            {event.title}
-        </h3>
-        <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
-        <div class="event-register mt-6 mb-4 flex flex-row">
+    <div class="flex flex-col justify-start p-6">               
+        <div class="event-register mt-6 mb-4 flex flex-row gap-8">
             {#if alreadyRegistered}
                 <span class="btn variant-glass-primary">You are already registered!</span>
                 {:else}

@@ -8,10 +8,10 @@
 </script>
 
 <div class="rounded-sm p-4" transition:fade>
-    <h3>My Events</h3>
-    
+    <hr class="border-t border-black" />
+
     {#if $myEvents.length > 0}
-    <h4>Upcoming</h4>
+    <div class="text-md border-t border-black">Upcoming</div>
         {#each $myEvents as row}
         <div class="text-primary-500 underline">
             <i class="fa fa-play"></i>

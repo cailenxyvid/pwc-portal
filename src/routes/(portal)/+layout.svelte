@@ -15,11 +15,18 @@
 	export let data: LayoutData;
 
 	$: ({ cookie } = data);
+
+	//***** scroll bs	
+	import { scrollStore } from '$lib/data/scrollStore';
+	function scrollHandler(event: UIEvent & { currentTarget: EventTarget & HTMLDivElement; }) {
+		$scrollStore = event.currentTarget.scrollTop;
+		// console.log(event.currentTarget)
+	}
 </script>
 
 
 <!-- <AppShell slotSidebarRight="md:w-1/4" slotPageHeader="px-36"> -->
-<AppShell>
+<AppShell on:scroll={scrollHandler}>
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
@@ -38,7 +45,7 @@
 	</svelte:fragment>
 	
 	<!-- main content -->
-	<slot />
+	<div class="relative"><slot /></div>
 
 	<Toast />
 </AppShell>

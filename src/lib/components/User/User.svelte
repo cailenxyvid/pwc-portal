@@ -14,6 +14,7 @@
 
 	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
+	import { scrollStore } from '$lib/data/scrollStore';
 
 	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
 	
@@ -159,19 +160,24 @@
 	});	
 	
 	let showForm = false;
+	let showCultCall = true;
 	$: if ($myProfile && !$myProfile.first_name) { showForm = true } //# ugly
+	$: showCultCall = ($scrollStore > 300)
 </script>
 
-<div class="pt-2 pb-2 md:p-2 w-full" in:fade="{{ duration: 5000 }}">	
+<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-4 md:w-64" in:fade="{{ duration: 5000 }}">	
+	{#if showCultCall}<button on:click={() => {
+		document.querySelector('#page').scrollTo(0,0);
+	}} class="btn variant-filled-primary fixed z-50 top-36 w-48">Join us</button>{/if}
 {#if cookie && cookie.length > 0}  
 	{#await loadProfile()}
 		<Loading />
 	{:then profile} 
 		{#if profile && !showForm}
-		<strong class="text-lg text-primary-500 text-center">Welcome {profile.email}</strong>
+		<strong class="text-md text-primary-500 text-center">Welcome {profile.email}</strong>
 		
 		<!-- FOR TESTING ONLY - REMOVE THIS -->
-		<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
+		<!-- <button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button> -->
 
 		<div class="text-sm">
 			<button on:click={()=>{ showForm = !showForm }}>
