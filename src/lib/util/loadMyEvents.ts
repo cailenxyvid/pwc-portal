@@ -2,7 +2,7 @@ import { supabase } from "$lib/data/supabase";
 import type { MyEvent } from '$lib/data/myTypes';
 
 export const loadMyEvents = async (user_id:string, type = 'pending') => {
-    console.log('loadMyEvents user_id', user_id)
+    // console.log('loadMyEvents user_id', user_id)
     let { data } = await supabase
         .from("registration")
         .select(`

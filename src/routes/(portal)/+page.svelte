@@ -192,7 +192,7 @@
 		<img src="header-cropped.png" alt="">
 	</div>
 </div>
-<div id="mainContent" class="justify-center md:pt-2 md:pl-10 bg-red-500">			
+<div id="mainContent" class="justify-center md:pt-2 md:pl-10">			
 	<div class="w-full flex flex-row space-x-6 md:mt-8">
 		<div class="grow">
 			{#each pendingEvents as event}
