@@ -10,11 +10,11 @@
 </script>
     
 <div class="container h-full mx-auto justify-center pt-10 pl-10 pr-10 space-y-12">
-    <h1>Frequently Asked Questions</h1>
+    <h1 class="text-primary-500">Frequently Asked Questions</h1>
 	{#each faqs as faq}
-    <div class="card bg-white p-8">
-        <h2 id="faq-{faq.id}" class="font-bold">{faq.title}</h2>
-        <div class="text-sm">{@html faq.content}</div>
+    <div class="p-8 border-b border-b-black">
+        <div id="faq-{faq.id}" class="text-xl">{faq.title}</div>
+        <div class="text-sm mt-4">{@html faq.content}</div>
     </div>
 	{/each}
 </div>

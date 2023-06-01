@@ -15,9 +15,9 @@
         {/if}        
     </div>
     {/if}
-    <div class="overflow-clip h-40">
+    <div class="overflow-clip h-44">
     <a href="/event/{event.id}">
-        <img src="{event.image_url}" alt="" class="w-full" />
+        <img src="{event.image_url}" alt="" class="h-full w-full" style="object-fit: cover;" />
         </a>
     </div>
     <div class="p-6">
@@ -27,7 +27,7 @@
         {/if}
         <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
         </div>
-        <a href="/event/{event.id}" class="text-md">{event.title}</a>
+        <a href="/event/{event.id}" class="text-md mt-2">{event.title}</a>
         <p class="mb-4 text-base">
             {@html event.content_speakers}
         </p>    

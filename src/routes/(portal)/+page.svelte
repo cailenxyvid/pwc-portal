@@ -192,14 +192,14 @@
 		<img src="header-cropped.png" alt="">
 	</div>
 </div>
-<div id="mainContent" class="justify-center md:pl-10">			
+<div id="mainContent" class="justify-center">			
 	<div class="w-full flex flex-row space-x-6">
 		<div class="grow">
 			{#each pendingEvents as event}
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
 			{/each}
 		</div>
-		<div class="md:visible w-1/3 bg-[#dedede] p-6">
+		<div class="hidden md:inline w-1/3 bg-[#dedede] p-6">
 			<User {cookie} />
 		</div>
 	</div>	
