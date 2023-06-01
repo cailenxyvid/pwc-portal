@@ -165,10 +165,10 @@
 	$: showCultCall = ($scrollStore > 300)
 </script>
 
-<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-4 md:w-64" in:fade="{{ duration: 5000 }}">	
+<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade="{{ duration: 500 }}">	
 	{#if showCultCall}<button on:click={() => {
 		document.querySelector('#page').scrollTo(0,0);
-	}} class="btn variant-filled-primary fixed z-50 top-36 w-48">Join us</button>{/if}
+	}} class="btn variant-filled-primary fixed z-50 top-20 mt-2 w-48">Join us</button>{/if}
 {#if cookie && cookie.length > 0}  
 	{#await loadProfile()}
 		<Loading />
@@ -177,7 +177,7 @@
 		<strong class="text-md text-primary-500 text-center">Welcome {profile.email}</strong>
 		
 		<!-- FOR TESTING ONLY - REMOVE THIS -->
-		<!-- <button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button> -->
+		<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
 
 		<div class="text-sm">
 			<button on:click={()=>{ showForm = !showForm }}>

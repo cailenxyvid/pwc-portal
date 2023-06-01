@@ -4,7 +4,8 @@
     let showHover = false;
 </script>
 <!-- {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'} -->
-<div class="block rounded-lg card card-hover relative max-h-[30rem] overflow-clip">
+<!-- <div class="block rounded-lg card card-hover relative max-h-[30rem] overflow-clip"> -->
+<div class="block rounded-lg card card-hover relative">
     {#if showHover}
     <div class="absolute h-full w-full rounded-sm bg-[#dedede]">
         {#if event.status === "pending"}
@@ -20,7 +21,7 @@
         </a>
     </div>
     <div class="p-6">
-    <div class="t justify-between">
+    <div class="flex justify-between">
         {#if event.status === "replay"}
         <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
         {/if}
@@ -31,9 +32,9 @@
             {@html event.content_speakers}
         </p>    
     </div>
-    <div class="t text-right grow align-bottom bottom-0 absolute w-full pr-4 pb-2">
+    <div class="text-right grow align-bottom bottom-0 absolute w-full pr-4 pb-2">
         <button on:mouseenter={()=>{showHover=true}} on:mouseleave={()=>{showHover=false}} on:click={()=>{showHover=!showHover}}>
-            <i class="fa-thin fa-circle-plus text-primary-500 p-2"></i>        
+            <i class="fa-thin fa-circle-plus text-primary-500 p-2 text-2xl"></i>        
         </button>
     </div>
 </div>

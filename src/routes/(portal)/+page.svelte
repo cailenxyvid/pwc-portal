@@ -182,7 +182,7 @@
 </div> -->
 
 
-<div class="flex flex-row w-full bg-[#dedede] p-0 relative">
+<div class="flex flex-row w-full bg-[#dedede] p-0 pb-12 relative">
 	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
 		<span class="text-md md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
@@ -192,8 +192,8 @@
 		<img src="header-cropped.png" alt="">
 	</div>
 </div>
-<div id="mainContent" class="justify-center md:pt-2 md:pl-10">			
-	<div class="w-full flex flex-row space-x-6 md:mt-8">
+<div id="mainContent" class="justify-center md:pl-10">			
+	<div class="w-full flex flex-row space-x-6">
 		<div class="grow">
 			{#each pendingEvents as event}
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
@@ -211,5 +211,22 @@
 		<!-- <EventCard {event} /> -->
 		<HoverEventCard {event} />
 		{/each}
+	</div>
+
+	<div class="mt-12 h-48 bg-[#2d2d2d] p-12 flex justify-between">
+		<div class="flex flex-row gap-4">
+			<img src="/jonathan-block.jpg" alt="" class="inline">
+			<div class="t">
+				<h2 class="text-white">Jonathan Block</h2>
+				<div class="text-white">Communications and Change Leader, PwC US</div>
+			</div>			
+		</div>
+		<div class="flex flex-row gap-4">
+			<img src="/megan-conway.jpg" alt="" class="inline">
+			<div class="t">
+				<h2 class="text-white">Megan Conway</h2>
+				<div class="text-white">Managing Director, Trust Leadership Institute</div>
+			</div>			
+		</div>
 	</div>
 </div>

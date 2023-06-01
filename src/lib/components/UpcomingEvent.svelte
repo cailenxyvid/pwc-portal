@@ -18,11 +18,15 @@
     <h3 class="mb-2">
         {event.title}
     </h3> 
+    <span class="mb-4 text-base italic">
+        <!-- <div class="underline font-extrabold">Featured speakers:</div> -->
+        {@html event.content_speakers}
+    </span>
     <div class="w-full">        
-        <img class="w-full" src="{event.image_url}" alt="{event.title}" />
+        <img class="w-4/5" src="{event.image_url}" alt="{event.title}" />
     </div>
     <div class="flex flex-col justify-start p-6">               
-        <div class="event-register mt-6 mb-4 flex flex-row gap-8">
+        <div class="event-register mt-6 mb-4 flex justify-between flex-row gap-8">
             {#if alreadyRegistered}
                 <span class="btn variant-glass-primary">You are already registered!</span>
                 {:else}
@@ -34,11 +38,7 @@
             <span class="relative card">
                 <CalendarButton {event} />
             </span>            
-        </div>
-        <span class="mb-4 text-base italic">
-            <div class="underline font-extrabold">Featured speakers:</div>
-            {@html event.content_speakers}
-        </span>
+        </div>        
         <p class="prose2 text-sm">
         {@html event.content}
         </p>
