@@ -199,7 +199,7 @@
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
 			{/each}
 		</div>
-		<div class="w-1/3 md:visible bg-[#dedede] p-6">
+		<div class="md:visible w-1/3 bg-[#dedede] p-6">
 			<User {cookie} />
 		</div>
 	</div>	
@@ -213,16 +213,16 @@
 		{/each}
 	</div>
 
-	<div class="mt-12 h-48 bg-[#2d2d2d] p-12 flex justify-between">
+	<div class="mt-12 bg-[#2d2d2d] p-12 flex flex-col md:flex-row justify-between">
 		<div class="flex flex-row gap-4">
-			<img src="/jonathan-block.jpg" alt="" class="inline">
+			<img src="/jonathan-block.jpg" alt="" class="inline h-24">
 			<div class="t">
 				<h2 class="text-white">Jonathan Block</h2>
 				<div class="text-white">Communications and Change Leader, PwC US</div>
 			</div>			
 		</div>
 		<div class="flex flex-row gap-4">
-			<img src="/megan-conway.jpg" alt="" class="inline">
+			<img src="/megan-conway.jpg" alt="" class="inline h-24">
 			<div class="t">
 				<h2 class="text-white">Megan Conway</h2>
 				<div class="text-white">Managing Director, Trust Leadership Institute</div>

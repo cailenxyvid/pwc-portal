@@ -23,10 +23,10 @@
         {@html event.content_speakers}
     </span>
     <div class="w-full">        
-        <img class="w-4/5" src="{event.image_url}" alt="{event.title}" />
+        <img class="w-full" src="{event.image_url}" alt="{event.title}" />
     </div>
     <div class="flex flex-col justify-start p-6">               
-        <div class="event-register mt-6 mb-4 flex justify-between flex-row gap-8">
+        <div class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8">
             {#if alreadyRegistered}
                 <span class="btn variant-glass-primary">You are already registered!</span>
                 {:else}
@@ -35,7 +35,7 @@
                     registerEvent(event);
                     }}>Register</button>
             {/if}
-            <span class="relative card">
+            <span class="relative">
                 <CalendarButton {event} />
             </span>            
         </div>        

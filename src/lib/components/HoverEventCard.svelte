@@ -9,9 +9,9 @@
     {#if showHover}
     <div class="absolute h-full w-full rounded-sm bg-[#dedede]">
         {#if event.status === "pending"}
-        {event.content}
+        {@html event.content}
         {:else}
-        {event.content_replay}
+        {@html event.content_replay}
         {/if}        
     </div>
     {/if}

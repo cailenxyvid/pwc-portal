@@ -22,12 +22,14 @@
         <!-- <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Past&nbsp;Events</a>  -->
         <a href="/faq" class="topnav {$page.route.id === '/faq' ? 'active' : ''}">FAQs</a>
     </div>  
-    <div class="inline-block ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white">
+    <div class="ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white hidden sm:inline-block">
         <SearchBar />
     </div>
-	<!-- <svelte:fragment slot="trail">
-        <Menu />
-    </svelte:fragment> -->
+	<svelte:fragment slot="trail">
+        <div class="inline md:hidden text-white">
+            <Menu />
+        </div>        
+    </svelte:fragment>
 </AppBar>
 
 <style>

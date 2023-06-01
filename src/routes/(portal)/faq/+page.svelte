@@ -10,16 +10,16 @@
 </script>
     
 <div class="container h-full mx-auto justify-center pt-10 pl-10 pr-10 space-y-12">
-    <h2>FAQs</h2>
+    <h1>Frequently Asked Questions</h1>
 	{#each faqs as faq}
     <div class="card bg-white p-8">
-        <h3 id="faq-{faq.id}">{faq.title}</h3>
+        <h2 id="faq-{faq.id}" class="font-bold">{faq.title}</h2>
         <div class="text-sm">{@html faq.content}</div>
     </div>
 	{/each}
 </div>
 
-<div class="footer bg-gray-800 text-white w-full p-2">
+<div class="footer bg-[#2d2d2d] text-white w-full p-2 mt-10">
     <div class="flex flex-row gap-24">
         <div>
             Have additional questions?
