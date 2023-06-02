@@ -162,7 +162,7 @@
 	}
 
 	onMount(async () => {						
-		// populateUserEvents();
+		populateUserEvents();
 	});	
 	
 	let showForm = false;
