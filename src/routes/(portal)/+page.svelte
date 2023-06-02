@@ -177,23 +177,15 @@
 
 	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ pendingEvents, pastEvents } = data);	
-	$: if ($myProfile?.id && !cookie) { cookie = $myProfile.id} //# get rid of this flow asap
+	$: if ($myProfile?.id && !cookie) { cookie = $myProfile.id} //# super jenk. if there's time, refactor entire cookie workflow to avoid setting on client side (new endpoint to fetch or just do a redirect that hits the serverside)
 </script>
-    
-<!-- <div id="demo-hero" class="t h-96 relative">
-	<div class="absolute bottom-8 left-8 p-4">
-		<h2 class="bg-[#2d2d2d] text-white p-4">Trust Leadership Institute</h2>
-		<span class="bg-[#2d2d2d] text-white p-4">It’s time for a new era of leadership</span>		
-	</div>
-</div> -->
-
 
 <div class="flex flex-row w-full bg-[#dedede] p-0 relative">
 	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
 		<span class="text-md md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
 	</div>
-	<div class="bg-primary w-full md:w-2/3 border">
+	<div class="w-full md:w-2/3">
 		<!-- <img src="/TLI-TIA-Header.png" alt=""> -->
 		<img src="header-cropped.png" alt="">
 	</div>

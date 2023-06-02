@@ -24,10 +24,10 @@
 	}
 
 	const populateUserEvents = async () => {	
-		if (!$myProfile?.id) return;	
+		if (!cookie) { console.error('Missing cookie in User.populateUserEvents!'); return;	}
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.		
-		$myEvents = await loadMyEvents($myProfile.id, 'pending');
-		$myReplayEvents = await loadMyEvents($myProfile.id, 'replay');
+		$myEvents = await loadMyEvents(cookie, 'pending');
+		$myReplayEvents = await loadMyEvents(cookie, 'replay');
 	}
 
 	const resetUser = async () => {
@@ -192,7 +192,7 @@
 		</div>
 		<MyEvents {profile} />
 		{:else}				
-		<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
+		<strong class="text-lg text-primary-500 text-center">Please enter {cookie} your information to continue</strong>
 		<EditProfile profile={$myProfile} {updateProfile} />
 		{/if}
 	{/await}	

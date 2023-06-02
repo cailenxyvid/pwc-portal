@@ -11,7 +11,7 @@
     let alreadyRegistered = false;
     $: if ($myEvents.length > 0) { alreadyRegistered = $myEvents.some(e => event.id == e.event.id) } else { alreadyRegistered = false }
 </script>
-
+myEvents: {$myEvents.length}
 {#if event}
 <div class="flex flex-col w-full card bg-white mt-8 px-6">
     <div class="event-date border-b-black border-b text-primary-500 text-lg mb-4 mt-2">Up next: {new Date(event.event_start).toLocaleString()} ET</div>
