@@ -167,11 +167,17 @@
 			displaySuccess('You are registered! Please check your email for confirmation.');
 	}
 
+	const setCookie = (user_id:string) => {
+		cookie = user_id;
+		document.cookie = "xyp_user_id="+user_id;
+		console.log('+page setCookie', cookie)
+	}
 
-	let disableButton = true;
+	let disableButton = false;
 
 	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
     $: ({ pendingEvents, pastEvents } = data);	
+	$: if ($myProfile?.id && !cookie) { cookie = $myProfile.id} //# get rid of this flow asap
 </script>
     
 <!-- <div id="demo-hero" class="t h-96 relative">
@@ -199,8 +205,8 @@
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
 			{/each}
 		</div>
-		<div class="hidden md:inline w-1/3 bg-[#dedede] p-6">
-			<User {cookie} />
+		<div class="hidden md:inline w-1/3 bg-[#dedede] p-6">			
+			<User {cookie} {setCookie} />
 		</div>
 	</div>	
 

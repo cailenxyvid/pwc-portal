@@ -33,7 +33,12 @@
                 <button disabled={disableButton} class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { 
                     disableButton = true;
                     registerEvent(event);
-                    }}>Register</button>
+                    }}>
+                    Register
+                </button>
+                <!-- {#if disableButton}
+                <span class="text-error-500">Please enter your information to continue.</span>
+                {/if} -->
             {/if}
             <span class="relative">
                 <CalendarButton {event} />

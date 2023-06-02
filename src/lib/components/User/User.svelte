@@ -19,6 +19,9 @@
 	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
 	
 	export let cookie: string | undefined;
+	export let setCookie = (user_id:string) => {
+		console.error('Missing setCookie function in User component')
+	}
 
 	const populateUserEvents = async () => {		
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.		
@@ -46,6 +49,7 @@
 		populateUserEvents();
 		$myProfile.email = ''
 		$myProfile.id = ''
+		$myProfile.first_name = ''
 		let profile = await supabase
 			.from('attendee')
 			.delete()
@@ -71,10 +75,10 @@
 		console.log('done with resetUser', cookie, $myProfile, $myEvents)
 	}
 	
-	const setCookie = (user_id:string) => {
-		cookie = user_id;
-		document.cookie = "xyp_user_id="+user_id;
-	}
+	// const setCookie = (user_id:string) => {
+	// 	cookie = user_id;
+	// 	document.cookie = "xyp_user_id="+user_id;
+	// }
 
 	const updateProfile = async (e:any) => {
 		const myBrowser = navigator.userAgent;
@@ -162,10 +166,10 @@
 	let showForm = false;
 	let showCultCall = true;
 	$: if ($myProfile && !$myProfile.first_name) { showForm = true } //# ugly
-	$: showCultCall = ($scrollStore > 300)
+	$: showCultCall = ($scrollStore > 300)	
 </script>
 
-<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade="{{ duration: 500 }}">	
+<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade="{{ duration: 500 }}">		
 	{#if showCultCall}<button on:click={() => {
 		document.querySelector('#page').scrollTo(0,0);
 	}} class="btn variant-filled-primary fixed z-50 top-20 mt-2 w-full md:w-64">Join us</button>{/if}
