@@ -182,7 +182,7 @@
 </div> -->
 
 
-<div class="flex flex-row w-full bg-[#dedede] p-0 pb-12 relative">
+<div class="flex flex-row w-full bg-[#dedede] p-0 relative">
 	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
 		<span class="text-md md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
