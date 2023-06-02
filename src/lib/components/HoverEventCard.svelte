@@ -7,7 +7,7 @@
 <!-- <div class="block rounded-lg card card-hover relative max-h-[30rem] overflow-clip"> -->
 <div class="block rounded-lg card card-hover relative">
     {#if showHover}
-    <div class="absolute h-full w-full rounded-sm bg-[#dedede]">
+    <div class="absolute h-full w-full rounded-sm bg-[#dedede] p-4">
         {#if event.status === "pending"}
         {@html event.content}
         {:else}
@@ -21,13 +21,13 @@
         </a>
     </div>
     <div class="p-6">
-    <div class="flex justify-between">
+    <div class="flex justify-between mb-6">
+        <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
         {#if event.status === "replay"}
         <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
-        {/if}
-        <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
-        </div>
-        <a href="/event/{event.id}" class="text-md mt-2">{event.title}</a>
+        {/if}        
+    </div>
+        <a href="/event/{event.id}" class="text-md">{event.title}</a>
         <p class="mb-4 text-base">
             {@html event.content_speakers}
         </p>    
