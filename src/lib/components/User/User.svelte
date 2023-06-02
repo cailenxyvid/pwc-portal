@@ -23,7 +23,8 @@
 		console.error('Missing setCookie function in User component')
 	}
 
-	const populateUserEvents = async () => {		
+	const populateUserEvents = async () => {	
+		if (!$myProfile?.id) return;	
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.		
 		$myEvents = await loadMyEvents($myProfile.id, 'pending');
 		$myReplayEvents = await loadMyEvents($myProfile.id, 'replay');
@@ -169,7 +170,7 @@
 	$: showCultCall = ($scrollStore > 300)	
 </script>
 
-<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade="{{ duration: 500 }}">		
+<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade="{{ duration: 500 }}">			
 	{#if showCultCall}<button on:click={() => {
 		document.querySelector('#page').scrollTo(0,0);
 	}} class="btn variant-filled-primary fixed z-50 top-20 mt-2 w-full md:w-64">Join us</button>{/if}
@@ -177,7 +178,7 @@
 	{#await loadProfile()}
 		<Loading />
 	{:then profile} 
-		{#if profile && !showForm}
+		{#if profile && !showForm}		
 		<strong class="text-md text-primary-500 text-center">Welcome {profile.email}</strong>
 		
 		<!-- FOR TESTING ONLY - REMOVE THIS -->
