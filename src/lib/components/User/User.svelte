@@ -192,7 +192,7 @@
 		</div>
 		<MyEvents {profile} />
 		{:else}				
-		<strong class="text-lg text-primary-500 text-center">Please enter {cookie} your information to continue</strong>
+		<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
 		<EditProfile profile={$myProfile} {updateProfile} />
 		{/if}
 	{/await}	
