@@ -153,6 +153,7 @@
 				console.log('setting cookie client side', $myProfile.id)
 				setCookie($myProfile.id);
 			}
+			cookie = $myProfile.id;
 			populateUserEvents();
 			return data as Profile;
 		} else {
@@ -161,7 +162,7 @@
 	}
 
 	onMount(async () => {						
-		populateUserEvents();
+		// populateUserEvents();
 	});	
 	
 	let showForm = false;
