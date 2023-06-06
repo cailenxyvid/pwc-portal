@@ -3,20 +3,20 @@
 	import { fade } from 'svelte/transition';
 
 	import { supabase } from '$lib/data/supabase';
-	import { toastStore } from '@skeletonlabs/skeleton';
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
+	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
 
 	import EditProfile from './EditProfile.svelte';
-	import MyEvents from './MyEvents.svelte';
-	import BypassLogin from './BypassLogin.svelte';
+	import MyEvents from './MyEvents.svelte';	
 	import Loading from '../Loading.svelte';
+	import LoginForm from './LoginForm.svelte';
 
 	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
 	import { scrollStore } from '$lib/data/scrollStore';
 
-	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
+	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';	
 	
 	export let cookie: string | undefined;
 	export let setCookie = (user_id:string) => {
@@ -36,51 +36,23 @@
 			.delete()
 			.eq('attendee', cookie)
 		if (registration.error) {
-			toastStore.trigger({
-				message: 'Error deleting registration data!',
-				background: 'variant-filled-warning',
-			});
+			displayError('Error deleting registration data!');
 		} else {
-			toastStore.trigger({
-				message: 'Registration data reset!',
-				background: 'variant-filled-success',
-			});
+			displaySuccess('Registration data reset!');
 		}
-
-		populateUserEvents();
-		$myProfile.email = ''
-		$myProfile.id = ''
-		$myProfile.first_name = ''
+		
 		let profile = await supabase
 			.from('attendee')
 			.delete()
 			.eq('id', cookie)
 		if (profile.error) {
-			toastStore.trigger({
-				message: 'Error deleting user profile data!',
-				background: 'variant-filled-warning',
-			});
+			displayError('Error deleting user profile data!');
 		} else {
-			toastStore.trigger({
-				message: 'User profile reset!',
-				background: 'variant-filled-success',
-			});
-		}
-
-		setCookie('')
-		cookie = undefined;
-		toastStore.trigger({
-				message: 'Cookie reset!',
-				background: 'variant-filled-success',
-			});
-		console.log('done with resetUser', cookie, $myProfile, $myEvents)
+			displaySuccess('User profile reset!');
+			setTimeout(() => { window.location.replace('/logout') }, 1300)
+		}		
 	}
 	
-	// const setCookie = (user_id:string) => {
-	// 	cookie = user_id;
-	// 	document.cookie = "xyp_user_id="+user_id;
-	// }
-
 	const updateProfile = async (e:any) => {
 		const myBrowser = navigator.userAgent;
 		const formData = new FormData(e.target);
@@ -100,38 +72,41 @@
 
 		if (error) {
 			console.error(error);
-			toastStore.trigger({
-				message: 'Error updating profile!',
-				background: 'variant-filled-warning',
-			});
+			displayError('Error updating profile!');
 		} else {
 			loadProfile();
 			showForm = false;
-			toastStore.trigger({
-				message: 'Profile updated!',
-				background: 'variant-filled-success',
-				timeout: 10000
-			});
+			displaySuccess('Profile updated!');
 		}
     }
 	
-	const createProfile = async (email: string) => {
-		const { data, error } = await supabase
-        .from('attendee')
-        .insert({ email: email})
-        .select();
+// 	const createProfile = async (email: string) => {
+// 		const { data, error } = await supabase
+//         .from('attendee')
+//         .insert({ email: email})
+//         .select();
 
-		if (error) {
-			console.log(error);
-			toastStore.trigger({
-				message: 'Error registering your email!',
-				background: 'variant-filled-warning',
-			});
-		} else {
-			setCookie(data[0].id)
-			loadProfile();
-		}
-	}
+// 		if (error) {
+// 			console.log(error);
+// 			displayWarning('Error registering your email!');
+// 		} else {
+// 			// setCookie(data[0].id)
+// 			// loadProfile();
+// 			const form = document.createElement("form");
+// 			const input = document.createElement("input");
+
+//     		form.setAttribute("method", "post");
+//     		form.setAttribute("action", "/login");
+
+// 			input.setAttribute("type", "text");
+//      		input.setAttribute("name", "email");
+// 			input.setAttribute("value", email);
+
+// 			form.appendChild(input);
+// alert('submit login after create profile')
+// 			form.submit();
+// 		}
+// 	}
 
 	const loadProfile = async (email: string | null = null) => {
 		console.log('loadProfile, checking cookie', cookie)
@@ -148,7 +123,7 @@
 			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
 			$myProfile = data as Profile;	
 			if (!$myProfile?.id) {
-				createProfile(email);
+				// createProfile(email);
 			} else {
 				console.log('setting cookie client side', $myProfile.id)
 				setCookie($myProfile.id);
@@ -204,6 +179,6 @@
 		{/if}
 	{/await}	
 {:else}
-	<BypassLogin {loadProfile} />
+	<LoginForm />
 {/if}	
 </div>

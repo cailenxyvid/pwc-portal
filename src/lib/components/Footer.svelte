@@ -27,7 +27,7 @@
     </div>
 </div> -->
 
-<div class="footer bg-[#2d2d2d] text-white w-full p-2 mt-12">
+<div class="footer bg-[#2d2d2d] text-white w-full p-2 mt-12 lg:px-64">
     <div class="flex flex-row gap-24">
         <div>
             Have additional questions?

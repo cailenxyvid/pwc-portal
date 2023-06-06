@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { supabase } from '$lib/data/supabase';
-	import { toastStore } from '@skeletonlabs/skeleton';
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
+	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
+	import { buttonCheck } from '$lib/util/validationHelpers';
 
 	import User from '$lib/components/User/User.svelte';
-	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
-	import EventCard from '$lib/components/EventCard.svelte';
-	import ExpandingEventCard from '$lib/components/ExpandingEventCard.svelte';
+	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';	
 	import HoverEventCard from '$lib/components/HoverEventCard.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
@@ -19,33 +18,6 @@
 	import type { PageData } from './$types';	
 	
   	export let data: PageData;	
-
-	const displayError = (message:string) => {
-		console.error(message);
-		toastStore.trigger({
-			message: message,
-			background: 'variant-filled-error',
-			timeout: 10000
-		});
-	}
-
-	const displayWarning = (message:string) => {
-		console.warn(message);
-		toastStore.trigger({
-			message: message,
-			background: 'variant-filled-warning',
-			timeout: 10000
-		});
-	}
-
-	const displaySuccess = (message:string) => {
-		console.log(message);
-		toastStore.trigger({
-			message: message,
-			background: 'variant-filled-success',
-			timeout: 10000
-		});
-	}
 
 	const registerXyp = async (x_id:string) => {
 		
@@ -119,17 +91,12 @@
 	const registerEvent = async (event:Event) => {
 		disableButton = true;
 		setTimeout(() => { disableButton = false }, 3000);
-		if (!$myProfile) {
-			displayWarning('Please enter your email to register!');
-			return false;
-		}
-		if (!$myProfile.first_name) {
-			displayWarning('Please enter your information to register!');
+		if (!buttonCheck(cookie)) {
 			return false;
 		}
 		// complete XYP registration first, only update records if success
 		if (! await registerXyp(event.xyp_id)) {
-			displayError('Error registering with XYP');
+			displayError('Error registering with Xyvid Pro');
 			return;
 		}
 		const { data, error } = await supabase
