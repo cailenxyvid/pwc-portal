@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { supabase } from '$lib/data/supabase';
-	import { toastStore } from '@skeletonlabs/skeleton';			
+	import { toastStore } from '@skeletonlabs/skeleton';
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
 
@@ -45,30 +45,6 @@
 			timeout: 10000
 		});
 	}
-
-	//# this function exists in two places. fix that.
-	// const loadEvents = async () => {
-	// 	// if (!cookie) return;
-				
-	// 	let { data } = await supabase
-	// 		.from("registration")
-	// 		.select(`
-	// 			attendee,
-	// 			event (
-	// 				title,
-	// 				id,
-	// 				xyp_id
-	// 			)
-	// 			`)
-	// 		.eq('attendee', $myProfile.id)
-	// 		.eq('event.status', 'pending');
-		
-	// 	if (data) {
-	// 		data = data?.filter(row => row.event != null) //# hack - need to figure out why DB is returning a row when the user has no pending events		
-	// 		$myEvents = data as MyEvent[];
-	// 	} 
-	// 	return data;
-	// }
 
 	const registerXyp = async (x_id:string) => {
 		
@@ -207,24 +183,36 @@
 		{#each pastEvents as event}
 		<!-- <ExpandingEventCard {event} /> -->
 		<!-- <EventCard {event} /> -->
-		<HoverEventCard {event} />
+		<HoverEventCard {event} {cookie} {xyp_portal_url} />
 		{/each}
 	</div>
 
-	<div class="mt-12 bg-[#2d2d2d] p-12 flex flex-col md:flex-row justify-between">
-		<div class="flex flex-row gap-4">
-			<img src="/jonathan-block.jpg" alt="" class="inline h-24">
-			<div class="t">
-				<h2 class="text-white">Jonathan Block</h2>
-				<div class="text-white">Communications and Change Leader, PwC US</div>
-			</div>			
+	<div class="mt-12 bg-[#2d2d2d] p-12 ">
+		<div class="flex flex-col md:flex-row justify-between">
+			<div class="text-white">
+				Have additional questions?
+				<span class="text-xl block">
+					<a href="mailto:us_trust_leadership_institute_inbox@pwc.com">Contact us</a> to 
+					learn more.
+				</span>
+			</div>
+			<div class="flex flex-row gap-4">
+				<img src="/jonathan-block.jpg" alt="" class="inline h-24">
+				<div class="t">
+					<h2 class="text-white">Jonathan Block</h2>
+					<div class="text-white">Communications and Change Leader, PwC US</div>
+				</div>			
+			</div>
+			<div class="flex flex-row gap-4">
+				<img src="/megan-conway.jpg" alt="" class="inline h-24">
+				<div class="t">
+					<h2 class="text-white">Megan Conway</h2>
+					<div class="text-white">Managing Director, Trust Leadership Institute</div>
+				</div>			
+			</div>
 		</div>
-		<div class="flex flex-row gap-4">
-			<img src="/megan-conway.jpg" alt="" class="inline h-24">
-			<div class="t">
-				<h2 class="text-white">Megan Conway</h2>
-				<div class="text-white">Managing Director, Trust Leadership Institute</div>
-			</div>			
+		<div class="text-xs text-white w-full mt-6">
+			© 2023 PwC. All rights reserved. PwC refers to the US member firm, and may sometimes refer to the PwC network. Each member firm is a separate legal entity. Please see www.pwc.com/structure for further details. This content is for general purposes only, and should not be used as a substitute for consultation with professional advisors.
 		</div>
 	</div>
 </div>

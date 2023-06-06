@@ -24,7 +24,7 @@
         <div>
             Have additional questions?
             <span class="text-xl block">
-                <a href="http://us_trust_leadership_institute_inbox@pwc.com">Contact us</a> to 
+                <a href="mailto:us_trust_leadership_institute_inbox@pwc.com">Contact us</a> to 
                 learn more.
             </span>
         </div>

@@ -1,6 +1,24 @@
 <script lang="ts">
     import type { Event } from "$lib/data/myTypes";
+
+    import { buttonCheck } from "$lib/util/validationHelpers";
+    import { displayWarning } from "$lib/util/displayToast";
+
     export let event:Event;
+    export let cookie:string|undefined;
+    export let xyp_portal_url:string;
+
+    const actionGuide = () => {
+        if (buttonCheck(cookie)) {
+            window.open(event.action_guide, '_blank');
+        } 
+    }
+
+    const watchNow = () => {
+        if (buttonCheck(cookie)) {
+            window.open(xyp_portal_url + event.xyp_id, '_blank');            
+        }
+    }
     let showHover = false;
 </script>
 <!-- {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'} -->
@@ -22,9 +40,9 @@
     </div>
     <div class="p-6">
     <div class="flex justify-between mb-6">
-        <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
+        <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}" on:click={actionGuide}>Action guide</button>
         {#if event.status === "replay"}
-        <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
+        <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}" on:click={watchNow}>Watch now</button>
         {/if}        
     </div>
         <a href="/event/{event.id}" class="text-md">{event.title}</a>

@@ -171,10 +171,15 @@
 	$: showCultCall = ($scrollStore > 300)	
 </script>
 
-<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade="{{ duration: 500 }}">			
-	{#if showCultCall}<button on:click={() => {
-		document.querySelector('#page').scrollTo(0,0);
-	}} class="btn variant-filled-primary fixed z-50 top-20 mt-2 w-full md:w-64">Join us</button>{/if}
+<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade>			
+{#if showCultCall}
+	<button on:click={() => {
+		document.querySelector('#page')?.scrollTo(0,0);
+		}} class="btn variant-filled-primary fixed z-50 top-20 mt-2 w-full md:w-64">
+		Join us
+	</button>
+{/if}
+
 {#if cookie && cookie.length > 0}  
 	{#await loadProfile()}
 		<Loading />
@@ -184,6 +189,7 @@
 		
 		<!-- FOR TESTING ONLY - REMOVE THIS -->
 		<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
+		<a href="/logout" class="btn variant-filled-warning">LOGOUT</a>
 
 		<div class="text-sm">
 			<button on:click={()=>{ showForm = !showForm }}>

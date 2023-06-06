@@ -12,6 +12,7 @@ export type Event = {
     image_url: string,  
     hidden: boolean,
     featured: boolean,
+    action_guide: string,
 }
 
 export type MyEvent = {

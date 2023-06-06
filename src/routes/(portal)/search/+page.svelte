@@ -8,6 +8,7 @@
 </script>
 
 <div class="container mx-auto p-4 md:p-12 space-y-16">
+    
     <div>
         <h3>Upcoming events</h3>
         <h4>{upcoming.length} results found.</h4>
