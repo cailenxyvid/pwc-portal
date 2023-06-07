@@ -3,6 +3,7 @@
     import { myEvents } from "$lib/data/myEvents";
 
     import CalendarButton from "./CalendarButton.svelte";
+	import SocialMedia from "./SocialMedia.svelte";
 
     export let event: Event;
     export let registerEvent: any;
@@ -27,6 +28,7 @@
     </div>
     <div class="flex flex-col justify-start p-6">               
         <div class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8">
+            <SocialMedia />
             {#if alreadyRegistered}
                 <span class="btn variant-glass-primary">You are already registered!</span>
                 {:else}
@@ -39,7 +41,7 @@
                 <!-- {#if disableButton}
                 <span class="text-error-500">Please enter your information to continue.</span>
                 {/if} -->
-            {/if}
+            {/if}            
             <span class="relative">
                 <CalendarButton {event} />
             </span>            
