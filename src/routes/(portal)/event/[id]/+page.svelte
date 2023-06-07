@@ -16,12 +16,9 @@
 </svelte:head>
 
 {#if event}
-<div
-  class="flex flex-col rounded-lg md:flex-row w-full card">
+<div class="flex flex-col md:flex-row w-full card rounded-lg">
   <div class="rounded-t-lg md:rounded-none md:rounded-l-lg w-full">
-    <img
-    src="{event.image_url}"
-    alt="{event.title}" />
+    <img src="{event.image_url}" alt="{event.title}" class="w-full" />
   </div>
   
   <div class="flex flex-col justify-start p-6">
