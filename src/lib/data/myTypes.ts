@@ -5,6 +5,7 @@ export type Event = {
     content_replay: string,
     content_speakers: string,
     content_cpe: string,
+    content_meta: string,
     xyp_id: string,
     calendar_id: string,
     event_start: Date,

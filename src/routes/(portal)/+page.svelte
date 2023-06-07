@@ -140,9 +140,9 @@
 <div id="mainContent" class="justify-center">			
 	<div class="w-full flex flex-row space-x-6">
 		<div class="grow">
-			<div class="text-sm p-2 italic">
+			<h5 class="p-4">
 				Our Trust in Action webcast series connects senior executives and their teams with the latest thinking on emerging topics in trust and business. The interactive series features distinguished speakers from across business, government and academia.
-			</div>	
+			</h5>	
 			{#each pendingEvents as event}
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
 			{/each}
