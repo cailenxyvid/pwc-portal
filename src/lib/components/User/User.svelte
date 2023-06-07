@@ -90,6 +90,7 @@
 				return data as Profile;
 			} else {
 				// setCookie(''); //# handle incorrect cookies from before auth refactor (and now the damn "reset user" button)
+				//#
 				console.error('bad cookie - user no longer exists!')
 				window.location.replace('/logout');
 			}
