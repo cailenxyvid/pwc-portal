@@ -118,6 +118,15 @@
     $: ({ pendingEvents, pastEvents } = data);		
 </script>
 
+<svelte:head>
+	<!-- Open Graph -->
+	<meta property="og:description" content="">
+	<meta property="og:image" content="https://akamaissl.xyvid.com/tpconnect_8/img/logos/logo.png"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Trust Learning Institute" />
+	<meta property="og:locale" content="en_US">
+</svelte:head>
+
 <div class="flex flex-row w-full bg-[#dedede] p-0 relative">
 	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>

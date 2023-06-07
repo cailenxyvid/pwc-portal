@@ -6,6 +6,15 @@
     let { event } = data;    
 </script>
 
+<svelte:head>
+	<!-- Open Graph -->
+	<meta property="og:description" content="">
+	<meta property="og:image" content="{event.image_url}"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Trust Learning Institute: {event.title}" />
+	<meta property="og:locale" content="en_US">
+</svelte:head>
+
 {#if event}
 <div
   class="flex flex-col rounded-lg md:flex-row w-full card">
