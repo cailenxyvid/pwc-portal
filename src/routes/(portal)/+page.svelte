@@ -13,7 +13,7 @@
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
 
-	import type { MyEvent, Event } from '$lib/data/myTypes';
+	import type { MyEvent, Event, Profile } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';	
 	
@@ -111,17 +111,11 @@
 			displaySuccess('You are registered! Please check your email for confirmation.');
 	}
 
-	const setCookie = (user_id:string) => {
-		cookie = user_id;
-		document.cookie = "xyp_user_id="+user_id;
-		console.log('+page setCookie', cookie)
-	}
-
 	let disableButton = false;
 
+	$myProfile = data.myProfile as Profile;
 	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
-    $: ({ pendingEvents, pastEvents } = data);	
-	$: if ($myProfile?.id && !cookie) { cookie = $myProfile.id} //# super jenk. if there's time, refactor entire cookie workflow to avoid setting on client side (new endpoint to fetch or just do a redirect that hits the serverside)
+    $: ({ pendingEvents, pastEvents } = data);		
 </script>
 
 <div class="flex flex-row w-full bg-[#dedede] p-0 relative">
@@ -142,15 +136,13 @@
 			{/each}
 		</div>
 		<div class="hidden md:inline w-1/3 bg-[#dedede] p-6">			
-			<User {cookie} {setCookie} />
+			<User {cookie} />
 		</div>
 	</div>	
 
 	<h2 class="my-12">Past Events</h2>
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 		{#each pastEvents as event}
-		<!-- <ExpandingEventCard {event} /> -->
-		<!-- <EventCard {event} /> -->
 		<HoverEventCard {event} {cookie} {xyp_portal_url} />
 		{/each}
 	</div>

@@ -2,9 +2,7 @@
     import { fade } from 'svelte/transition';
         
     import { myEvents, myReplayEvents } from '$lib/data/myEvents';
-    import type { Profile } from '$lib/data/myTypes';
-
-    export let profile: Profile;    
+    import { myProfile } from '$lib/data/myProfile';
 </script>
 
 <div class="rounded-sm p-4" transition:fade>
@@ -14,7 +12,7 @@
     <div class="text-md border-t border-black">Upcoming</div>
         {#each $myEvents as row}
         <div class="text-primary-500 underline">            
-            <a target="_blank" href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={profile.email}&directEntry=true">
+            <a target="_blank" href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={$myProfile.email}&directEntry=true">
                 <i class="fa fa-play"></i>
                 {row.event.title}
             </a>
@@ -29,7 +27,7 @@
     {#if $myReplayEvents.length > 0}
         {#each $myReplayEvents as row}
             <div class="text-primary-500 underline">
-                <a target="_blank" href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={profile.email}&directEntry=true">
+                <a target="_blank" href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={$myProfile.email}&directEntry=true">
                     <i class="fa fa-play"></i>
                     {row.event.title}
                 </a>   

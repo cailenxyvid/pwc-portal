@@ -1,6 +1,6 @@
 import { supabase } from "$lib/data/supabase";
 import { xyp_api_key, xyp_registration_url, xyp_portal_url } from '$env/static/private';
-import type { Event, MyEvent } from "$lib/data/myTypes";
+import type { Event, MyEvent, Profile } from "$lib/data/myTypes";
 import { loadMyEvents } from '$lib/util/loadMyEvents';
 
 export async function load({ parent }) {
@@ -11,19 +11,21 @@ export async function load({ parent }) {
 
   let myPendingEvents: MyEvent[] = [];
   let myReplayEvents: MyEvent[] = [];
+  let myProfile: Profile | undefined;
 
   if (cookie) {
     myPendingEvents = await loadMyEvents(cookie);
     myReplayEvents = await loadMyEvents(cookie, 'replay');
+    let getProfile = await supabase.from("attendee").select().eq('id', cookie).single();
+    myProfile = getProfile.data as Profile;
   }
   
-  console.log('page.server coookie check', cookie, myPendingEvents.length)
-  // check for cookie, preload profile and myEvents if possible
   return {
     pendingEvents: pending.data as Event[] ?? [],
     pastEvents: past.data as Event[] ?? [],
     myPendingEvents: myPendingEvents,
     myReplayEvents: myReplayEvents,
+    myProfile: myProfile,
     xyp_settings: {
       xyp_api_key: xyp_api_key,
       xyp_registration_url: xyp_registration_url,

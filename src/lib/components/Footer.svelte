@@ -27,8 +27,8 @@
     </div>
 </div> -->
 
-<div class="footer bg-[#2d2d2d] text-white w-full p-2 mt-12 lg:px-64">
-    <div class="flex flex-row gap-24">
+<div class="bg-[#2d2d2d] text-white w-full p-2 mt-12 md:px-36 lg:px-64">
+    <div class="flex flex-col md:flex-row gap-4 md:gap-24">
         <div>
             Have additional questions?
             <span class="text-xl block">

@@ -6,6 +6,7 @@
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
 	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
+	import { isProfileComplete } from '$lib/util/validationHelpers';
 
 	import EditProfile from './EditProfile.svelte';
 	import MyEvents from './MyEvents.svelte';	
@@ -79,34 +80,6 @@
 			displaySuccess('Profile updated!');
 		}
     }
-	
-// 	const createProfile = async (email: string) => {
-// 		const { data, error } = await supabase
-//         .from('attendee')
-//         .insert({ email: email})
-//         .select();
-
-// 		if (error) {
-// 			console.log(error);
-// 			displayWarning('Error registering your email!');
-// 		} else {
-// 			// setCookie(data[0].id)
-// 			// loadProfile();
-// 			const form = document.createElement("form");
-// 			const input = document.createElement("input");
-
-//     		form.setAttribute("method", "post");
-//     		form.setAttribute("action", "/login");
-
-// 			input.setAttribute("type", "text");
-//      		input.setAttribute("name", "email");
-// 			input.setAttribute("value", email);
-
-// 			form.appendChild(input);
-// alert('submit login after create profile')
-// 			form.submit();
-// 		}
-// 	}
 
 	const loadProfile = async (email: string | null = null) => {
 		console.log('loadProfile, checking cookie', cookie)
@@ -119,18 +92,6 @@
 				setCookie(''); //# handle incorrect cookies from before auth refactor (and now the damn "reset user" button)
 				console.error('cookie bad!')
 			}
-		} else if (email) {
-			let { data } = await supabase.from("attendee").select().eq('email', email).single();			
-			$myProfile = data as Profile;	
-			if (!$myProfile?.id) {
-				// createProfile(email);
-			} else {
-				console.log('setting cookie client side', $myProfile.id)
-				setCookie($myProfile.id);
-			}
-			cookie = $myProfile?.id;
-			populateUserEvents();
-			return data as Profile;
 		} else {
 			return false;
 		}
@@ -142,7 +103,7 @@
 	
 	let showForm = false;
 	let showCultCall = true;
-	$: if ($myProfile && !$myProfile.first_name) { showForm = true } //# ugly
+	$: if ($myProfile && !isProfileComplete()) { showForm = true }
 	$: showCultCall = ($scrollStore > 300)	
 </script>
 
@@ -156,28 +117,24 @@
 {/if}
 
 {#if cookie && cookie.length > 0}  
-	{#await loadProfile()}
-		<Loading />
-	{:then profile} 
-		{#if profile && !showForm}		
-		<strong class="text-md text-primary-500 text-center">Welcome {profile.email}</strong>
-		
-		<!-- FOR TESTING ONLY - REMOVE THIS -->
-		<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
-		<a href="/logout" class="btn variant-filled-warning">LOGOUT</a>
+	{#if $myProfile && !showForm}		
+	<strong class="text-md text-primary-500 text-center">Welcome {$myProfile.email}</strong>
 
-		<div class="text-sm">
-			<button on:click={()=>{ showForm = !showForm }}>
-				Edit my Information
-				<i class="fa fa-chevron-right"></i>
-			</button>
-		</div>
-		<MyEvents {profile} />
-		{:else}				
-		<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
-		<EditProfile profile={$myProfile} {updateProfile} />
-		{/if}
-	{/await}	
+	<!-- FOR TESTING ONLY - REMOVE THIS -->
+	<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
+	<a href="/logout" class="btn variant-filled-warning">LOGOUT</a>
+
+	<div class="text-sm">
+		<button on:click={()=>{ showForm = !showForm }}>
+			Edit my Information
+			<i class="fa fa-chevron-right"></i>
+		</button>
+	</div>
+	<MyEvents />
+	{:else}				
+	<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
+	<EditProfile profile={$myProfile} {updateProfile} />
+	{/if}
 {:else}
 	<LoginForm />
 {/if}	
