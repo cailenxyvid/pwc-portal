@@ -9,6 +9,7 @@
 	
 	import User from "$lib/components/User/User.svelte";
 	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	
 	import type { LayoutData } from './$types';
 
@@ -47,5 +48,8 @@
 	<!-- main content -->
 	<div class="relative"><slot /></div>
 
+	<svelte:fragment slot="pageFooter">
+		<Footer />
+	</svelte:fragment>
 	<Toast />
 </AppShell>

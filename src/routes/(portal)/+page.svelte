@@ -146,6 +146,4 @@
 		<HoverEventCard {event} {cookie} {xyp_portal_url} />
 		{/each}
 	</div>
-
-	<Footer />
 </div>
