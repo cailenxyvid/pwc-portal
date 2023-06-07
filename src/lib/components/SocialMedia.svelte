@@ -1,6 +1,8 @@
 <script lang="ts">
+    import { browser } from "$app/environment";
     let showLink = false;
-    let url = window.location.href;
+    let url = '' ;
+    if (browser) {url = window.location.href;}
 </script>
 <div class="flex flex-row gap-4 items-center">
     <a href="https://www.facebook.com/sharer.php?u={url}"><i class="fa-brands fa-facebook"></i></a>
@@ -10,7 +12,7 @@
     <a href="#" on:click={()=>{ showLink = !showLink }}><i class="fa-solid fa-share"></i></a>
 </div>
 {#if showLink}
-<div class="block">
-    <input type="text" class="t" value="{url}">
+<div class="">
+    <input type="text" class="variant-ghost-primary" value="{url}">
 </div>
 {/if}
