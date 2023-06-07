@@ -25,8 +25,8 @@
 <!-- <div class="block rounded-lg card card-hover relative max-h-[30rem] overflow-clip"> -->
 <div class="rounded-lg card card-hover flex flex-col">    
     <div class="overflow-clip h-44">
-    <a href="/event/{event.id}">
-        <img src="{event.image_url}" alt="" class="h-full w-full" style="object-fit: cover;" />
+        <a href="/event/{event.id}">
+            <img src="{event.image_url}" alt="" class="h-full w-full" style="object-fit: cover;" />
         </a>
     </div>
     <div class="p-6 grow">
