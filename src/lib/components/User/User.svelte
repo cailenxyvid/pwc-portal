@@ -91,6 +91,7 @@
 			} else {
 				setCookie(''); //# handle incorrect cookies from before auth refactor (and now the damn "reset user" button)
 				console.error('cookie bad!')
+				window.location.replace('/logout');
 			}
 		} else {
 			return false;
