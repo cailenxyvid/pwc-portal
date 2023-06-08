@@ -45,7 +45,10 @@
             <span class="relative">
                 <CalendarButton {event} />
             </span>            
-        </div>        
+        </div>     
+        <p class="prose2 text-sm">
+            {@html event.content_cpe}
+        </p>   
         <p class="prose2 text-sm">
         {@html event.content}
         </p>
