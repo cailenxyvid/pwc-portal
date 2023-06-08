@@ -42,7 +42,7 @@
     </div>
     <div class="p-6 mb-20">
         <div class="flex justify-between mb-6">
-            <button on:click={actionGuide} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
+            <button on:click={actionGuide} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}" disabled={!event.action_guide}>Action guide</button>
             {#if event.status === "replay"}
             <button on:click={watchNow} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
             {/if}        
