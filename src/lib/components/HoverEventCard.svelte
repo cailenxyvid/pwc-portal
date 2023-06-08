@@ -22,7 +22,7 @@
     let showHover = false;
 </script>
 
-<div class="block rounded-lg card card-hover relative">
+<div class="block rounded-lg card relative">
     {#if showHover}
     <div class="absolute h-1/4 bottom-12 overflow-clip rounded-sm shadow-lg bg-[#dedede] p-4">
         {event.content_meta} 
@@ -35,9 +35,9 @@
     </div>
     <div class="p-6 mb-20">
         <div class="flex justify-between mb-6">
-            <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
+            <button on:click={actionGuide} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Action guide</button>
             {#if event.status === "replay"}
-            <button class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
+            <button on:click={watchNow} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
             {/if}        
         </div>
         <a href="/event/{event.id}" class="text-md">{event.title}</a>

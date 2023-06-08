@@ -113,7 +113,7 @@
 {#if showCultCall}
 	<button on:click={() => {
 		document.querySelector('#page')?.scrollTo(0,0);
-		}} class="btn variant-filled-primary fixed z-50 top-20 mt-2 w-full md:w-64">
+		}} class="btn variant-filled-primary fixed z-20 top-20 mt-2 w-full md:w-64 hidden md:inline-block">
 		Join us
 	</button>
 {/if}

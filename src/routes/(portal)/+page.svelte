@@ -120,10 +120,10 @@
 
 <svelte:head>
 	<!-- Open Graph -->
-	<meta property="og:description" content="">
-	<meta property="og:image" content="https://akamaissl.xyvid.com/tpconnect_8/img/logos/logo.png"/>
+	<meta property="og:description" content="Our Trust in Action webcast series connects senior executives and their teams with the latest thinking on emerging topics in trust and business. The interactive series features distinguished speakers from across business, government and academia.">
+	<meta property="og:image" content=""/>
 	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="Trust Learning Institute" />
+	<meta property="og:site_name" content="Trust in Action Webcast series" />
 	<meta property="og:locale" content="en_US">
 </svelte:head>
 

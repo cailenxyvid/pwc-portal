@@ -2,12 +2,12 @@
     import { clickOutside } from "$lib/util/clickOutside";
 
     let open = false;
-    let toggle = () => { open = !open }
+    let toggle = () => { open = !open; alert('toggle') }
 </script>
 <div class="hamburger-container relative md:hidden">
     <button on:click={toggle}><i class="fa fa-bars"></i></button>
     {#if open}
-    <div use:clickOutside on:outclick={() => (open = false)} class="absolute bg-white w-48 right-0 p-6 rounded-sm space-y-2 text-black">        
+    <div use:clickOutside on:outclick={() => (open = false)} class="absolute bg-white w-48 right-0 p-6 rounded-sm space-y-2 text-black z-50">        
         <a class="block" href="/">Webcasts</a>
         <a class="block" href="/faq">FAQ</a>
         <a class="block" href="/search">Search</a>
