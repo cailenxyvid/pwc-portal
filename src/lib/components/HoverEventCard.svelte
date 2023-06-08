@@ -1,12 +1,15 @@
 <script lang="ts">
     import type { Event } from "$lib/data/myTypes";
 
+    import { myProfile } from "$lib/data/myProfile";
+
     import { buttonCheck } from "$lib/util/validationHelpers";
     import { displayWarning } from "$lib/util/displayToast";
 
     export let event:Event;
     export let cookie:string|undefined;
     export let xyp_portal_url:string;
+    export let registerEvent:any;
 
     const actionGuide = () => {
         if (buttonCheck(cookie)) {
@@ -14,9 +17,10 @@
         } 
     }
 
-    const watchNow = () => {
+    const watchNow = async () => {
         if (buttonCheck(cookie)) {
-            window.open(xyp_portal_url + event.xyp_id, '_blank');            
+            await registerEvent(event);
+            window.open(xyp_portal_url + event.xyp_id + '?emailAddress=' + $myProfile.email + '&directEntry=true', '_blank');            
         }
     }
     let showHover = false;

@@ -155,7 +155,7 @@
 	<h2 class="my-12">Past Events</h2>
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 		{#each pastEvents as event}
-		<HoverEventCard {event} {cookie} {xyp_portal_url} />
+		<HoverEventCard {event} {cookie} {xyp_portal_url} {registerEvent} />
 		{/each}
 	</div>
 </div>
