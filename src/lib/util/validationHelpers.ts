@@ -1,5 +1,6 @@
 import { get } from 'svelte/store';
 import { myProfile } from "$lib/data/myProfile";
+import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 import { displayWarning } from "./displayToast";
 
 export const isLoggedIn = (cookie:string|null = null) => {
@@ -28,4 +29,10 @@ export const buttonCheck = (cookie:string|null = null) => {
     }
     
     return true;
+}
+
+export const isAlreadyRegistered = (event_id:string) => {
+    let events = get(myEvents);
+    let replayEvents = get(myReplayEvents);   
+    return events.some(e => event_id == e.event.id) || replayEvents.some(e => event_id == e.event.id);
 }

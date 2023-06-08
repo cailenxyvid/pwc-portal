@@ -3,7 +3,7 @@
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
 	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
-	import { buttonCheck } from '$lib/util/validationHelpers';
+	import { buttonCheck, isAlreadyRegistered } from '$lib/util/validationHelpers';
 
 	import User from '$lib/components/User/User.svelte';
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';	
@@ -89,6 +89,9 @@
 	}
 
 	const registerEvent = async (event:Event) => {
+		if (isAlreadyRegistered(event.id)) {			
+			return;
+		} 		
 		disableButton = true;
 		setTimeout(() => { disableButton = false }, 3000);
 		if (!buttonCheck(cookie)) {
@@ -101,14 +104,14 @@
 		}
 		const { data, error } = await supabase
 			.from('registration')
-			.upsert({ event: event.id, attendee: $myProfile.id })				
+			.upsert({ event: event.id, attendee: $myProfile.id }) //# upsert not working as expected, figure out correct syntax (it allows dups)
 			.select();
 
 			if (error) {					
 				displayError(error.message);										
 			}
 			$myEvents = await loadMyEvents($myProfile.id);
-			displaySuccess('You are registered! Please check your email for confirmation.');
+			displaySuccess('You are registered!');
 	}
 
 	let disableButton = false;
