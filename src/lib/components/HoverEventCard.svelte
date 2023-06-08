@@ -26,7 +26,7 @@
     let showHover = false;
 </script>
 
-<div class="block rounded-lg card relative">
+<div class="block rounded-lg border shadow-sm bg-gray-50 relative">
     {#if showHover}
     <div class="absolute h-1/4 bottom-12 overflow-clip rounded-sm shadow-lg bg-[#dedede] p-4">
         {event.content_meta} 

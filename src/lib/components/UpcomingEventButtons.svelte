@@ -1,8 +1,11 @@
 <script lang="ts">
     import { supabase } from '$lib/data/supabase';
 	import { toastStore } from '@skeletonlabs/skeleton';
+
+	import type { Event } from '$lib/data/myTypes';
     
     import { myProfile } from '$lib/data/myProfile';
+	import { myEvents } from '$lib/data/myEvents';
 
     import CalendarButton from "./CalendarButton.svelte";
     
