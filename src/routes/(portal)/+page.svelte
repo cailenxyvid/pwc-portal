@@ -121,7 +121,7 @@
 <svelte:head>
 	<!-- Open Graph -->
 	<meta property="og:description" content="Our Trust in Action webcast series connects senior executives and their teams with the latest thinking on emerging topics in trust and business. The interactive series features distinguished speakers from across business, government and academia.">
-	<meta property="og:image" content=""/>
+	<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/PricewaterhouseCoopers_Logo.svg/790px-PricewaterhouseCoopers_Logo.svg.png"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Trust in Action Webcast series" />
 	<meta property="og:locale" content="en_US">

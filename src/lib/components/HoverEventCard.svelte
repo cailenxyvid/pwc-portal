@@ -5,14 +5,16 @@
 
     import { buttonCheck } from "$lib/util/validationHelpers";
     import { displayWarning } from "$lib/util/displayToast";
+    import { trackAction } from "$lib/util/trackAction";
 
     export let event:Event;
-    export let cookie:string|undefined;
+    export let cookie:string;
     export let xyp_portal_url:string;
     export let registerEvent:any;
 
     const actionGuide = () => {
         if (buttonCheck(cookie)) {
+            trackAction(cookie, 'download_action_guide', event.id);
             window.open(event.action_guide, '_blank');
         } 
     }
@@ -20,6 +22,7 @@
     const watchNow = async () => {
         if (buttonCheck(cookie)) {
             await registerEvent(event);
+            trackAction(cookie, 'watch_replay', event.id);
             window.open(xyp_portal_url + event.xyp_id + '?emailAddress=' + $myProfile.email + '&directEntry=true', '_blank');            
         }
     }
