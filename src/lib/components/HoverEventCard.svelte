@@ -29,13 +29,14 @@
     let showHover = false;
 </script>
 
-<div class="block rounded-lg border shadow-sm bg-gray-50 relative">
+<!-- <div class="block rounded-lg border shadow-sm bg-gray-50 relative"> -->
+<div class="block rounded-lg border card card-hover relative">
     {#if showHover}
     <div class="absolute h-1/4 bottom-12 overflow-clip rounded-sm shadow-lg bg-[#dedede] p-4">
         {event.content_meta} 
     </div>
     {/if}
-    <div class="overflow-clip h-44">
+    <div class="">
     <a href="/event/{event.id}">
         <img src="{event.image_url}" alt="" class="h-full w-full" style="object-fit: cover;" />
         </a>
