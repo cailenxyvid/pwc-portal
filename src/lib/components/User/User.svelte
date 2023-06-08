@@ -20,9 +20,6 @@
 	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';	
 	
 	export let cookie: string | undefined;
-	export let setCookie = (user_id:string) => {
-		console.error('Missing setCookie function in User component')
-	}
 
 	const populateUserEvents = async () => {	
 		if (!cookie) { console.error('Missing cookie in User.populateUserEvents!'); return;	}
@@ -42,6 +39,16 @@
 			displaySuccess('Registration data reset!');
 		}
 		
+		let tracking = await supabase
+			.from('tracking')
+			.delete()
+			.eq('attendee', cookie)
+		if (tracking.error) {
+			displayError('Error deleting tracking data!');
+		} else {
+			displaySuccess('Tracking data reset!');
+		}
+
 		let profile = await supabase
 			.from('attendee')
 			.delete()
