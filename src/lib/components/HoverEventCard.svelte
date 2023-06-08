@@ -54,8 +54,11 @@
         </p>    
     </div>
     <div class="text-right align-bottom bottom-0 absolute w-full pr-4 pb-2">
-        <button on:mouseenter={()=>{showHover=true}} on:mouseleave={()=>{showHover=false}} on:click={()=>{showHover=!showHover}}>
-            <i class="fa-thin fa-circle-plus text-primary-500 p-2 text-2xl"></i>        
+        <button class="hidden md:inline-block" on:mouseenter={()=>{showHover=true}} on:mouseleave={()=>{showHover=false}}>
+            <i class="fa-thin fa-circle-plus text-primary-500 p-2 text-2xl"></i>
+        </button>
+        <button class="inline-block md:hidden" on:click={()=>{showHover=!showHover}}>
+            <i class="fa-thin fa-circle-plus text-primary-500 p-2 text-2xl"></i>
         </button>
     </div>
 </div>
