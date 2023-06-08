@@ -2,7 +2,7 @@
     import { clickOutside } from "$lib/util/clickOutside";
 
     let open = false;
-    let toggle = () => { open = !open; alert('toggle') }
+    let toggle = () => { open = !open }
 </script>
 <div class="hamburger-container relative md:hidden">
     <button on:click={toggle}><i class="fa fa-bars"></i></button>
