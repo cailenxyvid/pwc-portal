@@ -4,6 +4,8 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../../app.postcss'; // do explict global overrides here, if needed
 
+	import { afterNavigate } from '$app/navigation';
+
 	import { AppShell } from '@skeletonlabs/skeleton';	
 	import { Toast } from '@skeletonlabs/skeleton';
 	
@@ -19,10 +21,16 @@
 
 	//***** scroll bs	
 	import { scrollStore } from '$lib/data/scrollStore';
+	let scrollTarget:any;
 	function scrollHandler(event: UIEvent & { currentTarget: EventTarget & HTMLDivElement; }) {
 		$scrollStore = event.currentTarget.scrollTop;
-		// console.log(event.currentTarget)
+		scrollTarget = event.currentTarget;
 	}
+
+	afterNavigate(() => {
+		// document.getElementById('page')?.scrollTo(0, 0);
+		scrollTarget.scrollTo(0,0);
+	});
 </script>
 
 
