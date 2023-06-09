@@ -1,5 +1,6 @@
 <script lang="ts">
     import { browser } from "$app/environment";
+    import { clickOutside } from "$lib/util/clickOutside";
     let showLink = false;
     let url = '' ;
     if (browser) {url = window.location.href;}
@@ -12,7 +13,7 @@
     <a href="#" on:click={()=>{ showLink = !showLink }}><i class="fa-solid fa-share"></i></a>
 </div>
 {#if showLink}
-<div class="">
+<div use:clickOutside on:outclick={() => (showLink = false)}>
     <input type="text" class="variant-ghost-primary" value="{url}">
 </div>
 {/if}
