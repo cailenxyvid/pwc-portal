@@ -130,8 +130,9 @@
 	<strong class="text-md text-primary-500 text-center">Welcome {$myProfile.email}</strong>
 
 	<!-- FOR TESTING ONLY - REMOVE THIS -->
-	<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
-	<a href="/logout" class="btn variant-filled-warning">LOGOUT</a>
+	<!-- <button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
+	<a href="/logout" class="btn variant-filled-warning">LOGOUT</a> -->
+	<!-- FOR TESTING ONLY - REMOVE THIS -->
 
 	<div class="text-sm">
 		<button on:click={()=>{ showForm = !showForm }}>

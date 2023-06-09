@@ -9,7 +9,7 @@
 </script>
 
 <div class="container mx-auto p-4 md:p-12 space-y-16">
-    <div class="t">
+    <div class="md:hidden">
         <SearchBar show={true} />
     </div>
     <div>
