@@ -28,7 +28,7 @@
     </div>
     <div class="flex flex-col justify-start p-6">               
         <div class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8">
-            <SocialMedia />
+            <SocialMedia event_id={event.id} />
             {#if alreadyRegistered}
                 <span class="btn variant-glass-primary">You are already registered!</span>
                 {:else}

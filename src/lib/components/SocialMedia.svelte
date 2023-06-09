@@ -1,9 +1,10 @@
 <script lang="ts">
     import { browser } from "$app/environment";
     import { clickOutside } from "$lib/util/clickOutside";
+    export let event_id = '';
     let showLink = false;
     let url = '' ;
-    if (browser) {url = window.location.href;}
+    if (browser) {url = window.location.origin + '/event/' + event_id }
 </script>
 <div class="flex flex-row gap-4 items-center">
     <a href="https://www.facebook.com/sharer.php?u={url}" target="_blank"><i class="fa-brands fa-facebook"></i></a>

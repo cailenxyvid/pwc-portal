@@ -157,10 +157,10 @@
     <div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
     {#if event.status == 'pending'}
     <div class="border-t border-t-black">
-      {event.content_cpe}
+      {@html event.content_cpe}
     </div>
     <div class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8">
-      <SocialMedia />
+      <SocialMedia event_id={event.id} />
       {#if alreadyRegistered}
           <span class="btn variant-glass-primary">You are already registered!</span>
           {:else}
@@ -184,7 +184,7 @@
       {/if}        
     </div>
     <div class="mb-4">
-      <SocialMedia />
+      <SocialMedia event_id={event.id} />
     </div>
     {/if}
     
