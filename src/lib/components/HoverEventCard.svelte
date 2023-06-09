@@ -32,7 +32,7 @@
 <!-- <div class="block rounded-lg border shadow-sm bg-gray-50 relative"> -->
 <div class="block border card card-hover relative">
     {#if showHover}
-    <div class="absolute h-1/4 bottom-12 overflow-clip rounded-sm shadow-lg bg-[#dedede] p-4">
+    <div class="absolute h-1/3 bottom-12 overflow-clip rounded-sm shadow-lg bg-[#dedede] p-4">
         {event.content_meta} 
     </div>
     {/if}

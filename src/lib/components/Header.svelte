@@ -15,7 +15,7 @@
             <a href="https://www.pwc.com/us/en" target="_blank">
                 <img src="/pwc-logo-wht.png" class="h-12 inline" alt="">
             </a>
-            <a href="https://www.pwc.com/us/en/about-us/tomorrow-takes-trust/trust-leadership-institute-overview.html">
+            <a href="https://www.pwc.com/us/en/about-us/tomorrow-takes-trust/trust-leadership-institute-overview.html" target="_blank">
                 <img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="">
             </a>
         </div>        

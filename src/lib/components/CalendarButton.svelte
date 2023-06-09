@@ -15,9 +15,9 @@
     </button>
     {#if show}
         <div use:clickOutside on:outclick={() => { show = false }} class="p-6 rounded-sm absolute right-0 bg-surface-200">
-            <a href="https://www.addevent.com/event/{event.calendar_id}+outlook" class="block">Outlook</a>
-            <a href="https://www.addevent.com/event/{event.calendar_id}+google" class="block">Google</a>
-            <a href="https://www.addevent.com/event/{event.calendar_id}+apple" class="block">Apple</a>
+            <a href="https://www.addevent.com/event/{event.calendar_id}+outlook" target="_blank" class="block">Outlook</a>
+            <a href="https://www.addevent.com/event/{event.calendar_id}+google" target="_blank" class="block">Google</a>
+            <a href="https://www.addevent.com/event/{event.calendar_id}+apple" target="_blank" class="block">Apple</a>
         </div>
     {/if}
     {:else}

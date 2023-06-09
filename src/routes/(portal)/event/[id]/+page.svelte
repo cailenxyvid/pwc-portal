@@ -176,12 +176,15 @@
       </span>            
     </div>  
     {:else}
-    <h4 class="text-error-500 my-4">This event does not qualify for CPE credit. </h4>
+    {#if event.status === "replay"}<h4 class="text-error-500 my-4">This event does not qualify for CPE credit. </h4>{/if}
     <div class="flex justify-between mb-6">
       <button on:click={actionGuide} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}" disabled={!event.action_guide}>Action guide</button>
       {#if event.status === "replay"}
       <button on:click={watchNow} class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}">Watch now</button>
       {/if}        
+    </div>
+    <div class="mb-4">
+      <SocialMedia />
     </div>
     {/if}
     
