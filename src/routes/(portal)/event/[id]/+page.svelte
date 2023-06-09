@@ -140,6 +140,7 @@
 	<meta property="og:image" content="{event.image_url}"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="{event.title}" />
+  <meta property="og:title" content="{event.title}" />
 	<meta property="og:locale" content="en_US">
 </svelte:head>
 

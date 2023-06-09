@@ -127,6 +127,7 @@
 	<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/PricewaterhouseCoopers_Logo.svg/790px-PricewaterhouseCoopers_Logo.svg.png"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Trust in Action Webcast series" />
+	<meta property="og:title" content="Trust in Action Webcast series" />
 	<meta property="og:locale" content="en_US">
 </svelte:head>
 
