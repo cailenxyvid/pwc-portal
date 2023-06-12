@@ -88,8 +88,7 @@
 		}
     }
 
-	const loadProfile = async (email: string | null = null) => {
-		console.log('loadProfile, checking cookie', cookie)
+	const loadProfile = async (email: string | null = null) => {		
 		if (cookie) {			
 			let { data } = await supabase.from("attendee").select().eq('id', cookie).single();	
 			if (data) {

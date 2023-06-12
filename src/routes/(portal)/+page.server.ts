@@ -20,7 +20,7 @@ export async function load({ parent }) {
     myReplayEvents = await loadMyEvents(cookie, 'replay');
     let getProfile = await supabase.from("attendee").select().eq('id', cookie).single();
     myProfile = getProfile.data as Profile;
-    console.log('page.server check myProfile', myProfile)
+    
     if (Object.values(myProfile).some(element => element == null)) {
       // redirect to user info form if profile is incomplete
       throw redirect(303, '/register/info');
