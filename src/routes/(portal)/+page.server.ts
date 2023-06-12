@@ -1,7 +1,9 @@
 import { supabase } from "$lib/data/supabase";
+import { redirect } from '@sveltejs/kit'
 import { xyp_api_key, xyp_registration_url, xyp_portal_url } from '$env/static/private';
 import type { Event, MyEvent, Profile } from "$lib/data/myTypes";
 import { loadMyEvents } from '$lib/util/loadMyEvents';
+import { isProfileComplete } from "$lib/util/validationHelpers.js";
 
 export async function load({ parent }) {
   const pending = await supabase.from("event").select().eq('status', 'pending').order('event_start', {ascending: false});
@@ -18,6 +20,13 @@ export async function load({ parent }) {
     myReplayEvents = await loadMyEvents(cookie, 'replay');
     let getProfile = await supabase.from("attendee").select().eq('id', cookie).single();
     myProfile = getProfile.data as Profile;
+    console.log('page.server check myProfile', myProfile)
+    if (Object.values(myProfile).some(element => element == null)) {
+      // redirect to user info form if profile is incomplete
+      throw redirect(303, '/register/info');
+    }
+  } else {
+    throw redirect(303, '/register');
   }
   
   return {
