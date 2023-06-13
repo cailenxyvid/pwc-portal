@@ -177,7 +177,7 @@
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
 			{/each}
 		</div>
-		<div class="hidden md:inline w-1/3 bg-[#dedede] p-6">			
+		<div class="hidden xl:inline w-96 bg-[#dedede] p-6">			
 			<User {cookie} />
 		</div>
 	</div>	

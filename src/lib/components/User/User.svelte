@@ -115,11 +115,11 @@
 	$: showCultCall = ($scrollStore > 300)	
 </script>
 
-<div id="userPane" class="bg-[#dedede] pt-2 pb-2 md:px-0 md:w-64" in:fade>			
+<div id="userPane" class="bg-[#dedede] pt-2 pb-2 xl:w-64" in:fade>			
 {#if showCultCall}
 	<button on:click={() => {
 		document.querySelector('#page')?.scrollTo(0,0);
-		}} class="btn variant-filled-primary fixed z-20 top-20 mt-2 w-full md:w-64 hidden md:inline-block">
+		}} class="btn variant-filled-primary fixed z-20 top-20 mt-2 w-full lg:w-64 hidden lg:inline-block">
 		Join us
 	</button>
 {/if}
