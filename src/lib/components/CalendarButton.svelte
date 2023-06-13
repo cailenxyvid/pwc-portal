@@ -18,6 +18,9 @@
             <a href="https://www.addevent.com/event/{event.calendar_id}+outlook" target="_blank" class="block">Outlook</a>
             <a href="https://www.addevent.com/event/{event.calendar_id}+google" target="_blank" class="block">Google</a>
             <a href="https://www.addevent.com/event/{event.calendar_id}+apple" target="_blank" class="block">Apple</a>
+            {#if event.pwc_calendar_link}
+            <a href="{event.pwc_calendar_link}" target="_blank" class="block">PwC Desktop</a>
+            {/if}
         </div>
     {/if}
     {:else}

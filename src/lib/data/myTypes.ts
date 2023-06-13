@@ -14,6 +14,7 @@ export type Event = {
     hidden: boolean,
     featured: boolean,
     action_guide: string,
+    pwc_calendar_link: string,
 }
 
 export type MyEvent = {
