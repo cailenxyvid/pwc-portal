@@ -12,7 +12,7 @@
 	import HoverEventCard from '$lib/components/HoverEventCard.svelte';
 	import ModalEditProfile from '$lib/components/User/ModalEditProfile.svelte';
 
-	import { myEvents } from '$lib/data/myEvents';
+	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
 
 	import type { ModalComponent } from '@skeletonlabs/skeleton';
@@ -92,12 +92,12 @@
 	}
 
 	const registerEvent = async (event:Event) => {
-		if (isAlreadyRegistered(event.id)) {			
-			return;
+		if (isAlreadyRegistered(event.id)) {				
+			return;			
 		} 		
 		disableButton = true;
 		setTimeout(() => { disableButton = false }, 3000);
-		if (!buttonCheck(cookie)) {
+		if (!buttonCheck(cookie)) {			
 			return false;
 		}
 		// complete XYP registration first, only update records if success
@@ -105,15 +105,26 @@
 			displayError('Error registering with Xyvid Pro');
 			return;
 		}
+		const existing = await supabase
+			.from('registration')
+			.select()
+			.eq('event', event.id)
+			.eq('attendee', cookie);
+			
+		if (existing.data && existing.data.length > 0) {			
+			return;
+		}
+			
 		const { data, error } = await supabase
 			.from('registration')
-			.upsert({ event: event.id, attendee: $myProfile.id }) //# upsert not working as expected, figure out correct syntax (it allows dups)
+			.insert({ event: event.id, attendee: cookie })
 			.select();
 
 			if (error) {					
 				displayError(error.message);										
 			}
-			$myEvents = await loadMyEvents($myProfile.id);
+			$myEvents = await loadMyEvents(cookie);
+			$myReplayEvents = await loadMyEvents(cookie, 'replay')
 			displaySuccess('You are registered!');
 	}
 

@@ -1,5 +1,6 @@
 <script lang="ts">
     import { browser } from "$app/environment";
+    import { clipboard } from '@skeletonlabs/skeleton';
     import { displaySuccess } from "$lib/util/displayToast";
     // import { clickOutside } from "$lib/util/clickOutside";
     export let event_id = '';
@@ -21,7 +22,7 @@
     <a href="https://www.linkedin.com/shareArticle?mini=true&url={url}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
     <!-- svelte-ignore a11y-invalid-attribute :( --> 
     <a href="#" on:click={copyLink}><i class="fa-solid fa-share"></i></a>
-    <!-- <a href="#" on:click={()=>{ showLink = !showLink }}><i class="fa-solid fa-share"></i></a> -->
+    <!-- <button use:clipboard={url}><i class="fa-solid fa-share"></i></button>     -->
 </div>
 <input class="hidden" type="text" id="socialLink" value="{url}">
 <!-- {#if showLink}
