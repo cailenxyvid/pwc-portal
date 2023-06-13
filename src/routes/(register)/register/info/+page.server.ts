@@ -1,4 +1,4 @@
-import { error, redirect } from "@sveltejs/kit";
+import { error, fail, redirect } from "@sveltejs/kit";
 import { supabase } from "$lib/data/supabase";
 import type { Profile } from "$lib/data/myTypes";
 import type { AssociativeArray } from "$lib/data/myTypes";
@@ -26,10 +26,21 @@ export const actions = {
     default: async ({ request }) => {        
       const data:AssociativeArray = {};
       const form = await request.formData();        
-      
+      let missingFields = [];
+
       for (let field of form) {
         const [key, value] = field;
-        data[key] = value;            
+        data[key] = value;
+        if (!value) {
+          missingFields.push(key);    
+        }         
+      }
+
+      if (missingFields.length > 0) {
+        return fail(418, { //# 422 might be more appropriate but..
+          error: 'Missing information!',
+          missingFields: missingFields
+        });
       }
   
       const result = await supabase
@@ -41,7 +52,7 @@ export const actions = {
         console.error(result.error);
         throw error(500, {
           message: 'Error saving user profile!'
-        });
+        });        
       } else {        
         throw redirect(303, '/');
       }

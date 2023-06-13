@@ -1,13 +1,58 @@
-<script lang="ts">
-    import { myProfile } from '$lib/data/myProfile';    
+<script lang="ts">    
+    import { myProfile } from '$lib/data/myProfile';
 
-    let profile = $myProfile;    
+    // const validate = () => {        
+    //     const fields = document.querySelectorAll('#profile_form :required');
+    //     let missingFields = ['email', 'first_name'];
+
+    //     fields.forEach(f => {
+    //         if (!f.value) {
+    //             missingFields.push(f.name);
+    //             f.classList.add('variant-ringed-error');
+    //         }            
+    //     });
+
+    //     if (missingFields.length > 0) {
+    //         displayWarning('Please fill out all required information!');
+    //         return false;
+    //     }
+
+    //     return true;
+    // }
+
+    const validate = (): boolean => {
+        const fields = document.querySelectorAll<HTMLInputElement>('#profile_form :required');
+        let missingFields: string[] = [];
+
+        fields.forEach((f: HTMLInputElement) => {
+            if (!f.value) {
+            missingFields.push(f.name);
+            f.classList.add('variant-ringed-error');
+            }
+        });
+
+        if (missingFields.length > 0) {
+            showError = true;
+            return false;
+        }
+
+        return true;
+    };
+
+    
+    let profile = $myProfile;
+    let showError = false; 
 </script>
 
-<div class="flex-col space-y-4 mt-10 bg-white p-10 max-w-md">    
+<div class="flex-col space-y-4 mt-10 bg-white p-10 max-w-md">
+    {#if showError}
+    <div class="variant-filled-error p-4 rounded-sm">Please fill out all required information!</div>
+    {/if}
     <h5>Please provide your personal information to complete registration.</h5>
-    <form action="/register/info" method="post">
+    <form id="profile_form" on:submit={validate}>
+    <!-- <form action="/register/info" method="post" name="profile_form" onsubmit="return validate();"> -->
         <input type="hidden" value={profile?.id} name="id" />
+        <input type="hidden" value={navigator.userAgent} name="user_browser" />
         <label for="first_name">
             <div class="font-bold">First Name*</div>
             <input class="w-full" type="text" id="first_name" name="first_name" value={profile?.first_name} required />

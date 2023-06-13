@@ -142,7 +142,7 @@
 	<MyEvents />
 	{:else}				
 	<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
-	<!-- <EditProfile profile={$myProfile} {updateProfile} /> -->
+	<EditProfile profile={$myProfile} {updateProfile} />
 	{/if}
 {:else}
 	<LoginForm />
