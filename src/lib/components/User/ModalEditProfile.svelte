@@ -1,8 +1,7 @@
 <script lang="ts">
     import { myProfile } from '$lib/data/myProfile';    
 
-    let profile = $myProfile;
-    console.log(profile)
+    let profile = $myProfile;    
 </script>
 
 <div class="flex-col space-y-4 mt-10 bg-white p-10 max-w-md">    

@@ -31,12 +31,12 @@ export const actions = {
         const [key, value] = field;
         data[key] = value;            
       }
-  console.log(data)
+  
       const result = await supabase
         .from('attendee')
         .update(data)
         .eq('id', user_id ?? data.id);
-        console.log(result)
+        
       if (result.error) {
         console.error(result.error);
         throw error(500, {
