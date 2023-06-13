@@ -5,7 +5,7 @@ import type { AssociativeArray } from "$lib/data/myTypes";
 
 let user_id:string|undefined;
 
-export async function load({  parent }) {
+export async function load({ parent }) {
   const { cookie } = await parent();
   user_id = cookie;
   const result = await supabase.from("attendee").select().eq('id', cookie).single();
@@ -31,12 +31,12 @@ export const actions = {
         const [key, value] = field;
         data[key] = value;            
       }
-  
+  console.log(data)
       const result = await supabase
         .from('attendee')
         .update(data)
-        .eq('id', user_id);
-        
+        .eq('id', user_id ?? data.id);
+        console.log(result)
       if (result.error) {
         console.error(result.error);
         throw error(500, {

@@ -1,7 +1,10 @@
 import { get } from 'svelte/store';
+import { modalStore } from '@skeletonlabs/skeleton';
 import { myProfile } from "$lib/data/myProfile";
 import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 import { displayWarning } from "./displayToast";
+import ModalLogin from '$lib/components/User/ModalLogin.svelte';
+import type { ModalComponent } from '@skeletonlabs/skeleton';
 
 export const isLoggedIn = (cookie:string|null = null) => {
     if (cookie && cookie.length > 1) {
@@ -18,7 +21,21 @@ export const isProfileComplete = () => {
 
 export const buttonCheck = (cookie:string|null = null) => {
     if (!isLoggedIn(cookie)) {        
-        displayWarning("Please enter your email to continue")
+        // displayWarning("Please enter your email to continue")
+        const c: ModalComponent = { ref: ModalLogin };
+        modalStore.trigger(
+            {
+                type: 'component',
+                title: 'Enter Email',
+                body: 'Provide your email address to continue with registration.',                
+                // valueAttr: { type: 'email', minlength: 3, maxlength: 30, required: true },
+                component: c,
+                
+                // modalClasses: '!bg-red-500',
+                // Returns the updated response value
+                response: (r: string) => console.log('modal email:', r),
+            }
+        );
         return false;
     }
 

@@ -23,10 +23,11 @@ export async function load({ parent }) {
     
     if (Object.values(myProfile).some(element => element == null)) {
       // redirect to user info form if profile is incomplete
-      throw redirect(303, '/register/info');
+      // throw redirect(303, '/register/info');
     }
   } else {
-    throw redirect(303, '/register');
+    // redirect to signin form if no cookie
+    // throw redirect(303, '/register');
   }
   
   return {

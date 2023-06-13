@@ -1,18 +1,21 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { supabase } from '$lib/data/supabase';
+	import { modalStore } from '@skeletonlabs/skeleton';
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
 	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
-	import { buttonCheck, isAlreadyRegistered } from '$lib/util/validationHelpers';
+	import { buttonCheck, isAlreadyRegistered, isProfileComplete } from '$lib/util/validationHelpers';
 
 	import User from '$lib/components/User/User.svelte';
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';	
 	import HoverEventCard from '$lib/components/HoverEventCard.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import ModalEditProfile from '$lib/components/User/ModalEditProfile.svelte';
 
 	import { myEvents } from '$lib/data/myEvents';
 	import { myProfile } from '$lib/data/myProfile';
 
+	import type { ModalComponent } from '@skeletonlabs/skeleton';
 	import type { MyEvent, Event, Profile } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';	
@@ -114,11 +117,23 @@
 			displaySuccess('You are registered!');
 	}
 
+	onMount(() => {
+		if (cookie && !isProfileComplete()) {
+			const c: ModalComponent = { ref: ModalEditProfile };
+			modalStore.trigger(
+				{
+					type: 'component',           
+					component: c,				
+				}
+			);
+		}
+	})
+
 	let disableButton = false;
 
 	$myProfile = data.myProfile as Profile;
 	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } = data;
-    $: ({ pendingEvents, pastEvents } = data);		
+    $: ({ pendingEvents, pastEvents } = data);			
 </script>
 
 <svelte:head>

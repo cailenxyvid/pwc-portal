@@ -6,7 +6,7 @@
 
 	import { afterNavigate } from '$app/navigation';
 
-	import { AppShell } from '@skeletonlabs/skeleton';	
+	import { AppShell, Modal } from '@skeletonlabs/skeleton';	
 	import { Toast } from '@skeletonlabs/skeleton';
 	
 	import User from "$lib/components/User/User.svelte";
@@ -33,6 +33,7 @@
 	});
 </script>
 
+<Modal buttonTextSubmit="Continue" buttonPositive="variant-filled-primary" />
 
 <!-- <AppShell slotSidebarRight="md:w-1/4" slotPageHeader="px-36"> -->
 <AppShell on:scroll={scrollHandler}>
