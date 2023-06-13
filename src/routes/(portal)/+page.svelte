@@ -129,7 +129,7 @@
 	}
 
 	onMount(() => {
-		if (cookie && !isProfileComplete()) {
+		if (cookie && $myProfile && !isProfileComplete()) {
 			const c: ModalComponent = { ref: ModalEditProfile };
 			modalStore.trigger(
 				{
