@@ -125,7 +125,9 @@
 			}
 			$myEvents = await loadMyEvents(cookie);
 			$myReplayEvents = await loadMyEvents(cookie, 'replay')
-			displaySuccess('You are registered!');
+			if (event.status == 'pending') {
+				displaySuccess('You are registered!');
+			}
 	}
 
 	onMount(() => {

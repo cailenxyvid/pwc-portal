@@ -126,7 +126,7 @@
 
 {#if cookie && cookie.length > 0}  
 	{#if $myProfile && !showForm}		
-	<strong class="text-md text-primary-500 text-center">Welcome {$myProfile.email}</strong>
+	<strong class="text-md text-primary-500 text-center">Welcome {$myProfile.first_name ?? $myProfile.email}</strong>
 
 	<!-- FOR TESTING ONLY - REMOVE THIS -->
 	<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
