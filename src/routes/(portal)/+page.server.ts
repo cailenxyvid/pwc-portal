@@ -20,15 +20,7 @@ export async function load({ parent }) {
     myReplayEvents = await loadMyEvents(cookie, 'replay');
     let getProfile = await supabase.from("attendee").select().eq('id', cookie).single();
     myProfile = getProfile.data as Profile;
-    
-    if (Object.values(myProfile).some(element => element == null)) {
-      // redirect to user info form if profile is incomplete
-      // throw redirect(303, '/register/info');
-    }
-  } else {
-    // redirect to signin form if no cookie
-    // throw redirect(303, '/register');
-  }
+  } 
   
   return {
     pendingEvents: pending.data as Event[] ?? [],
