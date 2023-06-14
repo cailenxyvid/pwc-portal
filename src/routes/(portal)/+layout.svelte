@@ -50,7 +50,6 @@
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">
 		<div class="block xl:hidden bg-white">
-			<h2>pageHeader</h2>
 			<User {cookie} />
 		</div>
 	</svelte:fragment>
