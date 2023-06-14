@@ -1,25 +1,6 @@
 <script lang="ts">    
     import { myProfile } from '$lib/data/myProfile';
 
-    // const validate = () => {        
-    //     const fields = document.querySelectorAll('#profile_form :required');
-    //     let missingFields = ['email', 'first_name'];
-
-    //     fields.forEach(f => {
-    //         if (!f.value) {
-    //             missingFields.push(f.name);
-    //             f.classList.add('variant-ringed-error');
-    //         }            
-    //     });
-
-    //     if (missingFields.length > 0) {
-    //         displayWarning('Please fill out all required information!');
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
-
     const validate = (): boolean => {
         const fields = document.querySelectorAll<HTMLInputElement>('#profile_form :required');
         let missingFields: string[] = [];
@@ -38,7 +19,6 @@
 
         return true;
     };
-
     
     let profile = $myProfile;
     let showError = false; 
