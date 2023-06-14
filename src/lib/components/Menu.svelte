@@ -1,8 +1,11 @@
 <script>
+    import { afterNavigate } from '$app/navigation';
     import { clickOutside } from "$lib/util/clickOutside";
 
     let open = false;
     let toggle = () => { open = !open }
+
+    afterNavigate(() => { open = false });
 </script>
 <div class="hamburger-container relative md:hidden">
     <button on:click={toggle}><i class="fa fa-bars"></i></button>
