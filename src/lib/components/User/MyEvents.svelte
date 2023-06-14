@@ -26,12 +26,18 @@
     <i class="text-sm block mb-6">Need your CPE certificate from a live webcast? Access the replay, click the "CPE" icon at the bottom-right, and download it instantly.</i>
     {#if $myReplayEvents.length > 0}
         {#each $myReplayEvents as row}
+        {#if row.event.status === 'replay'}
             <div class="text-primary-500 underline">
                 <a target="_blank" href="https://portal12.xyvid.com/{row.event.xyp_id}?emailAddress={$myProfile.email}&directEntry=true">
                     <i class="fa fa-play"></i>
                     {row.event.title}
                 </a>   
-            </div>            
+            </div>   
+        {:else}         
+        <div class="underline">
+            {row.event.title}
+        </div>
+        {/if}
         {/each}
     {:else}
         You are not registered for any replay events.

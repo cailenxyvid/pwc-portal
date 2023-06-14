@@ -25,7 +25,7 @@
 		if (!cookie) { console.error('Missing cookie in User.populateUserEvents!'); return;	}
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.		
 		$myEvents = await loadMyEvents(cookie, 'pending');
-		$myReplayEvents = await loadMyEvents(cookie, 'replay');
+		$myReplayEvents = await loadMyEvents(cookie, 'replay') //[...await loadMyEvents(cookie, 'replay'), ...await loadMyEvents(cookie, 'past')]
 	}
 
 	const resetUser = async () => {

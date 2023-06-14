@@ -49,8 +49,7 @@
     <div class="variant-filled-error p-4 rounded-sm">Please fill out all required information!</div>
     {/if}
     <h5>Please provide your personal information to complete registration.</h5>
-    <form id="profile_form" on:submit={validate}>
-    <!-- <form action="/register/info" method="post" name="profile_form" onsubmit="return validate();"> -->
+    <form action="/register/info" method="post" name="profile_form" on:submit={validate}>
         <input type="hidden" value={profile?.id} name="id" />
         <input type="hidden" value={navigator.userAgent} name="user_browser" />
         <label for="first_name">
