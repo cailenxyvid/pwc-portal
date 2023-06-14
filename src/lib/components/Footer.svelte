@@ -38,11 +38,11 @@
         </div>
         <div>
             <b class="text-xl block">Jonathan Block</b>
-            Communications and Change Leader, PwC US
+            Managing Director, PwC’s Trust Leadership Institute
         </div>
         <div>
             <b class="text-xl block">Megan Conway</b>
-            Managing Director, Trust Leadership Institute
+            Managing Director, PwC’s Trust Leadership Institute
         </div>
     </div>
     <div class="text-xs w-full mt-6">© 2023 PwC. All rights reserved. PwC refers to the US member firm, and may sometimes refer to the PwC network. Each member firm is a separate legal entity. Please see www.pwc.com/structure for further details. This content is for general purposes only, and should not be used as a substitute for consultation with professional advisors.
