@@ -10,7 +10,8 @@ export const loadMyEvents = async (user_id:string, type = 'pending') => {
             event (
                 title,
                 id,
-                xyp_id
+                xyp_id,
+                status
             )
             `)
         .eq('attendee', user_id)

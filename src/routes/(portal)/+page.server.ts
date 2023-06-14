@@ -35,7 +35,7 @@ export async function load({ parent }) {
     pastEvents: past.data as Event[] ?? [],
     myPendingEvents: myPendingEvents,
     myReplayEvents: myReplayEvents,
-    myProfile: myProfile,
+    myProfile: myProfile ?? null,
     xyp_settings: {
       xyp_api_key: xyp_api_key,
       xyp_registration_url: xyp_registration_url,

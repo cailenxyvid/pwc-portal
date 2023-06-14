@@ -34,7 +34,7 @@
                 </a>   
             </div>   
         {:else}         
-        <div class="underline">
+        <div class="italic">            
             {row.event.title}
         </div>
         {/if}
