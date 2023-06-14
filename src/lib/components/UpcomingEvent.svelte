@@ -32,7 +32,7 @@
         <div class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8">
             <SocialMedia event_id={event.id} />
             {#if alreadyRegistered}
-                <span class="btn variant-glass-primary">You are already registered!</span>
+                <span class="btn variant-glass-primary">Registration saved</span>
                 {:else}
                 <button disabled={disableButton} class="variant-filled-primary p-2 text-xl w-48 mr-2" on:click={() => { 
                     disableButton = true;
