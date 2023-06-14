@@ -149,16 +149,6 @@
     $: ({ pendingEvents, pastEvents } = data);			
 </script>
 
-<svelte:head>
-	<!-- Open Graph -->
-	<meta property="og:description" content="Our Trust in Action webcast series connects senior executives and their teams with the latest thinking on emerging topics in trust and business. The interactive series features distinguished speakers from across business, government and academia.">
-	<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/PricewaterhouseCoopers_Logo.svg/790px-PricewaterhouseCoopers_Logo.svg.png"/>
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="Trust in Action Webcast series" />
-	<meta property="og:title" content="Trust in Action Webcast series" />
-	<meta property="og:locale" content="en_US">
-</svelte:head>
-
 <div class="flex flex-row w-full bg-[#dedede] p-0 relative">
 	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
 		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>

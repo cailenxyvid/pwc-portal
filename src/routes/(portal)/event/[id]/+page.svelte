@@ -134,16 +134,6 @@
     let disableButton = false;
 </script>
 
-<svelte:head>
-	<!-- Open Graph -->
-	<meta property="og:description" content="{event.content_meta}">
-	<meta property="og:image" content="{event.image_url}"/>
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="{event.title}" />
-  <meta property="og:title" content="{event.title}" />
-	<meta property="og:locale" content="en_US">
-</svelte:head>
-
 {#if event}
 <div class="flex flex-col md:flex-row w-full card rounded-lg">    
   
@@ -161,7 +151,7 @@
       {@html event.content_cpe}
     </div>
     <div class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8">
-      <SocialMedia event_id={event.id} />
+      <SocialMedia {event} />
       {#if alreadyRegistered}
           <span class="btn variant-glass-primary">You are already registered!</span>
           {:else}
@@ -185,7 +175,7 @@
       {/if}        
     </div>
     <div class="mb-4">
-      <SocialMedia event_id={event.id} />
+      <SocialMedia {event} />
     </div>
     {/if}
     
