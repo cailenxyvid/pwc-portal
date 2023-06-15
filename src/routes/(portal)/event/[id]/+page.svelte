@@ -135,9 +135,14 @@
 </script>
 
 {#if event}
-<div class="flex flex-col md:flex-row w-full card rounded-lg">    
-  
+<div class="flex flex-col md:flex-row w-full card rounded-lg">      
   <div class="flex flex-col justify-start p-6">
+    <div class="text-lg p-1 mb-2">
+      <a href="/" class="text-black no-underline" style="color: black; text-decoration: none;">
+        <i class="fa-solid fa-turn-down-left"></i>
+        Return to Webcast Library
+      </a>
+    </div>
     <div class="rounded-t-lg md:rounded-none md:rounded-l-lg w-full">
       <img src="{event.image_url}" alt="{event.title}" class="w-full" />
     </div>
