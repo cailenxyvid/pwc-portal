@@ -163,7 +163,8 @@
 	<div class="w-full flex flex-row space-x-6">
 		<div class="grow">
 			<h5 class="p-4">
-				Our Trust in Action webcast series connects senior executives and their teams with the latest thinking on emerging topics in trust and business. The interactive series features distinguished speakers from across business, government and academia.
+				Trust in Action is a series of candid conversations featuring leading insights on trust.<br />
+				Together, we explore how to take action on the most critical issues in business and society — as they emerge in real time. Join us to hear from distinguished thought leaders across business, government and academia.
 			</h5>	
 			{#each pendingEvents as event}
 			<UpcomingEvent {event} {registerEvent} {disableButton} />
