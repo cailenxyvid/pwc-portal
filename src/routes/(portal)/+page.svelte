@@ -175,8 +175,8 @@
 		</div>
 	</div>	
 
-	<h2 class="my-12">Past Events</h2>
-	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+	<h2 class="my-12 pl-6 md:pl-1">Past Events</h2>
+	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 px-6 md:px-1">
 		{#each pastEvents as event}
 		<HoverEventCard {event} {cookie} {xyp_portal_url} {registerEvent} />
 		{/each}
