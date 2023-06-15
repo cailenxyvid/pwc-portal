@@ -30,7 +30,7 @@
         <!-- <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Past&nbsp;Events</a>  -->
         <a href="/faq" class="topnav {$page.route.id === '/faq' ? 'active' : ''}">FAQs</a>
     </div>  
-    <div class="ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white hidden sm:inline-block">
+    <div class="ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white hidden md:inline-block">
         <SearchBar />
     </div>
 	<svelte:fragment slot="trail">
