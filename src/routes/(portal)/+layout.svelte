@@ -5,6 +5,7 @@
 	import '../../app.postcss'; // do explict global overrides here, if needed
 
 	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	import { AppShell, Modal } from '@skeletonlabs/skeleton';	
 	import { Toast } from '@skeletonlabs/skeleton';
@@ -48,10 +49,12 @@
 	</svelte:fragment> -->
 	
 	<!-- using this section to display login/user info on small screens -->
-	<svelte:fragment slot="pageHeader">
+	<svelte:fragment slot="pageHeader">	
+		{#if $page.url.pathname == '/'}
 		<div class="block xl:hidden bg-white">
 			<User {cookie} />
 		</div>
+		{/if}
 	</svelte:fragment>
 	
 	<!-- main content -->
