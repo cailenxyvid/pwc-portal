@@ -5,13 +5,14 @@
 
     export let data: PageData;    
     
-    $: ({ upcoming, replay, past, faq } = data);
+    $: ({ query, upcoming, replay, past, faq } = data);
 </script>
 
 <div class="container mx-auto p-4 md:p-12 space-y-16">
     <div class="md:hidden">
         <SearchBar show={true} />
     </div>
+    {#if query}
     <div>
         <h3>Upcoming events</h3>
         <h4>{upcoming.length} results found.</h4>
@@ -44,7 +45,8 @@
         <h4>{faq.length} results found.</h4>
         {#each faq as f}
         <a href="/faq#faq-{f.id}" class="block">{f.title}</a>
-        <div class="text-sm">{f.content}</div>
+        <div class="text-sm">{@html f.content}</div>
         {/each}
     </div>
+    {/if}
 </div>

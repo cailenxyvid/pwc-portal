@@ -97,7 +97,7 @@
 		} 		
 		disableButton = true;
 		setTimeout(() => { disableButton = false }, 3000);
-		if (!buttonCheck(cookie)) {			
+		if (!buttonCheck(cookie) || !cookie) {			
 			return false;
 		}
 		// complete XYP registration first, only update records if success

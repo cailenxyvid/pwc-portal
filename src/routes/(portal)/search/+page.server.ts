@@ -9,7 +9,7 @@ export async function load({ url }) {
     const upcoming = await supabase
         .from('event')
         .select()
-        .textSearch('event_search_cols', q, {
+        .textSearch('pending_event_search_cols', q, {
             type: 'plain',
             config: 'english'
         })
@@ -17,7 +17,7 @@ export async function load({ url }) {
     const replay = await supabase
         .from('event')
         .select()
-        .textSearch('event_search_cols', q, {
+        .textSearch('past_event_search_cols', q, {
             type: 'plain',
             config: 'english'
         })
@@ -25,7 +25,7 @@ export async function load({ url }) {
     const past = await supabase
         .from('event')
         .select()
-        .textSearch('event_search_cols', q, {
+        .textSearch('past_event_search_cols', q, {
             type: 'plain',
             config: 'english'
         })
@@ -48,6 +48,7 @@ export async function load({ url }) {
       upcoming: upcoming.data as Event[] ?? [],
       replay: replay.data as Event[] ?? [],
       past: past.data as Event[] ?? [],
-      faq: faq.data ?? []
+      faq: faq.data ?? [],
+      query: q ?? null
     };
 }
