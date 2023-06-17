@@ -18,21 +18,23 @@
             <a href="https://www.pwc.com/us/en/about-us/tomorrow-takes-trust/trust-leadership-institute-overview.html" target="_blank">
                 <img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="">
             </a> -->
-            <a href="/">
-                <img src="/pwc-logo-wht.png" class="h-12 inline" alt="">
-            </a>
-            <img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="">
-        </div>        
-    </svelte:fragment>
-    <!-- <img src={tliLogo} alt="Trust Leadership Institute Logo" title="Trust Leadership Institute" class="min-w-[65px] max-w-[200px]" /> -->
-	<div class="ml-4 md:ml-12 md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden md:inline text-white">                
-        <a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Webcasts</a>
-        <!-- <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Past&nbsp;Events</a>  -->
-        <a href="/faq" class="topnav {$page.route.id === '/faq' ? 'active' : ''}">FAQs</a>
-    </div>  
-    <div class="ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white hidden md:inline-block">
-        <SearchBar />
-    </div>
+			<a href="/">
+				<img src="/pwc-logo-wht.png" class="h-12 inline" alt="" />
+			</a>
+			<img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="" />
+		</div>
+	</svelte:fragment>
+	<svelte:fragment slot="default">
+		<!-- <img src={tliLogo} alt="Trust Leadership Institute Logo" title="Trust Leadership Institute" class="min-w-[65px] max-w-[200px]" /> -->
+		<div class="md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden md:inline text-white">
+			<a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Webcasts</a>
+			<!-- <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Past&nbsp;Events</a>  -->
+			<a href="/faq" class="topnav {$page.route.id === '/faq' ? 'active' : ''}">FAQs</a>
+		</div>
+		<div class="ml-4 md:ml-12 md:-mb-40 sm:-mb-20 text-white hidden md:inline-block">
+			<SearchBar />
+		</div>
+	</svelte:fragment>
 	<svelte:fragment slot="trail">
         <div class="inline md:hidden text-white">
             <Menu />
@@ -47,7 +49,8 @@
         color: #fff;
     }
 
-    .topnav:hover,.active {
-        border-bottom: 5px solid #fff;
-    }
+	.topnav:hover,
+	.active {
+		color: #d04a02;
+	}
 </style>
