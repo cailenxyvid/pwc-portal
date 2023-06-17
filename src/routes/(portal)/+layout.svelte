@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	// skeleton.dev and branded theme styles - changing the order of these may break things
 	import '../../theme.postcss';
 	import '@skeletonlabs/skeleton/styles/all.css';
@@ -7,30 +7,30 @@
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 
-	import { AppShell, Modal } from '@skeletonlabs/skeleton';	
+	import { AppShell, Modal } from '@skeletonlabs/skeleton';
 	import { Toast } from '@skeletonlabs/skeleton';
-	
-	import User from "$lib/components/User/User.svelte";
+
+	import User from '$lib/components/User/User.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	
+
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
 
 	$: ({ cookie } = data);
 
-	//***** scroll bs	
+	//***** scroll bs
 	import { scrollStore } from '$lib/data/scrollStore';
-	let scrollTarget:any;
-	function scrollHandler(event: UIEvent & { currentTarget: EventTarget & HTMLDivElement; }) {
+	let scrollTarget: any;
+	function scrollHandler(event: UIEvent & { currentTarget: EventTarget & HTMLDivElement }) {
 		$scrollStore = event.currentTarget.scrollTop;
 		scrollTarget = event.currentTarget;
 	}
 
 	afterNavigate(() => {
 		// document.getElementById('page')?.scrollTo(0, 0);
-		scrollTarget?.scrollTo(0,0);
+		scrollTarget?.scrollTo(0, 0);
 	});
 </script>
 
@@ -41,24 +41,24 @@
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
-	
+
 	<!-- <svelte:fragment slot="sidebarRight">
 		<div class="h-full w-full p-10 hidden md:block bg-white">
 			<User {cookie} />
 		</div>
 	</svelte:fragment> -->
-	
+
 	<!-- using this section to display login/user info on small screens -->
-	<svelte:fragment slot="pageHeader">	
+	<svelte:fragment slot="pageHeader">
 		{#if $page.url.pathname == '/'}
-		<div class="block xl:hidden bg-white">
-			<User {cookie} />
-		</div>
+			<div class="block xl:hidden bg-white">
+				<User {cookie} />
+			</div>
 		{/if}
 	</svelte:fragment>
-	
+
 	<!-- main content -->
-	<div class="relative"><slot /></div>
+	<div class="relative container mx-auto"><slot /></div>
 
 	<svelte:fragment slot="pageFooter">
 		<Footer />
