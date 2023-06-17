@@ -1,18 +1,18 @@
 <script>
-    import { page } from '$app/stores';
-    import { AppBar } from '@skeletonlabs/skeleton';
-    import logo from '$lib/assets/PwC-logo.svg';
-    import tliLogo from '$lib/assets/tli-wordmark-4k.png';
-    import Menu from './Menu.svelte';
-    import SearchBar from './SearchBar.svelte';
+	import { page } from '$app/stores';
+	import { AppBar } from '@skeletonlabs/skeleton';
+	import logo from '$lib/assets/PwC-logo.svg';
+	import tliLogo from '$lib/assets/tli-wordmark-4k.png';
+	import Menu from './Menu.svelte';
+	import SearchBar from './SearchBar.svelte';
 </script>
 
-<AppBar background="bg-[#464646]">
+<AppBar background="bg-[#464646]" slotDefault="text-right">
 	<svelte:fragment slot="lead">
-        <div class="p-1 w-48">
-            <!-- PwC brand guide requires 65px min width -->
-            <!-- <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />             -->
-            <!-- <a href="https://www.pwc.com/us/en" target="_blank">
+		<div class="p-1 w-48">
+			<!-- PwC brand guide requires 65px min width -->
+			<!-- <img src={logo} alt="PwC Logo" title="PwC" class="min-w-[65px]" />             -->
+			<!-- <a href="https://www.pwc.com/us/en" target="_blank">
                 <img src="/pwc-logo-wht.png" class="h-12 inline" alt="">
             </a>
             <a href="https://www.pwc.com/us/en/about-us/tomorrow-takes-trust/trust-leadership-institute-overview.html" target="_blank">
@@ -36,18 +36,18 @@
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
-        <div class="inline md:hidden text-white">
-            <Menu />
-        </div>        
-    </svelte:fragment>
+		<div class="inline md:hidden text-white">
+			<Menu />
+		</div>
+	</svelte:fragment>
 </AppBar>
 
 <style>
-    .topnav {
-        /* font-size: x-large; */
-        /* margin-right: 3em; */
-        color: #fff;
-    }
+	.topnav {
+		/* font-size: x-large; */
+		/* margin-right: 3em; */
+		color: #fff;
+	}
 
 	.topnav:hover,
 	.active {
