@@ -18,7 +18,7 @@
 </script>
 
 {#if event}
-	<div class="flex flex-col w-full card bg-white mt-8 px-6">
+	<div class="flex flex-col w-full mt-8 px-6">
 		<div class="event-date border-b-black border-b text-primary-500 text-lg mb-4 mt-2 pb-1">
 			Up next: {new Date(event.event_start).toLocaleString('en-US', {
 				timeStyle: 'short',
@@ -35,31 +35,29 @@
 		<div class="w-full">
 			<img class="w-full" src={event.image_url} alt={event.title} />
 		</div>
-		<div class="flex flex-col justify-start p-6">
-			<div
-				class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8"
-			>
-				<SocialMedia {event} />
-				{#if alreadyRegistered}
-					<span class="btn variant-glass-primary">Registration saved</span>
-				{:else}
-					<button
-						disabled={disableButton}
-						class="variant-filled-primary p-2 text-xl w-48 mr-2"
-						on:click={() => {
-							disableButton = true;
-							registerEvent(event);
-						}}
-					>
-						Register
-					</button>
-					<!-- {#if disableButton}
-                <span class="text-error-500">Please enter your information to continue.</span>
-                {/if} -->
-				{/if}
-				<span class="relative">
+		<div class="flex flex-col">
+			<div class="event-register mt-2 mb-4 flex flex-row flex-wrap justify-between">
+				<div>
+					{#if alreadyRegistered}
+						<span class="btn variant-glass-primary">Registration saved</span>
+					{:else}
+						<button
+							disabled={disableButton}
+							class="btn bg-primary-500 text-white mr-4 mb-2"
+							on:click={() => {
+								disableButton = true;
+								registerEvent(event);
+							}}
+						>
+							Register
+						</button>
+						<!-- {#if disableButton}
+					<span class="text-error-500">Please enter your information to continue.</span>
+					{/if} -->
+					{/if}
 					<CalendarButton {event} />
-				</span>
+				</div>
+				<SocialMedia {event} />
 			</div>
 			<p class="prose2 text-sm">
 				{@html event.content}
