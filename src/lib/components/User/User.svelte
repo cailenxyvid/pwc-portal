@@ -19,6 +19,8 @@
 
 	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';	
 	
+	import ProfileForm from './ProfileForm.svelte';
+	
 	export let cookie: string | undefined;
 
 	const populateUserEvents = async () => {	
@@ -142,7 +144,8 @@
 	<MyEvents />
 	{:else}				
 	<strong class="text-lg text-primary-500 text-center">Please enter your information to continue</strong>
-	<EditProfile profile={$myProfile} {updateProfile} />
+	<EditProfile profile={$myProfile} {updateProfile} />	
+	<!-- <ProfileForm /> -->
 	{/if}
 {:else}
 	<LoginForm />

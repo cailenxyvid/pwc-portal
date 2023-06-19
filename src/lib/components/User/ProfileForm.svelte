@@ -1,21 +1,51 @@
 <script lang="ts">
-    import type { Session } from '@supabase/supabase-js'; 
+    import { enhance } from '$app/forms';
+    import { myProfile } from '$lib/data/myProfile';
+
+    const validate = (): boolean => {
+        const fields = document.querySelectorAll<HTMLInputElement>('#profile_form :required');
+        let missingFields: string[] = [];
+
+        fields.forEach((f: HTMLInputElement) => {
+            if (!f.value) {
+            missingFields.push(f.name);
+            f.classList.add('variant-ringed-error');
+            }
+        });
+
+        if (missingFields.length > 0) {
+            showError = true;
+            return false;
+        }
+
+        return true;
+    };
     
-    import Login from './Login.svelte';
-
-	export let session: Session | null;
-    export let profile: any;
-
-    export let updateProfile: any;
+    let profile = $myProfile;
+    let showError = false; 
 </script>
 
-{#if session?.user.id}
-<strong class="text-lg text-primary-500">
-    Please complete the registration form to continue.
-</strong>
-
-<div class="w-full flex-col space-y-4 mt-10">    
-    <form on:submit|preventDefault={updateProfile}>
+<div class="flex-col space-y-4">
+    {#if showError}
+    <div class="variant-filled-error p-4 rounded-sm">Please fill out all required information!</div>
+    {/if}
+    <!-- <h5>Please provide your personal information to complete registration.</h5> -->
+    <form action="/register/info" method="post" name="profile_form" use:enhance={({  cancel }) => {
+        // `formElement` is this `<form>` element
+        // `formData` is its `FormData` object that's about to be submitted
+        // `action` is the URL to which the form is posted
+        // calling `cancel()` will prevent the submission
+        // `submitter` is the `HTMLElement` that caused the form to be submitted
+console.log('submiting form')
+        return async ({ result, update }) => {
+            // `result` is an `ActionResult` object
+            // `update` is a function which triggers the default logic that would be triggered if this callback wasn't set
+            console.log('result', result)
+        };
+    }}
+    >
+        <input type="hidden" value={profile?.id} name="id" />
+        <input type="hidden" value={navigator.userAgent} name="user_browser" />
         <label for="first_name">
             <div class="font-bold">First Name*</div>
             <input class="w-full" type="text" id="first_name" name="first_name" value={profile?.first_name} required />
@@ -30,12 +60,12 @@
         </label>
         <label for="email">
             <div class="font-bold">Email*</div>
-            <input class="w-full" type="text" id="email" name="email" value={session.user.email}  />
+            <input class="w-full" type="text" id="email" name="email" value={profile?.email} disabled  />
         </label>
         <label for="job_level">
             <div class="font-bold">Job Level*</div>
-            <select class="w-full" name="job_level" id="job_level">
-                <!-- <option value="">Select One</option> -->
+            <select class="w-full" name="job_level" id="job_level" value={profile?.job_level} required>
+                <!-- <option value="None">Select One</option> -->
                 <option value="Corporate Board Member">Corporate Board Member</option>
                 <option value="C Level">C Level</option>
                 <option value="Business Unit Leader">Business Unit Leader</option>
@@ -52,7 +82,7 @@
         </label>
         <label for="country">
             <div class="font-bold">Country*</div>
-            <select name="country" id="country" class="w-full">   
+            <select name="country" id="country" class="w-full" value={profile?.country} required>   
                 <option value="United States">United States</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
@@ -307,10 +337,6 @@
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
         </label>
-        <button type="submit" class="bg-primary-500 text-white rounded-sm p-2 mt-4 w-full">Save</button>
+        <button type="submit" class="bg-primary-500 text-white rounded-sm p-2 mt-4 w-full">Continue</button>
     </form>
 </div>
-{:else}
-<div class="text-xl text-primary-500">Please validate your email address to continue!</div>
-<Login {session} />
-{/if}
