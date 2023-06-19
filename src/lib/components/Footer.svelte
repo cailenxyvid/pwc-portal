@@ -30,7 +30,7 @@
 <div class="bg-[#2d2d2d] text-white p-8 md:px-12">
 	<div class="flex flex-col container mx-auto">
 		<div>
-			<hr class="border-white mb-2" />
+			<hr class="border-[#dedede] mb-2" />
 		</div>
 		<h3 class="mb-4">Connect with us</h3>
 		<div class="flex flex-row flex-wrap mb-16 gap-4 lg:gap-16 xl:gap-32">
