@@ -69,11 +69,13 @@
 	</div>
 	<div class="relative">
 		<div class="event-date">
-			{#if event.status != 'upcoming'}<div>Original air date:</div> {/if}
-			{new Date(event.event_start).toLocaleString('en-US', {
-				timeStyle: 'short',
-				dateStyle: 'full'
-			})} ET
+			{#if event.status != 'upcoming'}<div class="text-xs">Original air date:</div> {/if}
+			<div class="text-sm">
+				{new Date(event.event_start).toLocaleString('en-US', {
+					timeStyle: 'short',
+					dateStyle: 'full'
+				})} ET
+			</div>
 		</div>
 		<div class="text-small mb-4">
 			<!-- TODO: get text-small working with <p> in the data-->
