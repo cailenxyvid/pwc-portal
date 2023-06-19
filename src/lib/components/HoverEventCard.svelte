@@ -70,7 +70,7 @@
 			<!-- TODO: Why do I need important here? -->
 			<!-- TODO: Why doesn't color work?  -->
 			<a href="/event/{event.id}" class="no-underline" style="text-decoration: none !important;"
-				><h3 class="font-bold text-primary-500">{event.title}</h3></a
+				><div class="text-xl font-bold text-primary-500">{event.title}</div></a
 			>
 		</div>
 		<div class="text-small">
