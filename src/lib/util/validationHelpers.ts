@@ -41,6 +41,7 @@ export const buttonCheck = (cookie:string|null = null) => {
 
     if (!isProfileComplete()) {        
         displayWarning("Please enter your information to continue")
+        document.querySelector('#page')?.scrollTo(0,0);
         document.getElementById("first_name")?.focus();
         return false;
     }

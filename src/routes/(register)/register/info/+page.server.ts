@@ -1,7 +1,7 @@
 import { error, fail, redirect } from "@sveltejs/kit";
 import { supabase } from "$lib/data/supabase";
-import type { Profile } from "$lib/data/myTypes";
-import type { AssociativeArray } from "$lib/data/myTypes";
+import type { Profile, AssociativeArray } from "$lib/data/myTypes";
+
 
 let user_id:string|undefined;
 
