@@ -59,12 +59,12 @@
 				</div>
 				<SocialMedia {event} />
 			</div>
-			<p class="prose2 text-sm">
+			<div class="prose2 border-b border-b-black mb-4 pb-8">
 				{@html event.content}
-			</p>
-			<p class="text-sm mt-6 border-t border-t-black">
+			</div>
+			<div class="text-sm">
 				{@html event.content_cpe}
-			</p>
+			</div>
 		</div>
 	</div>
 {:else}
