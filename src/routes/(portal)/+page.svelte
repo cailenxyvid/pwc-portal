@@ -159,7 +159,7 @@
 		<img src="header-cropped.png" alt="" />
 	</div>
 </div>
-<div id="mainContent" class="justify-center">
+<div id="mainContent" class="justify-center mb-16 pb-8">
 	<div class="w-full flex flex-row space-x-6">
 		<div class="grow">
 			<h5 class="p-4">
