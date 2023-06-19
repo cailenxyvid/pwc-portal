@@ -28,7 +28,7 @@
 		<h3 class="mb-2">
 			{event.title}
 		</h3>
-		<span class="mb-4 text-base italic">
+		<span class="mb-4">
 			<!-- <div class="underline font-extrabold">Featured speakers:</div> -->
 			{@html event.content_speakers}
 		</span>
