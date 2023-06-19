@@ -139,21 +139,41 @@
 </script>
 
 {#if event}
-	<div class="flex flex-col md:flex-row w-full card rounded-lg">
-		<div class="flex flex-col justify-start p-6">
-			<div class="text-lg p-1 mb-2">
+	<div class="flex flex-col md:flex-row w-full">
+		<div class="flex flex-col justify-start p-6 pt-2">
+			<div class="p-1 mb-4">
 				<a href="/" class="text-black no-underline" style="color: black; text-decoration: none;">
 					<i class="fa-solid fa-turn-down-left" />
 					Return to Webcast Library
 				</a>
 			</div>
-			<div class="rounded-t-lg md:rounded-none md:rounded-l-lg w-full">
+			<div class="w-full mb-2">
 				<img src={event.image_url} alt={event.title} class="w-full" />
 			</div>
-			<h3 class="mb-2 text-primary-500">
+			<div class="flex justify-between mb-6">
+				<div>
+					<button
+						on:click={actionGuide}
+						class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
+						disabled={!event.action_guide}>Action guide</button
+					>
+					{#if event.status === 'replay'}
+						<button
+							on:click={watchNow}
+							class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
+							>Watch now</button
+						>
+					{/if}
+				</div>
+				<SocialMedia {event} />
+			</div>
+			<div class="text-2xl mb-2 text-primary-500">
 				{event.title}
-			</h3>
-			<div class="event-date">{new Date(event.event_start).toLocaleString()}</div>
+			</div>
+			<div class="event-date">
+				{#if event.status != 'upcoming'}Original air date: {/if}
+				{new Date(event.event_start).toLocaleString()}
+			</div>
 			{#if event.status == 'pending'}
 				<div class="border-t border-t-black">
 					{@html event.content_cpe}
@@ -180,28 +200,9 @@
 						<CalendarButton {event} />
 					</span>
 				</div>
-			{:else}
-				{#if event.status === 'replay'}<h4 class="text-error-500 my-4">
-						This event does not qualify for CPE credit.
-					</h4>{/if}
-				<div class="flex justify-between mb-6">
-					<button
-						on:click={actionGuide}
-						class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
-						disabled={!event.action_guide}>Action guide</button
-					>
-					{#if event.status === 'replay'}
-						<button
-							on:click={watchNow}
-							class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
-							>Watch now</button
-						>
-					{/if}
-				</div>
-				<div class="mb-4">
-					<SocialMedia {event} />
-				</div>
-			{/if}
+			{:else if event.status === 'replay'}<h4 class="text-error-500 my-4">
+					This event does not qualify for CPE credit.
+				</h4>{/if}
 
 			<div class="event-replay-notice font-bold mb-2">
 				{#if event.status === 'replay'}
