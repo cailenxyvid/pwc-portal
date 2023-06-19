@@ -24,11 +24,11 @@
 	let showError = false;
 </script>
 
-<div class="flex-col space-y-4 mt-10 bg-white p-10 max-w-md">
+<div class="flex-col space-y-4 mt-10 bg-[#dedede] p-10 max-w-md rounded-sm">
 	{#if showError}
 		<div class="variant-filled-error p-4 rounded-sm">Please fill out all required information!</div>
 	{/if}
-	<h5>Please provide your personal information to complete registration.</h5>
+	<div>Please provide your personal information to complete registration.</div>
 	<form action="/register/info" method="post" name="profile_form" on:submit={validate}>
 		<input type="hidden" value={profile?.id} name="id" />
 		<input type="hidden" value={navigator.userAgent} name="user_browser" />
