@@ -36,16 +36,18 @@
 
 <div class="flex gap-8">
 	<a href="https://www.facebook.com/sharer.php?u={url}" target="_blank"
-		><i class="fa-brands fa-facebook fa-lg text-[#2d2d2d]" /></a
+		><i class="fa-brands fa-facebook text-[#2d2d2d] hover:text-[#d04a02]" /></a
 	>
 	<a href="https://twitter.com/intent/tweet?url={url}" target="_blank"
-		><i class="fa-brands fa-twitter fa-lg text-[#2d2d2d]" /></a
+		><i class="fa-brands fa-twitter text-[#2d2d2d] hover:text-[#d04a02]" /></a
 	>
 	<a href="https://www.linkedin.com/shareArticle?mini=true&url={url}" target="_blank"
-		><i class="fa-brands fa-linkedin fa-lg text-[#2d2d2d]" /></a
+		><i class="fa-brands fa-linkedin text-[#2d2d2d] hover:text-[#d04a02]" /></a
 	>
 	<!-- svelte-ignore a11y-invalid-attribute :( -->
-	<a href="#" on:click={copyLink}><i class="fa-solid fa-link fa-lg text-[#2d2d2d]" /></a>
+	<a href="#" on:click={copyLink}
+		><i class="fa-solid fa-link text-[#2d2d2d] hover:text-[#d04a02]" /></a
+	>
 	<!-- <button use:clipboard={url}><i class="fa-solid fa-share"></i></button>     -->
 </div>
 <input class="hidden" type="text" id="socialLink" value={url} />
