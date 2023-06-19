@@ -33,12 +33,7 @@
 </script>
 
 <!-- <div class="block rounded-lg border shadow-sm bg-gray-50 relative"> -->
-<div class="flex flex-col h-full relative">
-	{#if showHover}
-		<div class="absolute bottom-4 rounded-sm shadow-lg bg-[#dedede] p-4 pb-6">
-			{event.content_meta}
-		</div>
-	{/if}
+<div class="flex flex-col h-full hover:bg-[#dedede] p-2">
 	<div class="mb-2">
 		<a href="/event/{event.id}">
 			<img
@@ -65,14 +60,14 @@
 			disabled={!event.action_guide}>Action guide</button
 		>
 	</div>
-	<div class="mb-4">
-		<div>
-			<!-- TODO: Why do I need important here? -->
-			<!-- TODO: Why doesn't color work?  -->
-			<a href="/event/{event.id}" class="no-underline" style="text-decoration: none !important;"
-				><div class="text-xl font-bold text-primary-500">{event.title}</div></a
-			>
-		</div>
+	<div>
+		<!-- TODO: Why do I need important here? -->
+		<!-- TODO: Why doesn't color work?  -->
+		<a href="/event/{event.id}" class="no-underline" style="text-decoration: none !important;"
+			><div class="text-xl font-bold text-primary-500">{event.title}</div></a
+		>
+	</div>
+	<div class="relative">
 		<div class="event-date">
 			{#if event.status != 'upcoming'}<div>Original air date:</div> {/if}
 			{new Date(event.event_start).toLocaleString('en-US', {
@@ -80,13 +75,19 @@
 				dateStyle: 'full'
 			})} ET
 		</div>
-		<div class="text-small">
+		<div class="text-small mb-4">
 			<!-- TODO: get text-small working with <p> in the data-->
 			{@html event.content_speakers}
 		</div>
+		{#if showHover}
+			<div class="absolute rounded-sm shadow-lg bg-[#2d2d2d] text-white p-4 pb-6 top-1 inset-x-4">
+				{event.content_meta}
+			</div>
+		{/if}
 	</div>
+
 	<!-- <div class="text-right w-full self-end"> -->
-	<div class="text-right w-full mt-auto">
+	<div class="text-right w-full mt-auto mb-2">
 		<button
 			class="hidden md:inline-block"
 			on:mouseenter={() => {
