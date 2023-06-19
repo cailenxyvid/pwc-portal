@@ -22,7 +22,6 @@
 		>
 			<a class="block" href="/">Webcasts</a>
 			<a class="block" href="/faq">FAQ</a>
-
 			<a class="block" href="/search">Search</a>
 			<!-- <a class="block" href="/speakers">Our Speakers</a> -->
 			<!-- <a class="block" href="/about">About Us</a>                 -->
@@ -30,3 +29,10 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	button:hover,
+	.active {
+		color: #d04a02;
+	}
+</style>

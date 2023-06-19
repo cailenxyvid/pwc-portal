@@ -149,17 +149,17 @@
 	$: ({ pendingEvents, pastEvents } = data);
 </script>
 
-<div class="flex flex-row w-full bg-[#dedede] p-0 relative">
-	<div class="grow absolute md:relative bottom-1 text-white md:text-black p-6 md:pt-14">
-		<span class="text-2xl md:text-4xl block bg-[#2d2d2d] md:bg-transparent">Trust in Action</span>
-		<span class="text-md md:text-2xl bg-[#2d2d2d] md:bg-transparent p-2">Webcast series</span>
+<div class="flex flex-row w-full bg-[#dedede] p-0">
+	<div class="self-center p-4 md:p-6 lg:p-8 xl:p-12 2xl:p-16 mr-auto">
+		<div class="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold">Trust in Action</div>
+		<div class="lg:text-lg xl:text-xl 2xl:text-2xl">Webcast series</div>
 	</div>
-	<div class="w-full md:w-2/3">
+	<div class="w-2/3">
 		<!-- <img src="/TLI-TIA-Header.png" alt=""> -->
 		<img src="header-cropped.png" alt="" />
 	</div>
 </div>
-<div id="mainContent" class="justify-center">
+<div id="mainContent" class="justify-center mb-16 pb-8">
 	<div class="w-full flex flex-row space-x-6">
 		<div class="grow">
 			<h5 class="p-4">
@@ -179,7 +179,9 @@
 	</div>
 
 	<h2 class="my-12 pl-6 md:pl-1">Past events</h2>
-	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 px-6 md:px-1">
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 2xl:gap-x-40 2xl:gap-y-20 xl:gap-x-20 xl:gap-y-10 sm:gap-x-10 sm:gap-y-5 px-6 md:px-1"
+	>
 		{#each pastEvents as event}
 			<HoverEventCard {event} {cookie} {xyp_portal_url} {registerEvent} />
 		{/each}
