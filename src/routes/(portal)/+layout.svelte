@@ -58,7 +58,7 @@
 	</svelte:fragment>
 
 	<!-- main content -->
-	<div class="relative container mx-auto"><slot /></div>
+	<div class="relative container mx-auto bg-white"><slot /></div>
 
 	<svelte:fragment slot="pageFooter">
 		<Footer />
