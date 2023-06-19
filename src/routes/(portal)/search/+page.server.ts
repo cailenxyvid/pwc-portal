@@ -13,7 +13,8 @@ export async function load({ url }) {
             type: 'plain',
             config: 'english'
         })
-        .eq('status', 'pending');
+        .eq('status', 'pending')
+        .order('event_start', {ascending: false});
     const replay = await supabase
         .from('event')
         .select()
@@ -21,7 +22,8 @@ export async function load({ url }) {
             type: 'plain',
             config: 'english'
         })
-        .eq('status', 'replay');   
+        .eq('status', 'replay')
+        .order('event_start', {ascending: false});   
     const past = await supabase
         .from('event')
         .select()
@@ -29,7 +31,8 @@ export async function load({ url }) {
             type: 'plain',
             config: 'english'
         })
-        .eq('status', 'past');     
+        .eq('status', 'past')
+        .order('event_start', {ascending: false});     
     const faq = await supabase
         .from('faq')
         .select()
