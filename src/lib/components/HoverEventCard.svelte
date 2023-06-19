@@ -45,13 +45,6 @@
 		</a>
 	</div>
 	<div class="flex justify-between mb-4">
-		{#if event.status === 'replay'}
-			<button
-				on:click={watchNow}
-				class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
-				>Watch now</button
-			>
-		{/if}
 		<button
 			on:click={actionGuide}
 			class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'} {event.featured
@@ -59,6 +52,13 @@
 				: 'hover:bg-primary-500'}"
 			disabled={!event.action_guide}>Action guide</button
 		>
+		{#if event.status === 'replay'}
+			<button
+				on:click={watchNow}
+				class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
+				>Watch now</button
+			>
+		{/if}
 	</div>
 	<div>
 		<!-- TODO: Why do I need important here? -->
