@@ -172,7 +172,10 @@
 			</div>
 			<div class="event-date">
 				{#if event.status != 'upcoming'}Original air date: {/if}
-				{new Date(event.event_start).toLocaleString()}
+				{new Date(event.event_start).toLocaleString('en-US', {
+					timeStyle: 'short',
+					dateStyle: 'full'
+				})} ET
 			</div>
 			{#if event.status == 'pending'}
 				<div class="border-t border-t-black">

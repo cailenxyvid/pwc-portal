@@ -73,6 +73,13 @@
 				><div class="text-xl font-bold text-primary-500">{event.title}</div></a
 			>
 		</div>
+		<div class="event-date">
+			{#if event.status != 'upcoming'}<div>Original air date:</div> {/if}
+			{new Date(event.event_start).toLocaleString('en-US', {
+				timeStyle: 'short',
+				dateStyle: 'full'
+			})} ET
+		</div>
 		<div class="text-small">
 			<!-- TODO: get text-small working with <p> in the data-->
 			{@html event.content_speakers}
