@@ -24,7 +24,7 @@
 	let showError = false;
 </script>
 
-<div class="flex-col space-y-4 mt-10 bg-[#dedede] p-10 max-w-md rounded-sm">
+<div class="flex-col space-y-4 mt-10 bg-white p-10 max-w-md rounded-sm">
 	{#if showError}
 		<div class="variant-filled-error p-4 rounded-sm">Please fill out all required information!</div>
 	{/if}

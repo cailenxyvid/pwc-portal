@@ -15,7 +15,13 @@
 {/if} -->
 
 <form action="/search" class="inline-block ml-4">
-	<input type="text" name="queryString" class="md:w-48 text-black" placeholder="Search..." />
+	<input
+		type="text"
+		name="queryString"
+		class="md:w-48 text-black"
+		placeholder="Search..."
+		required
+	/>
 	<button class="btn bg-primary-500 text-white"><i class="fa fa-search" /></button>
 </form>
 
@@ -25,9 +31,3 @@
 		color: #d04a02;
 	}
 </style> -->
-
-<style>
-	input {
-		border: solid #2d2d2d 1px;
-	}
-</style>
