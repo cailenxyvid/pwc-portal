@@ -14,6 +14,33 @@ export const isLoggedIn = (cookie:string|null = null) => {
     }
 }
 
+export const isValidEmail = (email:string) => {    
+    // return String(email)
+    // .toLowerCase()
+    // .match(
+    //   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    // );
+    const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const result: boolean = expression.test(email); // true
+
+    console.log('e-mail is ' + (result ? 'correct' : 'incorrect'));
+    return result;
+}
+
+export const isAlphabetOnly = (input:string) => {
+    //  /^[a-zA-Z]+$/
+    // return input.match('[A-Za-z]')
+    // emoji regex   /<a?:.+?:\d{18}>|\p{Extended_Pictographic}/gu
+    // emoji and all weird chars      /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g
+    let valid = /^[a-zA-Z]+$/.test(input);
+    console.log('isAlpha', valid)
+    if (valid) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export const isProfileComplete = () => {
     let profile = get(myProfile);
     return !Object.values(profile).some(element => element == null);
