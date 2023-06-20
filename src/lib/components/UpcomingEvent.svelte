@@ -37,7 +37,7 @@
 		</div>
 		<div class="flex flex-col">
 			<div class="event-register mt-2 mb-4 flex flex-row flex-wrap justify-between">
-				<div>
+				<div class="relative">
 					{#if alreadyRegistered}
 						<span class="btn variant-glass-primary">Registration saved</span>
 					{:else}

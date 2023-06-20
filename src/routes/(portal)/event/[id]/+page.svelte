@@ -142,7 +142,8 @@
 	<div class="flex flex-col md:flex-row w-full">
 		<div class="flex flex-col justify-start p-6 pt-2">
 			<div class="p-1 mb-4">
-				<a href="/" class="text-black no-underline" style="color: black; text-decoration: none;">
+				<a href="/" class="unstyled">
+				<!-- <a href="/" class="text-black no-underline" style="color: black; text-decoration: none;"> -->
 					<i class="fa-solid fa-turn-down-left" />
 					Return to Webcast Library
 				</a>
