@@ -138,6 +138,30 @@
 	let disableButton = false;
 </script>
 
+<svelte:head>
+	<!-- Open Graph -->
+	<meta property="og:description" content={event.content_meta} />
+	<meta property="og:image" content={event.image_url} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content={event.title} />
+	<meta property="og:title" content={event.title} />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:url" content="//tli.xyvid.com/event/{event.id}" />
+
+	<!-- HTML Meta Tags -->
+	<title>{event.title}</title>
+	<meta name="description" content={event.content_meta} />
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="twitter:domain" content="//tli.xyvid.com" />
+	<meta property="twitter:url" content="//tli.xyvid.com/event/{event.id}" />
+	<meta name="twitter:title" content={event.title} />
+	<meta name="twitter:description" content={event.content_meta} />
+	<meta name="twitter:image" content={event.image_url} />
+	<!-- # dynamic url capturing doesn't work here, need SSR solution -->
+</svelte:head>
+
 {#if event}
 	<div class="flex flex-col md:flex-row w-full">
 		<div class="flex flex-col justify-start p-6 pt-2">
