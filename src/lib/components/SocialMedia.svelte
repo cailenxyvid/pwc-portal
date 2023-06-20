@@ -22,18 +22,6 @@
 	};
 </script>
 
-<svelte:head>
-	<!-- Open Graph -->
-	<meta property="og:description" content={event.content_meta} />
-	<meta property="og:image" content={event.image_url} />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content={event.title} />
-	<meta property="og:title" content={event.title} />
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:url" content="//tli.xyvid.com/{event.id}" />
-	<!-- # dynamic url capturing doesn't work here, need SSR solution -->
-</svelte:head>
-
 <div class="flex gap-8">
 	<a href="https://www.facebook.com/sharer.php?u={url}" target="_blank"
 		><i class="fa-brands fa-facebook text-[#2d2d2d] hover:text-[#d04a02] transition-colors" /></a

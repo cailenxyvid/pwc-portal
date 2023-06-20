@@ -18,7 +18,7 @@
 </script>
 
 {#if event}
-	<div class="flex flex-col w-full mt-8 px-6">
+	<div class="flex flex-col w-full mt-8">
 		<div class="event-date border-b-black border-b text-primary-500 text-lg mb-4 mt-2 pb-1">
 			Up next: {new Date(event.event_start).toLocaleString('en-US', {
 				timeStyle: 'short',
