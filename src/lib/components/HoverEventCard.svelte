@@ -33,7 +33,7 @@
 </script>
 
 <!-- <div class="block rounded-lg border shadow-sm bg-gray-50 relative"> -->
-<div class="flex flex-col h-full hover:bg-[#dedede] p-2">
+<div class="flex flex-col h-full hover:bg-[#dedede] transition-colors p-2">
 	<div class="mb-2">
 		<a href="/event/{event.id}">
 			<img
@@ -47,16 +47,17 @@
 	<div class="flex justify-between mb-4">
 		<button
 			on:click={actionGuide}
-			class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'} {event.featured
-				? 'hover:bg-[#2d2d2d]'
-				: 'hover:bg-primary-500'}"
+			class="btn text-white {event.featured
+				? 'bg-primary-500 hover:bg-[#2d2d2d]'
+				: 'bg-[#2d2d2d] hover:bg-primary-500'}"
 			disabled={!event.action_guide}>Action guide</button
 		>
 		{#if event.status === 'replay'}
 			<button
 				on:click={watchNow}
-				class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
-				>Watch now</button
+				class="btn text-white {event.featured
+					? 'bg-primary-500 hover:bg-[#2d2d2d]'
+					: 'bg-[#2d2d2d] hover:bg-primary-500'}">Watch now</button
 			>
 		{/if}
 	</div>
