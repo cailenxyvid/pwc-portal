@@ -164,7 +164,7 @@
 
 {#if event}
 	<div class="flex flex-col md:flex-row w-full">
-		<div class="flex flex-col justify-start p-16">
+		<div class="flex flex-col justify-start p-8 md:p-16">
 			<div class="p-1 mb-4">
 				<a href="/" class="unstyled">
 				<!-- <a href="/" class="text-black no-underline" style="color: black; text-decoration: none;"> -->
@@ -181,7 +181,7 @@
 						on:click={actionGuide}
 						class="btn text-white {event.featured
 							? 'bg-primary-500 hover:bg-[#2d2d2d]'
-							: 'bg-[#2d2d2d] hover:bg-primary-500'}"
+							: 'bg-[#2d2d2d] hover:bg-primary-500'} mr-4 mb-2"
 						disabled={!event.action_guide}>Action guide</button
 					>
 					{#if event.status === 'replay'}
@@ -189,7 +189,7 @@
 							on:click={watchNow}
 							class="btn text-white {event.featured
 								? 'bg-primary-500 hover:bg-[#2d2d2d]'
-								: 'bg-[#2d2d2d] hover:bg-primary-500'}">Watch now</button
+								: 'bg-[#2d2d2d] hover:bg-primary-500'} mr-4 mb-2">Watch now</button
 						>
 					{/if}
 				</div>

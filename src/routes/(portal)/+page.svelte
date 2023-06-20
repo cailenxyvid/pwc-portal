@@ -20,6 +20,7 @@
 
 	import type { PageData } from './$types';
 	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
+	import Hero from '$lib/components/Hero.svelte';
 
 	export let data: PageData;
 
@@ -152,19 +153,11 @@
 
 <OpenGraphDomain />
 
-<div class="flex flex-row w-full bg-[#dedede] p-0">
-	<div class="self-center p-4 md:p-6 lg:p-8 xl:p-12 2xl:p-16 mr-auto">
-		<div class="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold">Trust in Action</div>
-		<div class="lg:text-lg xl:text-xl 2xl:text-2xl">Webcast series</div>
-	</div>
-	<div class="w-2/3">
-		<!-- <img src="/TLI-TIA-Header.png" alt=""> -->
-		<img src="header-cropped.png" alt="" />
-	</div>
-</div>
+<Hero />
+
 <div id="mainContent" class="justify-center mb-16 pb-8">
 	<div class="w-full flex flex-row space-x-6">
-		<div class="grow p-16">
+		<div class="grow p-8 md:p-16">
 			<h4 class="">
 				Trust in Action is a series of candid conversations featuring leading insights on trust.<br
 				/>
@@ -181,7 +174,7 @@
 		</div>
 	</div>
 
-	<div class="p-16">
+	<div class="p-8 md:p-16">
 		<h2 class="my-12">Past events</h2>
 		<div
 			class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-x-10 lg:gap-x-20 2xl:gap-x-30 gap-y-5 lg:gap-y-10 2xl:gap-y-20"
