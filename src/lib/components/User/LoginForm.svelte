@@ -23,7 +23,6 @@
             update(); // on success, trigger default behavior
         };
 }}> -->
-<b>LoginForm component</b>
 <form action="/login" id="loginForm" method="post" on:submit|preventDefault={validate}>
 	<input
 		type="email"
