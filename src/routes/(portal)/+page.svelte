@@ -157,7 +157,7 @@
 
 <div id="mainContent" class="justify-center mb-16 pb-8">
 	<div class="w-full flex flex-row space-x-6">
-		<div class="grow p-16">
+		<div class="grow p-8 md:p-16">
 			<h4 class="">
 				Trust in Action is a series of candid conversations featuring leading insights on trust.<br
 				/>
@@ -174,7 +174,7 @@
 		</div>
 	</div>
 
-	<div class="p-16">
+	<div class="p-8 md:p-16">
 		<h2 class="my-12">Past events</h2>
 		<div
 			class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-x-10 lg:gap-x-20 2xl:gap-x-30 gap-y-5 lg:gap-y-10 2xl:gap-y-20"
