@@ -154,14 +154,17 @@
 				<div>
 					<button
 						on:click={actionGuide}
-						class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
+						class="btn text-white {event.featured
+							? 'bg-primary-500 hover:bg-[#2d2d2d]'
+							: 'bg-[#2d2d2d] hover:bg-primary-500'}"
 						disabled={!event.action_guide}>Action guide</button
 					>
 					{#if event.status === 'replay'}
 						<button
 							on:click={watchNow}
-							class="btn text-white {event.featured ? 'bg-primary-500' : 'bg-[#2d2d2d]'}"
-							>Watch now</button
+							class="btn text-white {event.featured
+								? 'bg-primary-500 hover:bg-[#2d2d2d]'
+								: 'bg-[#2d2d2d] hover:bg-primary-500'}">Watch now</button
 						>
 					{/if}
 				</div>
