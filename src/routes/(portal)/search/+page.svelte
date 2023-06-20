@@ -47,8 +47,10 @@
 			<h3>FAQs</h3>
 			<h4>{faq.length} results found.</h4>
 			{#each faq as f}
-				<a href="/faq#faq-{f.id}" class="block">{f.title}</a>
-				<div class="text-sm">{@html f.content}</div>
+				<div class="p-2">
+					<a href="/faq/#faq-{f.id}" class="block text-xl">{f.title}</a>
+					<div class="text-sm">{@html f.content}</div>
+				</div>
 			{/each}
 		</div>
 	{/if}

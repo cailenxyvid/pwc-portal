@@ -51,7 +51,7 @@
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">
 		{#if $page.url.pathname == '/'}
-			<div class="block xl:hidden bg-white">
+			<div class="xl:hidden px-6 bg-[#dedede] flex items-center">
 				<User {cookie} />
 			</div>
 		{/if}
