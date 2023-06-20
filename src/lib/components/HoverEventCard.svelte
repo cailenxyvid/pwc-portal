@@ -90,7 +90,7 @@
 	</div>
 
 	<!-- <div class="text-right w-full self-end"> -->
-	<div class="text-right w-full mt-auto mb-2">
+	<div class="text-right w-full mt-auto">
 		<button
 			class="hidden md:inline-block"
 			on:mouseenter={() => {
@@ -100,7 +100,7 @@
 				showHover = false;
 			}}
 		>
-			<i class="fa-light fa-2xl fa-circle-plus text-primary-500 p-2" />
+			<i class="fa-light fa-circle-plus text-primary-500 text-3xl" />
 		</button>
 		<button
 			class="inline-block md:hidden"
@@ -108,7 +108,7 @@
 				showHover = !showHover;
 			}}
 		>
-			<i class="fa-light fa-2xl fa-circle-plus text-primary-500 p-2" />
+			<i class="fa-light fa-circle-plus text-primary-500 text-3xl" />
 		</button>
 	</div>
 </div>
