@@ -161,14 +161,14 @@
 </div>
 <div id="mainContent" class="justify-center mb-16 pb-8">
 	<div class="w-full flex flex-row space-x-6">
-		<div class="grow">
-			<h5 class="p-4">
+		<div class="grow p-16">
+			<h4 class="">
 				Trust in Action is a series of candid conversations featuring leading insights on trust.<br
 				/>
 				Together, we explore how to take action on the most critical issues in business and society —
-				as they emerge in real time. Join us to hear from distinguished thought leaders across business,
-				government and academia.
-			</h5>
+				as they emerge in real time. <br /> Join us to hear from distinguished thought leaders across
+				business, government and academia.
+			</h4>
 			{#each pendingEvents as event}
 				<UpcomingEvent {event} {registerEvent} {disableButton} />
 			{/each}
@@ -178,12 +178,14 @@
 		</div>
 	</div>
 
-	<h2 class="my-12 pl-6 md:pl-1">Past events</h2>
-	<div
-		class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 2xl:gap-x-40 2xl:gap-y-20 xl:gap-x-20 xl:gap-y-10 sm:gap-x-10 sm:gap-y-5 px-6 md:px-1"
-	>
-		{#each pastEvents as event}
-			<HoverEventCard {event} {cookie} {xyp_portal_url} {registerEvent} />
-		{/each}
+	<div class="p-16">
+		<h2 class="my-12">Past events</h2>
+		<div
+			class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-x-10 lg:gap-x-20 2xl:gap-x-30 gap-y-5 lg:gap-y-10 2xl:gap-y-20"
+		>
+			{#each pastEvents as event}
+				<HoverEventCard {event} {cookie} {xyp_portal_url} {registerEvent} />
+			{/each}
+		</div>
 	</div>
 </div>
