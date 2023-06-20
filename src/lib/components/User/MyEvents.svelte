@@ -26,10 +26,10 @@
 		You are not currently registered for any upcoming events.
 	{/if}
 
-	<div class="text-md border-t border-black mt-8">Replay</div>
-	<i class="text-sm block mb-6"
+	<div class="text-md border-t border-black mt-8">Past events</div>
+	<span class="text-sm block mb-6"
 		>Need your CPE certificate from a live webcast? Access the replay, click the "CPE" icon at the
-		bottom-right, and download it instantly.</i
+		bottom-right, and download it instantly.</span
 	>
 	{#if $myReplayEvents.length > 0}
 		{#each $myReplayEvents as row}
