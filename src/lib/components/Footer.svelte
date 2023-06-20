@@ -45,10 +45,7 @@
 		</div>
 		<h3 class="mb-4">
 			Have additional questions?
-			<a
-				class="unstyled text-primary-500 hover:underline"
-				href="mailto:us_trust_leadership_institute_inbox@pwc.com">Contact&nbsp;us</a
-			> to learn more.
+			<a href="mailto:us_trust_leadership_institute_inbox@pwc.com">Contact&nbsp;us</a> to learn more.
 		</h3>
 		<div class="text-xs">
 			© 2023 PwC. All rights reserved. PwC refers to the US member firm, and may sometimes refer to
