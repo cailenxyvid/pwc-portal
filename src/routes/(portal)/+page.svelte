@@ -19,6 +19,7 @@
 	import type { MyEvent, Event, Profile } from '$lib/data/myTypes';
 
 	import type { PageData } from './$types';
+	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
 
 	export let data: PageData;
 
@@ -148,6 +149,8 @@
 		data;
 	$: ({ pendingEvents, pastEvents } = data);
 </script>
+
+<OpenGraphDomain />
 
 <div class="flex flex-row w-full bg-[#dedede] p-0">
 	<div class="self-center p-4 md:p-6 lg:p-8 xl:p-12 2xl:p-16 mr-auto">

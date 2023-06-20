@@ -5,9 +5,13 @@
 
 	export let data: PageData;
 
+	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
+
 	let { faqs } = data;
 	$: ({ faqs } = data);
 </script>
+
+<OpenGraphDomain />
 
 <div class="h-full p-8">
 	<h1 class="text-primary-500 mb-8">Frequently Asked Questions</h1>

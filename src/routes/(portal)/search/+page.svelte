@@ -2,11 +2,14 @@
 	import type { PageData } from './$types';
 	import SearchEventCard from '$lib/components/SearchEventCard.svelte';
 	import SearchBar from '$lib/components/SearchBar.svelte';
+	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
 
 	export let data: PageData;
 
 	$: ({ query, upcoming, replay, past, faq } = data);
 </script>
+
+<OpenGraphDomain />
 
 <div class="p-4 md:p-12 space-y-16">
 	<div class="md:hidden">
