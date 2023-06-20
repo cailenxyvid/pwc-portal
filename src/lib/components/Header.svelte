@@ -20,8 +20,8 @@
             </a> -->
 			<a href="/">
 				<img src="/pwc-logo-wht.png" class="h-12 inline" alt="" />
+				<img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="" />
 			</a>
-			<img src="/TLI wordmark white.png" class="h-12 inline ml-4" alt="" />
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="default">
