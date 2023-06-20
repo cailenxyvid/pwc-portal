@@ -27,7 +27,7 @@
 	<svelte:fragment slot="default">
 		<!-- <img src={tliLogo} alt="Trust Leadership Institute Logo" title="Trust Leadership Institute" class="min-w-[65px] max-w-[200px]" /> -->
 		<div class="md:text-xl md:space-x-10 md:-mb-40 sm:-mb-20 hidden md:inline text-white">
-			<a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''}">Webcasts</a>
+			<a href="/" class="topnav {$page.route.id === '/' ? 'active' : ''} ">Webcasts</a>
 			<!-- <a href="/replay" class="topnav {$page.route.id === '/replay' ? 'active' : ''}">Past&nbsp;Events</a>  -->
 			<a href="/faq" class="topnav {$page.route.id === '/faq' ? 'active' : ''}">FAQs</a>
 		</div>
@@ -49,8 +49,10 @@
 		color: #fff;
 	}
 
+	/* TODO: figure out how to properly implement no-underline on hovers*/
 	.topnav:hover,
 	.active {
 		color: #d04a02;
+		text-decoration: none !important;
 	}
 </style>
