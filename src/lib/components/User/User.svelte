@@ -121,7 +121,7 @@
 {#if showCultCall}
 	<button on:click={() => {
 		document.querySelector('#page')?.scrollTo(0,0);
-		}} class="btn variant-filled-primary fixed z-20 top-20 mt-2 w-full lg:w-64 hidden lg:inline-block">
+		}} class="btn variant-filled-primary fixed isolate z-20 top-20 mt-2 w-full lg:w-64 lg:inline-block">
 		Return to top
 	</button>
 {/if}

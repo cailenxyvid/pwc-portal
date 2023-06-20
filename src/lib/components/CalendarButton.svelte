@@ -27,7 +27,7 @@
 </script>
 
 {#if event.calendar_id}
-	<button class="text-xl variant-filled-primary text-white p-2 rounded-sm" on:click={toggle}>
+	<button class="variant-filled-primary" on:click={toggle}>
 		Add to calendar
 		<i class="fa-solid fa-chevron-{show ? 'up' : 'down'}" />
 	</button>

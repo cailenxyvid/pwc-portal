@@ -3,8 +3,24 @@
 	import { clickOutside } from '$lib/util/clickOutside';
 
 	let open = false;
+	let clickOutFired = false;
+
+	let clickOut = () => {
+		open = false;
+		clickOutFired = true;
+		setTimeout(() => {
+			clickOutFired = false;
+		}, 500); //# wtf man. this is ugly af but works (for now).
+	};
+
 	let toggle = () => {
-		open = !open;
+		if (clickOutFired) {
+			clickOutFired = false;
+			return;
+		} else if (!open) {
+			document.querySelector('#page')?.scrollTo(0,0);
+			open = true;
+		}				
 	};
 
 	afterNavigate(() => {
@@ -17,8 +33,8 @@
 	{#if open}
 		<div
 			use:clickOutside
-			on:outclick={() => (open = false)}
-			class="absolute bg-white w-48 right-0 p-6 rounded-sm space-y-2 text-black z-50"
+			on:outclick={clickOut}
+			class="absolute bg-white w-48 right-0 p-6 rounded-sm space-y-2 text-black isolate z-50"
 		>
 			<a class="block" href="/">Webcasts</a>
 			<a class="block" href="/faq">FAQ</a>
