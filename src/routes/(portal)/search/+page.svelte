@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { highlight } from '$lib/util/searchHighlight';
 	import SearchEventCard from '$lib/components/SearchEventCard.svelte';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
 
 	export let data: PageData;
-
+	
 	$: ({ query, upcoming, replay, past, faq } = data);
 </script>
 
@@ -48,8 +49,8 @@
 			<h4>{faq.length} results found.</h4>
 			{#each faq as f}
 				<div class="p-2">
-					<a href="/faq/#faq-{f.id}" class="block text-xl">{f.title}</a>
-					<div class="text-sm">{@html f.content}</div>
+					<a href="/faq/#faq-{f.id}" class="block text-xl">{@html highlight(f.title, query)}</a>
+					<div class="text-sm">{@html highlight(f.content, query)}</div>
 				</div>
 			{/each}
 		</div>

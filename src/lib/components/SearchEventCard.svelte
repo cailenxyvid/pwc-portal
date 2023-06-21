@@ -1,23 +1,17 @@
 <script lang="ts">
 	import type { Event } from '$lib/data/myTypes';
 	import { page } from '$app/stores';
+	import { highlight } from '$lib/util/searchHighlight';
 	export let event: Event;
 
 	let query: string | null;
-
-	const highlight = (text: string) => {
-		if (!query) return;
-		let queryString = ' ' + query;
-		let regEx = new RegExp(queryString, 'ig');
-		return text.replace(regEx, `<b class="highlight">${queryString}</b>`);
-	};
 
 	$: query = $page.url.searchParams.get('queryString');
 </script>
 
 {#key query}
 	<div class="p-2">
-		<a class="block text-xl" href="/event/{event.id}">{@html highlight(event.title)}</a>
+		<a class="block text-xl" href="/event/{event.id}">{@html highlight(event.title, query)}</a>
 		<div class="event-date mb-4 text-sm">			
 			{new Date(event.event_start).toLocaleString('en-US', {
 				timeStyle: 'short',
@@ -27,14 +21,14 @@
 		<div class="event_speakers">			
 			<div class="bold underline">Featured speakers:</div>
 			<div class="searchEventCardSpeakers">
-				{@html highlight(event.content_speakers)}
+				{@html highlight(event.content_speakers, query)}
 			</div>
 		</div>
 		<div class="">
 			{#if event.status === 'pending'}
-				{@html highlight(event.content)}
+				{@html highlight(event.content, query)}
 			{:else}
-				{@html highlight(event.content_replay)}
+				{@html highlight(event.content_replay, query)}
 			{/if}
 		</div>
 	</div>
