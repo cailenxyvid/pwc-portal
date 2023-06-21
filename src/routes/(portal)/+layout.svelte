@@ -4,7 +4,7 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../../app.postcss'; // do explict global overrides here, if needed
 
-	import { afterNavigate } from '$app/navigation';
+	import { afterNavigate, disableScrollHandling } from '$app/navigation';
 	import { page } from '$app/stores';
 
 	import { AppShell, Modal } from '@skeletonlabs/skeleton';
@@ -28,10 +28,15 @@
 		scrollTarget = event.currentTarget;
 	}
 
+	//# issue with SkeletonUI AppShell breaks default svelte/browser scrolling behavior and requires this work around, per Skeleton team
 	afterNavigate(() => {
+		if (!window.location.hash) {
+			document.getElementById('page')?.scrollTo(0, 0);			
+		}
 		// document.getElementById('page')?.scrollTo(0, 0);
 		// scrollTarget?.scrollTo(0, 0);
-	});
+		// disableScrollHandling();
+	});	
 </script>
 
 <Modal buttonTextSubmit="Continue" buttonPositive="variant-filled-primary" />
