@@ -30,7 +30,7 @@
 
 	afterNavigate(() => {
 		// document.getElementById('page')?.scrollTo(0, 0);
-		scrollTarget?.scrollTo(0, 0);
+		// scrollTarget?.scrollTo(0, 0);
 	});
 </script>
 

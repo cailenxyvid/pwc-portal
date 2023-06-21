@@ -92,7 +92,7 @@
 	<!-- <div class="text-right w-full self-end"> -->
 	<div class="text-right w-full mt-auto">
 		<button
-			class="hidden md:inline-block"
+			class=""
 			on:mouseenter={() => {
 				showHover = true;
 			}}
@@ -102,14 +102,7 @@
 		>
 			<i class="fa-light fa-circle-plus text-primary-500 text-3xl" />
 		</button>
-		<button
-			class="inline-block md:hidden"
-			on:click={() => {
-				showHover = !showHover;
-			}}
-		>
-			<i class="fa-light fa-circle-plus text-primary-500 text-3xl" />
-		</button>
+		
 	</div>
 </div>
 
