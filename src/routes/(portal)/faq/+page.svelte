@@ -14,7 +14,7 @@
 <OpenGraphDomain />
 
 <div class="h-full p-8">
-	<h1 class="text-primary-500 mb-8">Frequently Asked Questions</h1>
+	<h2 class="text-primary-500 mb-8">Frequently Asked Questions</h2>
 	{#each faqs as faq, i}
 		<div class="{i < faqs.length - 1 ? 'border-b border-b-[#dedede]' : ''} mb-2">
 			<div class="text-xl font-bold mb-2" id="faq-{faq.id}">{faq.title}</div>
