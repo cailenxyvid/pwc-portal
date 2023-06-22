@@ -21,6 +21,7 @@
 	import type { PageData } from './$types';
 	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
 	import Hero from '$lib/components/Hero.svelte';
+	import NoUpcomingEvent from '$lib/components/NoUpcomingEvent.svelte';
 
 	export let data: PageData;
 
@@ -165,9 +166,13 @@
 				as they emerge in real time. <br /> Join us to hear from distinguished thought leaders across
 				business, government and academia.
 			</h4>
-			{#each pendingEvents as event}
-				<UpcomingEvent {event} {registerEvent} {disableButton} />
-			{/each}
+			{#if pendingEvents.length === 0}
+				<NoUpcomingEvent />
+			{:else}
+				{#each pendingEvents as event}
+					<UpcomingEvent {event} {registerEvent} {disableButton} />
+				{/each}
+			{/if}
 		</div>
 		<div class="hidden xl:inline w-96 bg-[#dedede] p-6">
 			<User {cookie} />
