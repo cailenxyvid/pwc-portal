@@ -1,7 +1,6 @@
 import { error } from "@sveltejs/kit";
 import { supabase } from "$lib/data/supabase";
 import type { Event } from "$lib/data/myTypes";
-import { xyp_api_key, xyp_registration_url, xyp_portal_url } from '$env/static/private';
 
 export async function load({ params, parent }) {
   const result = await supabase.from("event").select().eq('id', params.id).single();
@@ -15,9 +14,6 @@ export async function load({ params, parent }) {
   }
   return {
     event: result.data as Event,
-    cookie: cookie,
-    xyp_portal_url: xyp_portal_url,
-    xyp_api_key: xyp_api_key,
-    xyp_registration_url: xyp_registration_url
+    cookie: cookie,    
   };
 }

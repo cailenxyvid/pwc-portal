@@ -3,7 +3,7 @@
 	import type { Profile } from '$lib/data/myTypes';
 	import type { PageData } from './$types';
 
-	import { onMount } from 'svelte';	
+	import { onMount } from 'svelte';
 	import { modalStore } from '@skeletonlabs/skeleton';
 	import { isProfileComplete } from '$lib/util/validationHelpers';
 	import { myProfile } from '$lib/data/myProfile';
@@ -26,10 +26,10 @@
 				component: c
 			});
 		}
-	});	
+	});
 
 	$myProfile = data.myProfile as Profile;
-	let { pendingEvents, pastEvents, cookie } =	data;
+	let { pendingEvents, pastEvents, cookie } = data;
 	$: ({ pendingEvents, pastEvents } = data);
 </script>
 

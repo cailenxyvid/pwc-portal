@@ -28,18 +28,17 @@
 		{/if}
 	</div>
 	<div>
-		<a href="/event/{event.id}" class="unstyled"
-			><div class="text-xl font-bold text-primary-500">{event.title}</div></a
+		<a href="/event/{event.id}" class="unstyled text-xl font-bold text-primary-500 hover:no-underline"
+			>{event.title}</a
 		>
 	</div>
 	<div class="relative">
 		<div class="event-date">
-			{#if event.status != 'upcoming'}<div class="text-xs">Original air date:</div> {/if}
+			{#if event.status != 'upcoming'}<div class="text-xs">Previously aired on:</div> {/if}
 			<div class="text-sm">
-				{new Date(event.event_start).toLocaleString('en-US', {
-					timeStyle: 'short',
+				{new Date(event.event_start).toLocaleString('en-US', {					
 					dateStyle: 'full'
-				})} ET
+				})}
 			</div>
 		</div>
 		<div class="text-small mb-4">
@@ -67,13 +66,3 @@
 		</button>
 	</div>
 </div>
-
-<!-- TODO: Why doesn't this work -->
-<style>
-	a {
-		text-decoration: none;
-	}
-	a:hover {
-		text-decoration: underline;
-	}
-</style>
