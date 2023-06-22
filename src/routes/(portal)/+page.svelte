@@ -1,137 +1,21 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { supabase } from '$lib/data/supabase';
-	import { modalStore } from '@skeletonlabs/skeleton';
+	import type { ModalComponent } from '@skeletonlabs/skeleton';
+	import type { Profile } from '$lib/data/myTypes';
+	import type { PageData } from './$types';
 
-	import { loadMyEvents } from '$lib/util/loadMyEvents';
-	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
-	import { buttonCheck, isAlreadyRegistered, isProfileComplete } from '$lib/util/validationHelpers';
+	import { onMount } from 'svelte';	
+	import { modalStore } from '@skeletonlabs/skeleton';
+	import { isProfileComplete } from '$lib/util/validationHelpers';
+	import { myProfile } from '$lib/data/myProfile';
 
 	import User from '$lib/components/User/User.svelte';
 	import UpcomingEvent from '$lib/components/UpcomingEvent.svelte';
 	import HoverEventCard from '$lib/components/HoverEventCard.svelte';
 	import ModalEditProfile from '$lib/components/User/ModalEditProfile.svelte';
-
-	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
-	import { myProfile } from '$lib/data/myProfile';
-
-	import type { ModalComponent } from '@skeletonlabs/skeleton';
-	import type { MyEvent, Event, Profile } from '$lib/data/myTypes';
-
-	import type { PageData } from './$types';
 	import OpenGraphDomain from '$lib/components/OpenGraphDomain.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 
 	export let data: PageData;
-
-	const registerXyp = async (x_id: string) => {
-		if (!$myProfile) {
-			displayError('Missing user profile!');
-			return false;
-		}
-
-		if (!x_id) {
-			displayError('Missing XyvidPro Event ID!');
-			return false;
-		}
-
-		//# currently the api will 500 if any of these are empty
-		// we shouldn't have empty values at this stage since all are required (?) when creating profile but still, brittle
-		let x_body = {
-			events: [x_id],
-			fname: $myProfile.first_name ? $myProfile.first_name : '.', //# if someday there is a weird bug with a bunch of '.' in data, i am so sorry
-			lname: $myProfile.last_name ? $myProfile.last_name : '.',
-			company: $myProfile.company ? $myProfile.company : '.',
-			email: $myProfile.email ? $myProfile.email : '.',
-			location: $myProfile.country ? $myProfile.country : '.',
-			joblevel: $myProfile.job_level ? $myProfile.job_level : '.',
-			jobtitle: $myProfile.job_title ? $myProfile.job_title : '.'
-		};
-
-		// expected format:
-		// x_body = {
-		// 	"events": [
-		// 		"152109"
-		// 	],
-		// 	"fname": "Cailen",
-		// 	"lname": "Fisher",
-		// 	"company": "XYVID",
-		// 	"email": "cfisher@xyvid.com",
-		// 	"location": "US",
-		// 	"joblevel": "Staff",
-		// 	"jobtitle": "Dev"
-		// }
-
-		let x_reg = await fetch(xyp_registration_url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				// 'Accept': '*/*',
-				'x-api-key': xyp_api_key
-			},
-			body: JSON.stringify(x_body)
-		});
-
-		if (x_reg.ok) {
-			let response = await x_reg.json();
-
-			const { error } = await supabase
-				.from('attendee')
-				.update({ xyp_attnum: response[0].AttendeeID })
-				.eq('id', $myProfile.id);
-
-			if (error) {
-				displayError('Error updating XYP attnum after event registration!');
-				console.error(error);
-				return false;
-			}
-			return true;
-		} else {
-			displayError('Unknown error completing XYP registration!');
-			console.error(x_reg.statusText);
-		}
-	};
-
-	const registerEvent = async (event: Event) => {
-		if (isAlreadyRegistered(event.id)) {
-			return;
-		}
-		disableButton = true;
-		setTimeout(() => {
-			disableButton = false;
-		}, 3000);
-		if (!buttonCheck(cookie) || !cookie) {
-			return false;
-		}
-		// complete XYP registration first, only update records if success
-		if (!(await registerXyp(event.xyp_id))) {
-			displayError('Error registering with Xyvid Pro');
-			return;
-		}
-		const existing = await supabase
-			.from('registration')
-			.select()
-			.eq('event', event.id)
-			.eq('attendee', cookie);
-
-		if (existing.data && existing.data.length > 0) {
-			return;
-		}
-
-		const { data, error } = await supabase
-			.from('registration')
-			.insert({ event: event.id, attendee: cookie })
-			.select();
-
-		if (error) {
-			displayError(error.message);
-		}
-		$myEvents = await loadMyEvents(cookie);
-		$myReplayEvents = await loadMyEvents(cookie, 'replay');
-		if (event.status == 'pending') {
-			displaySuccess('You are registered!');
-		}
-	};
 
 	onMount(() => {
 		if (cookie && $myProfile && !isProfileComplete()) {
@@ -141,13 +25,10 @@
 				component: c
 			});
 		}
-	});
-
-	let disableButton = false;
+	});	
 
 	$myProfile = data.myProfile as Profile;
-	let { pendingEvents, pastEvents, cookie, xyp_api_key, xyp_portal_url, xyp_registration_url } =
-		data;
+	let { pendingEvents, pastEvents, cookie } =	data;
 	$: ({ pendingEvents, pastEvents } = data);
 </script>
 
@@ -166,7 +47,7 @@
 				business, government and academia.
 			</h4>
 			{#each pendingEvents as event}
-				<UpcomingEvent {event} {registerEvent} {disableButton} />
+				<UpcomingEvent {event} {cookie} />
 			{/each}
 		</div>
 		<div class="hidden xl:inline w-96 bg-[#dedede] p-6">
@@ -180,7 +61,7 @@
 			class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-x-10 lg:gap-x-20 2xl:gap-x-30 gap-y-5 lg:gap-y-10 2xl:gap-y-20"
 		>
 			{#each pastEvents as event}
-				<HoverEventCard {event} {cookie} {xyp_portal_url} {registerEvent} />
+				<HoverEventCard {event} {cookie} />
 			{/each}
 		</div>
 	</div>
