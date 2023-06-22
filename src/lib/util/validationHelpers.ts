@@ -1,10 +1,11 @@
+import type { ModalComponent } from '@skeletonlabs/skeleton';
 import { get } from 'svelte/store';
 import { modalStore } from '@skeletonlabs/skeleton';
 import { myProfile } from "$lib/data/myProfile";
 import { myEvents, myReplayEvents } from '$lib/data/myEvents';
 import { displayWarning } from "./displayToast";
 import ModalLogin from '$lib/components/User/ModalLogin.svelte';
-import type { ModalComponent } from '@skeletonlabs/skeleton';
+
 
 export const isLoggedIn = (cookie:string|null = null) => {
     if (cookie && cookie.length > 1) {
@@ -15,18 +16,14 @@ export const isLoggedIn = (cookie:string|null = null) => {
 }
 
 export const isValidEmail = (email:string) => {    
-    // return String(email)
-    // .toLowerCase()
-    // .match(
-    //   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    // );
     const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    const result: boolean = expression.test(email); // true
-
-    console.log('e-mail is ' + (result ? 'correct' : 'incorrect'));
+    const result: boolean = expression.test(email); 
+    
     return result;
 }
 
+
+//todo: not used or tested
 export const isAlphabetOnly = (input:string) => {
     //  /^[a-zA-Z]+$/
     // return input.match('[A-Za-z]')
@@ -47,20 +44,14 @@ export const isProfileComplete = () => {
 }
 
 export const buttonCheck = (cookie:string|null = null) => {
-    if (!isLoggedIn(cookie)) {        
-        // displayWarning("Please enter your email to continue")
-        const c: ModalComponent = { ref: ModalLogin };
+    if (!isLoggedIn(cookie)) {                
+        const innerComponent: ModalComponent = { ref: ModalLogin };
         modalStore.trigger(
             {
                 type: 'component',
                 title: 'Enter Email',
-                body: 'Provide your email address to continue with registration.',                
-                // valueAttr: { type: 'email', minlength: 3, maxlength: 30, required: true },
-                component: c,
-                
-                // modalClasses: '!bg-red-500',
-                // Returns the updated response value
-                response: (r: string) => console.log('modal email:', r),
+                body: 'Provide your email address to continue with registration.',                                
+                component: innerComponent,                                
             }
         );
         return false;
@@ -78,6 +69,6 @@ export const buttonCheck = (cookie:string|null = null) => {
 
 export const isAlreadyRegistered = (event_id:string) => {
     let events = get(myEvents);
-    let replayEvents = get(myReplayEvents);   
+    let replayEvents = get(myReplayEvents);       
     return events.some(e => event_id == e.event.id) || replayEvents.some(e => event_id == e.event.id);
 }

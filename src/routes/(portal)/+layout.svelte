@@ -2,7 +2,9 @@
 	// skeleton.dev and branded theme styles - changing the order of these may break things
 	import '../../theme.postcss';
 	import '@skeletonlabs/skeleton/styles/all.css';
-	import '../../app.postcss'; // do explict global overrides here, if needed
+
+	// do global overrides here, if needed
+	import '../../app.postcss';
 
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -22,31 +24,25 @@
 
 	//***** scroll bs
 	import { scrollStore } from '$lib/data/scrollStore';
-	let scrollTarget: any;
+
 	function scrollHandler(event: UIEvent & { currentTarget: EventTarget & HTMLDivElement }) {
 		$scrollStore = event.currentTarget.scrollTop;
-		scrollTarget = event.currentTarget;
 	}
 
+	//# issue with SkeletonUI AppShell breaks default svelte/browser scrolling behavior and requires this work around, per Skeleton team
 	afterNavigate(() => {
-		// document.getElementById('page')?.scrollTo(0, 0);
-		// scrollTarget?.scrollTo(0, 0);
+		if (!window.location.hash) {
+			document.getElementById('page')?.scrollTo(0, 0);
+		}
 	});
 </script>
 
 <Modal buttonTextSubmit="Continue" buttonPositive="variant-filled-primary" />
 
-<!-- <AppShell slotSidebarRight="md:w-1/4" slotPageHeader="px-36"> -->
 <AppShell on:scroll={scrollHandler}>
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
-
-	<!-- <svelte:fragment slot="sidebarRight">
-		<div class="h-full w-full p-10 hidden md:block bg-white">
-			<User {cookie} />
-		</div>
-	</svelte:fragment> -->
 
 	<!-- using this section to display login/user info on small screens -->
 	<svelte:fragment slot="pageHeader">

@@ -1,5 +1,5 @@
 import { supabase } from "$lib/data/supabase";
-import { toastStore } from '@skeletonlabs/skeleton';
+import { displayError } from "./displayToast";
 
 export const trackAction = async (user_id:string, action:string, event_id:string|null = null) => {
     const { error } = await supabase
@@ -9,9 +9,6 @@ export const trackAction = async (user_id:string, action:string, event_id:string
     
     if (error) {
         console.error('Error in trackAction', error);
-        toastStore.trigger({
-            message: 'Error Tracking User Action',
-            background: 'variant-filled-error',
-        });
+        displayError('Error Tracking User Action');
     }
 }
