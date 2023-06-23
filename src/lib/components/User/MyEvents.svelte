@@ -51,6 +51,6 @@
 			{/if}
 		{/each}
 	{:else}
-		You are not registered for any replay events.
+		You are not registered for any past events.
 	{/if}
 </div>
