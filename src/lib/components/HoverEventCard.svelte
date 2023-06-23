@@ -32,15 +32,15 @@
 			>{event.title}</a
 		>
 	</div>
-	<div class="relative">
-		<div class="event-date">
-			{#if event.status != 'upcoming'}<div class="text-xs">Previously aired on:</div> {/if}
-			<div class="text-sm">
-				{new Date(event.event_start).toLocaleString('en-US', {					
-					dateStyle: 'full'
-				})}
-			</div>
+	<div class="event-date">
+		{#if event.status != 'upcoming'}<div class="text-xs">Previously aired on:</div> {/if}
+		<div class="text-sm">
+			{new Date(event.event_start).toLocaleString('en-US', {					
+				dateStyle: 'full'
+			})}
 		</div>
+	</div>
+	<div class="relative">		
 		<div class="text-small mb-4">
 			<!-- TODO: get text-small working with <p> in the data-->
 			{@html event.content_speakers}

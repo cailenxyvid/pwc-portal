@@ -63,7 +63,7 @@
 			</div>
 			<div class="event-date">
 				{#if event.status != 'upcoming'}
-				Original air date: 
+				Previously aired on:
 				{new Date(event.event_start).toLocaleString('en-US', {					
 					dateStyle: 'full'
 				})}
