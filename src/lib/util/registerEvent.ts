@@ -75,16 +75,19 @@ const registerXyp = async (x_id: string) => {
     } else {
         displayError('Unknown error completing XYP registration!');
         console.error(x_reg.statusText);
+        return false;
     }
 };
 
 export const registerEvent = async (event: Event, cookie: string | undefined) => {
     if (isAlreadyRegistered(event.id)) {
+        console.error('registerEvent - User already registed. Exiting.')
         return false;
     }
     
     // this will pop the login modal if there is no cookie
     if (!buttonCheck(cookie) || !cookie) {
+        console.warn('registerEvent - cookie not found. Prompting user to enter email and exiting register process.');
         return false;
     }
     
@@ -100,7 +103,8 @@ export const registerEvent = async (event: Event, cookie: string | undefined) =>
         .eq('attendee', cookie);
 
     if (existing.data && existing.data.length > 0) {
-        return;
+        console.error('registerEvent - Found existing registration record. Exiting.')
+        return false;
     }
 
     const { data, error } = await supabase
@@ -109,7 +113,9 @@ export const registerEvent = async (event: Event, cookie: string | undefined) =>
         .select();
 
     if (error) {
-        displayError(error.message);
+        displayError('Error saving registration!');
+        console.error(error);
+        return false;
     }
     
     myEvents.set(await loadMyEvents(cookie));
@@ -120,4 +126,5 @@ export const registerEvent = async (event: Event, cookie: string | undefined) =>
     if (event.status == 'pending') {        
         displaySuccess('You are registered!');
     }
+    return true;
 };
