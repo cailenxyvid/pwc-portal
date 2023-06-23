@@ -28,8 +28,8 @@
 
 	<div class="text-md border-t border-black mt-8">Past events</div>
 	<span class="text-sm block mb-6"
-		>Need your CPE certificate from a live webcast? Access the replay, click the "CPE" icon at the
-		bottom-right, and download it instantly.</span
+		>Need your CPE certificate from the live webcast you joined? Access the past event, click the
+		"CPE" icon at the bottom-right, and download it instantly.</span
 	>
 	{#if $myReplayEvents.length > 0}
 		{#each $myReplayEvents as row}
