@@ -18,8 +18,8 @@
 	</div>
 	{#if query}
 		{#if totalResults < 1}
-			<h2 class="text-primary-500">No results found</h2>
-			<!-- todo: Maybe some helpful text or links (ie: FAQ) here?-->
+			<h2 class="text-primary-500">No results found.</h2>
+			Can’t find what you’re looking for? Try our <a href="/faq">FAQs</a>.			
 		{:else}
 			{#if upcoming.length > 0}
 				<div>
