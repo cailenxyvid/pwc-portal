@@ -41,8 +41,8 @@ export async function load({ url }) {
             config: 'english'
         });
         
-    if (upcoming.error || replay.error || past.error) {
-        console.error(upcoming.error, replay.error, past.error);
+    if (upcoming.error || replay.error || past.error || faq.error) {
+        console.error(upcoming.error, replay.error, past.error, faq.error);
         throw error(500, {
             message: 'Error getting search results!'
           });
@@ -52,6 +52,7 @@ export async function load({ url }) {
       replay: replay.data as Event[] ?? [],
       past: past.data as Event[] ?? [],
       faq: faq.data ?? [],
+      totalResults: upcoming.data.length + replay.data.length + past.data.length + faq.data.length,
       query: q ?? null
     };
 }
