@@ -62,7 +62,7 @@
 				{event.title}
 			</div>
 			<div class="event-date">
-				{#if event.status != 'upcoming'}
+				{#if event.status != 'pending'}
 				Previously aired on:
 				{new Date(event.event_start).toLocaleString('en-US', {					
 					dateStyle: 'full'
