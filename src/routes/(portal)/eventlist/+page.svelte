@@ -7,9 +7,9 @@
 </script>
 
 <div class="p-6">    
-    <h2>Past CPE Events</h2>
+    <h2 class="mb-4">Past CPE Events</h2>
     {#each list as event}
-    <div>
+    <div class="mb-2">
         <!-- <span class="w-96">
             {new Date(event.event_start).toLocaleString('en-US', {					
                 dateStyle: 'full'
