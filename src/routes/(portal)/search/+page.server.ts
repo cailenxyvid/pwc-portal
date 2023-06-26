@@ -1,10 +1,16 @@
 import type { Event } from "$lib/data/myTypes";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import { supabase } from "$lib/data/supabase";
 
 export async function load({ url }) {
     let params = await url.searchParams;
     let q = params.get('queryString') as string;
+
+    // override actual search if the user is trying to type in 'cpe' for some reason
+    if (q.toLowerCase() === 'cpe') {
+        throw redirect(303, '/eventlist');
+    }
+
     //# depends on custom search column function (event_search_cols) in postgres
     const upcoming = await supabase
         .from('event')
