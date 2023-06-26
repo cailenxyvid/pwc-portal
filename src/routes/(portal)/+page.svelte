@@ -38,9 +38,9 @@
 <Hero />
 
 <div id="mainContent" class="justify-center mb-16 pb-8">
-	<div class="w-full flex flex-row space-x-6">
+	<div class="w-full flex flex-row space-x-6" style="border: 2px solid green;">
 		<div class="grow p-8 md:p-16">
-			<h4 class="">
+			<h4 class="" style="border:2px solid red;">
 				Trust in Action is a series of candid conversations featuring leading insights on trust.<br
 				/>
 				Together, we explore how to take action on the most critical issues in business and society —
