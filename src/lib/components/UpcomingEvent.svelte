@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Event } from '$lib/data/myTypes';
 
-	import CalendarButton from './CalendarButton.svelte';
-	import RegisterButton from './RegisterButton.svelte';
+	import CalendarButton from './ActionButtons/CalendarButton.svelte';
+	import RegisterButton from './ActionButtons/RegisterButton.svelte';
 	import SocialMedia from './SocialMedia.svelte';
 
 	export let event: Event;

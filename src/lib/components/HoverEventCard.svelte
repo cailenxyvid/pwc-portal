@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Event } from '$lib/data/myTypes';
 
-	import ActionGuideButton from './ActionGuideButton.svelte';
-	import WatchNowButton from './WatchNowButton.svelte';
+	import ActionGuideButton from './ActionButtons/ActionGuideButton.svelte';
+	import WatchNowButton from './ActionButtons/WatchNowButton.svelte';
 
 	export let event: Event;
 	export let cookie: string | undefined;

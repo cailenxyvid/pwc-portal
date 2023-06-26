@@ -2,11 +2,11 @@
 	import type { PageData } from './$types';
 
 	import SocialMedia from '$lib/components/SocialMedia.svelte';
-	import CalendarButton from '$lib/components/CalendarButton.svelte';
+	import CalendarButton from '$lib/components/ActionButtons/CalendarButton.svelte';
 	import User from '$lib/components/User/User.svelte';
-	import RegisterButton from '$lib/components/RegisterButton.svelte';
-	import ActionGuideButton from '$lib/components/ActionGuideButton.svelte';
-	import WatchNowButton from '$lib/components/WatchNowButton.svelte';
+	import RegisterButton from '$lib/components/ActionButtons/RegisterButton.svelte';
+	import ActionGuideButton from '$lib/components/ActionButtons/ActionGuideButton.svelte';
+	import WatchNowButton from '$lib/components/ActionButtons/WatchNowButton.svelte';
 
 	export let data: PageData;
 
