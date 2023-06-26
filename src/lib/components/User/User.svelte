@@ -17,9 +17,7 @@
 	import { myProfile } from '$lib/data/myProfile';
 	import { scrollStore } from '$lib/data/scrollStore';
 
-	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';
-
-	import ProfileForm from './ProfileForm.svelte';
+	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';	
 
 	export let cookie: string | undefined;
 

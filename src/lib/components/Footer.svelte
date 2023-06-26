@@ -15,7 +15,7 @@
 		<div class="flex flex-row gap-4">
 			<img src="/megan-conway.jpg" alt="" class="inline h-24" />
 			<div>
-				<h2>Megan Conway Bley </h2>
+				<h2>Megan Conway Bley</h2>
 				<div>Managing Director, Trust Leadership Institute</div>
 			</div>
 		</div>
