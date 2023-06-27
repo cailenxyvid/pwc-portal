@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
+	import User from '$lib/components/User/User.svelte';
 	import SocialMedia from '$lib/components/SocialMedia.svelte';
 	import CalendarButton from '$lib/components/ActionButtons/CalendarButton.svelte';
-	import User from '$lib/components/User/User.svelte';
 	import RegisterButton from '$lib/components/ActionButtons/RegisterButton.svelte';
 	import ActionGuideButton from '$lib/components/ActionButtons/ActionGuideButton.svelte';
 	import WatchNowButton from '$lib/components/ActionButtons/WatchNowButton.svelte';
@@ -41,7 +41,7 @@
 	<div class="flex flex-col md:flex-row w-full">
 		<div class="flex flex-col justify-start p-8 md:p-16">
 			<div class="p-1 mb-4">
-				<a href="/" class="unstyled">				
+				<a href="/" class="unstyled">
 					<i class="fa-solid fa-turn-down-left" />
 					Return to Webcast Library
 				</a>
@@ -63,15 +63,15 @@
 			</div>
 			<div class="event-date">
 				{#if event.status != 'pending'}
-				Previously aired on:
-				{new Date(event.event_start).toLocaleString('en-US', {					
-					dateStyle: 'full'
-				})}
-				{:else}				
-				{new Date(event.event_start).toLocaleString('en-US', {
-					timeStyle: 'short',
-					dateStyle: 'full'
-				})} ET
+					Previously aired on:
+					{new Date(event.event_start).toLocaleString('en-US', {
+						dateStyle: 'full'
+					})}
+				{:else}
+					{new Date(event.event_start).toLocaleString('en-US', {
+						timeStyle: 'short',
+						dateStyle: 'full'
+					})} ET
 				{/if}
 			</div>
 			{#if event.status == 'pending'}
@@ -87,9 +87,9 @@
 						<CalendarButton {event} />
 					</span>
 				</div>
-			{:else if event.status === 'replay'}<h4 class="text-error-500 my-4">
-					This event does not qualify for CPE credit.
-				</h4>{/if}
+			{:else if event.status === 'replay'}
+				<h4 class="text-error-500 my-4">This event does not qualify for CPE credit.</h4>
+			{/if}
 
 			<div class="event-replay-notice font-bold mb-2">
 				{#if event.status === 'replay'}
@@ -103,7 +103,7 @@
 				<div class="underline font-extrabold">Featured speakers:</div>
 				{@html event.content_speakers}
 			</span>
-			<p class="prose2 text-sm">
+			<p class="text-sm">
 				{#if event.status === 'pending'}
 					{@html event.content}
 				{:else}

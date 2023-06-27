@@ -1,29 +1,28 @@
 <script lang="ts">
+	import type { Profile, AssociativeArray } from '$lib/data/myTypes';	
+
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
 	import { supabase } from '$lib/data/supabase';
 
 	import { loadMyEvents } from '$lib/util/loadMyEvents';
-	import { displayError, displayWarning, displaySuccess } from '$lib/util/displayToast';
+	import { displayError, displaySuccess } from '$lib/util/displayToast';
 	import { isProfileComplete } from '$lib/util/validationHelpers';
+
+	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
+	import { myProfile } from '$lib/data/myProfile';
+	import { scrollStore } from '$lib/data/scrollStore';
 
 	import EditProfile from './EditProfile.svelte';
 	import MyEvents from './MyEvents.svelte';
 	import Loading from '../Loading.svelte';
 	import LoginForm from './LoginForm.svelte';
 
-	import { myEvents, myReplayEvents } from '$lib/data/myEvents';
-	import { myProfile } from '$lib/data/myProfile';
-	import { scrollStore } from '$lib/data/scrollStore';
-
-	import type { MyEvent, Profile, AssociativeArray } from '$lib/data/myTypes';	
-
 	export let cookie: string | undefined;
 
 	const populateUserEvents = async () => {
-		if (!cookie) {
-			console.error('Missing cookie in User.populateUserEvents!');
+		if (!cookie) {			
 			return;
 		}
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.
@@ -84,15 +83,13 @@
 		}
 	};
 
-	const loadProfile = async (email: string | null = null) => {
+	const loadProfile = async () => {
 		if (cookie) {
 			let { data } = await supabase.from('attendee').select().eq('id', cookie).single();
 			if (data) {
 				$myProfile = data as Profile;
 				return data as Profile;
-			} else {
-				// setCookie(''); //# handle incorrect cookies from before auth refactor (and now the damn "reset user" button)
-				//#
+			} else {				
 				console.error('bad cookie - user no longer exists!');
 				window.location.replace('/logout');
 			}
