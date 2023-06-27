@@ -11,8 +11,7 @@
 
 	onMount(() => {
 		if (window?.location.hash) {
-			target = window.location.hash;
-			console.log(target)
+			target = window.location.hash;			
 		}
 	});
 	$: ({ faqs } = data);

@@ -1,4 +1,4 @@
-<div class="mt-12 bg-[#2d2d2d] p-12 text-white">
+<div class="mt-12 bg-[#2d2d2d] text-white p-8 md:px-12 xl:px-16">
     <div>
         Have questions? Want to learn more? Get in touch with our team. <a
             href="mailto:us_trust_leadership_institute_inbox@pwc.com">Email us</a
