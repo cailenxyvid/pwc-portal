@@ -51,7 +51,9 @@
 			</div>
 			<div class="flex justify-between mb-6">
 				<div>
+					{#if event.status !== 'pending'}
 					<ActionGuideButton {event} {cookie} />
+					{/if}
 					{#if event.status === 'replay'}
 						<WatchNowButton {event} {cookie} />
 					{/if}
