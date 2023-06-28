@@ -48,7 +48,7 @@
 				business, government and academia.
 			</h4>
 			{#if pendingEvents.length === 0}
-				<NoUpcomingEvent />
+				<NoUpcomingEvent {cookie} event={pastEvents[0]} />
 			{:else}
 				{#each pendingEvents as event}
 					<UpcomingEvent {event} {cookie} />
