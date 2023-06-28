@@ -361,8 +361,6 @@
 				<option value="Zimbabwe">Zimbabwe</option>
 			</select>
 		</label>
-		<button type="submit" class="bg-primary-500 text-white rounded-sm p-2 mt-4 w-full"
-			>Continue</button
-		>
+		<button type="submit" class="btn bg-primary-500 text-white mt-4">Continue</button>
 	</form>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Profile, AssociativeArray } from '$lib/data/myTypes';	
+	import type { Profile, AssociativeArray } from '$lib/data/myTypes';
 
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -22,7 +22,7 @@
 	export let cookie: string | undefined;
 
 	const populateUserEvents = async () => {
-		if (!cookie) {			
+		if (!cookie) {
 			return;
 		}
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.
@@ -89,7 +89,7 @@
 			if (data) {
 				$myProfile = data as Profile;
 				return data as Profile;
-			} else {				
+			} else {
 				console.error('bad cookie - user no longer exists!');
 				window.location.replace('/logout');
 			}
@@ -120,7 +120,7 @@
 					behavior: 'smooth'
 				});
 			}}
-			class="btn variant-filled-primary fixed isolate z-20 top-20 mt-2 w-full lg:w-64 lg:inline-block"
+			class="btn bg-primary-500 text-white fixed isolate z-20 top-20 mt-2 w-full lg:w-64 lg:inline-block"
 		>
 			Return to top
 		</button>
