@@ -19,7 +19,7 @@
 	{#if query}
 		{#if totalResults < 1}
 			<h2 class="text-primary-500">No results found.</h2>
-			Can’t find what you’re looking for? Try our <a href="/faq">FAQs</a> or browse
+			Can’t find what you’re looking for? Try our<a href="/faq">FAQs</a> or browse
 			<a href="/eventlist">past events</a>.
 		{:else}
 			{#if upcoming.length > 0}
@@ -61,7 +61,9 @@
 					<h4>{faq.length} results found.</h4>
 					{#each faq as f}
 						<div class="p-2">
-							<a href="/faq/#faq-{f.id}" class="block text-xl">{@html highlight(f.title, query)}</a>
+							<a href="/faq/#faq-{f.id}" class=" unstyled block text-xl"
+								>{@html highlight(f.title, query)}</a
+							>
 							<div class="text-sm">{@html highlight(f.content, query)}</div>
 						</div>
 					{/each}
