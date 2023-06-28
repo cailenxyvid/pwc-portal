@@ -83,7 +83,7 @@
 				<div
 					class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8"
 				>
-					<SocialMedia {event} />
+					<!-- <SocialMedia {event} /> -->
 					<RegisterButton {event} {cookie} />
 					<span class="relative">
 						<CalendarButton {event} />
