@@ -21,7 +21,7 @@
 
 <div class="h-full p-8">
 	<h2 class="text-primary-500 mb-8">Frequently Asked Questions</h2>
-	<Accordion autocollapse>
+	<Accordion>
 		{#each faqs as faq, i}
 			<div class="{i < faqs.length - 1 ? 'border-b border-b-[#dedede]' : ''} mb-2">
 				<AccordionItem open={target === '#faq-' + faq.id}>
