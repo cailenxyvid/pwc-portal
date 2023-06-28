@@ -28,19 +28,20 @@
 		{/if}
 	</div>
 	<div>
-		<a href="/event/{event.id}" class="unstyled text-xl font-bold text-primary-500 hover:no-underline"
-			>{event.title}</a
+		<a
+			href="/event/{event.id}"
+			class="unstyled text-xl font-bold text-primary-500 hover:no-underline">{event.title}</a
 		>
 	</div>
 	<div class="event-date">
 		{#if event.status != 'upcoming'}<div class="text-xs">Previously aired on:</div> {/if}
 		<div class="text-sm">
-			{new Date(event.event_start).toLocaleString('en-US', {					
+			{new Date(event.event_start).toLocaleString('en-US', {
 				dateStyle: 'full'
 			})}
 		</div>
 	</div>
-	<div class="relative">		
+	<div class="relative">
 		<div class="text-small mb-4">
 			<!-- TODO: get text-small working with <p> in the data-->
 			{@html event.content_speakers}
@@ -51,7 +52,7 @@
 			</div>
 		{/if}
 	</div>
-	
+
 	<div class="text-right w-full mt-auto">
 		<button
 			class=""
@@ -62,7 +63,7 @@
 				showHover = false;
 			}}
 		>
-			<i class="fa-light fa-circle-plus text-primary-500 text-3xl" />
+			<i class="fa-light fa-circle-plus text-primary-500 text-3xl hover:text-[#2d2d2d]" />
 		</button>
 	</div>
 </div>
