@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Profile, AssociativeArray } from '$lib/data/myTypes';	
+	import type { Profile, AssociativeArray } from '$lib/data/myTypes';
 
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -22,7 +22,7 @@
 	export let cookie: string | undefined;
 
 	const populateUserEvents = async () => {
-		if (!cookie) {			
+		if (!cookie) {
 			return;
 		}
 		await loadProfile(); //# hate this. we'll end up calling this function many times. need to re-wire into one central promise.
@@ -89,7 +89,7 @@
 			if (data) {
 				$myProfile = data as Profile;
 				return data as Profile;
-			} else {				
+			} else {
 				console.error('bad cookie - user no longer exists!');
 				window.location.replace('/logout');
 			}
@@ -103,7 +103,7 @@
 	});
 
 	let showForm = false;
-	let showCultCall = true;
+	let showCultCall = false;
 	$: if ($myProfile && !isProfileComplete()) {
 		showForm = true;
 	}
@@ -120,7 +120,7 @@
 					behavior: 'smooth'
 				});
 			}}
-			class="btn variant-filled-primary fixed isolate z-20 top-20 mt-2 w-full lg:w-64 lg:inline-block"
+			class="btn variant-filled-primary fixed isolate z-20 top-20 mt-2 w-full xl:w-64 xl:inline-block"
 		>
 			Return to top
 		</button>
@@ -128,24 +128,26 @@
 
 	{#if cookie && cookie.length > 0}
 		{#if $myProfile && !showForm}
-			<strong class="text-md text-primary-500 text-center"
-				>Welcome {$myProfile.first_name ?? $myProfile.email} {$myProfile.last_name ?? ''}</strong
-			>
-
-			<!-- FOR TESTING ONLY - REMOVE THIS -->
-			<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
-			<!-- <a href="/logout" class="btn variant-filled-warning">LOGOUT</a> -->
-			<!-- FOR TESTING ONLY - REMOVE THIS -->
-
-			<div class="text-sm">
-				<button
-					on:click={() => {
-						showForm = !showForm;
-					}}
+			<div class="pl-2">
+				<strong class="text-md text-primary-500 text-center"
+					>Welcome {$myProfile.first_name ?? $myProfile.email} {$myProfile.last_name ?? ''}</strong
 				>
-					Edit my Information
-					<i class="fa fa-chevron-right" />
-				</button>
+
+				<!-- FOR TESTING ONLY - REMOVE THIS -->
+				<button class="btn block variant-filled-error" on:click={resetUser}>RESET USER</button>
+				<!-- <a href="/logout" class="btn variant-filled-warning">LOGOUT</a> -->
+				<!-- FOR TESTING ONLY - REMOVE THIS -->
+
+				<div class="text-sm">
+					<button
+						on:click={() => {
+							showForm = !showForm;
+						}}
+					>
+						Edit my Information
+						<i class="fa fa-chevron-right" />
+					</button>
+				</div>
 			</div>
 			<MyEvents />
 		{:else}

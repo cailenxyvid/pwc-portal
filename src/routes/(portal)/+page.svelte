@@ -55,7 +55,7 @@
 				{/each}
 			{/if}
 		</div>
-		<div class="hidden xl:inline w-96 bg-[#dedede] p-6">
+		<div class="hidden xl:inline w-96 bg-[#dedede]">
 			<User {cookie} />
 		</div>
 	</div>
