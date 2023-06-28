@@ -11,7 +11,7 @@
 				<img src="/jonathan-block.jpg" alt="" class="inline h-24" />
 				<div>
 					<h3>Jonathan Block</h3>
-					<div>Communications and Change Leader, PwC US</div>
+					<div>Managing Director, Trust Leadership Institute</div>
 				</div>
 			</div>
 			<div class="flex flex-row gap-4">
