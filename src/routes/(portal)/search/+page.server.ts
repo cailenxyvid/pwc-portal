@@ -7,7 +7,7 @@ export async function load({ url }) {
     let q = params.get('queryString') as string;
 
     // override actual search if the user is trying to type in 'cpe' for some reason
-    if (q.toLowerCase().trim() === 'cpe') {
+    if (q && q.toLowerCase().trim() === 'cpe') {
         throw redirect(303, '/eventlist');
     }
 
