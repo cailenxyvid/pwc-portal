@@ -1,22 +1,23 @@
 <div class="mt-12 bg-[#2d2d2d] text-white p-8">
 	<div class="mx-auto container">
-		<div>
+		<hr class="border-[#dedede] mb-2" />
+		<div class="text-xl mb-16">
 			Have questions? Want to learn more? Get in touch with our team. <a
 				href="mailto:us_trust_leadership_institute_inbox@pwc.com">Email us</a
 			>.
 		</div>
-		<div class="flex flex-col md:flex-row justify-between gap-4 my-4">
+		<div class="flex flex-row flex-wrap gap-4 lg:gap-16 xl:gap-32 mb-8">
 			<div class="flex flex-row gap-4">
 				<img src="/jonathan-block.jpg" alt="" class="inline h-24" />
-				<div class="t">
-					<h2>Jonathan Block</h2>
-					<div>Communications and Change Leader, PwC US</div>
+				<div>
+					<h3>Jonathan Block</h3>
+					<div>Managing Director, Trust Leadership Institute</div>
 				</div>
 			</div>
 			<div class="flex flex-row gap-4">
 				<img src="/megan-conway.jpg" alt="" class="inline h-24" />
 				<div>
-					<h2>Megan Conway Bley</h2>
+					<h3>Megan Conway Bley</h3>
 					<div>Managing Director, Trust Leadership Institute</div>
 				</div>
 			</div>
