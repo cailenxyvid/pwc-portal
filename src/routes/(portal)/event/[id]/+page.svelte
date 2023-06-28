@@ -7,6 +7,7 @@
 	import RegisterButton from '$lib/components/ActionButtons/RegisterButton.svelte';
 	import ActionGuideButton from '$lib/components/ActionButtons/ActionGuideButton.svelte';
 	import WatchNowButton from '$lib/components/ActionButtons/WatchNowButton.svelte';
+	import CreateProfile from '$lib/components/User/CreateProfile.svelte';
 
 	export let data: PageData;
 
@@ -41,30 +42,44 @@
 	<div class="flex flex-col md:flex-row w-full">
 		<div class="flex flex-col justify-start p-8 md:p-16">
 			<div class="p-1 mb-4">
-				<a href="/" class="unstyled">
+				<a href="/" class="unstyled hover:text-primary-500">
 					<i class="fa-solid fa-turn-down-left" />
 					Return to Webcast Library
 				</a>
 			</div>
+			<div class="event-replay-notice font-bold mb-4">
+				{#if event.status === 'replay'}
+					<h4 class="text-error-500">This event does not qualify for CPE credit.</h4>
+					<div>The live session has concluded. View the webcast replay!</div>
+				{/if}
+				{#if event.status === 'past'}
+					The live session has concluded, and this session is not available for replay.
+				{/if}
+			</div>
 			<div class="w-full mb-2">
 				<img src={event.image_url} alt={event.title} class="w-full" />
 			</div>
-			<div class="flex justify-between mb-6">
-				<div>
-					{#if event.status !== 'pending'}
-					<ActionGuideButton {event} {cookie} />
-					{/if}
-					{#if event.status === 'replay'}
-						<WatchNowButton {event} {cookie} />
-					{/if}
-				</div>
+			<div class="event-register mt-2 mb-4 flex flex-row flex-wrap justify-between">
+				{#if event.status !== 'pending'}
+					<div>
+						<ActionGuideButton {event} {cookie} />
+						{#if event.status === 'replay'}
+							<WatchNowButton {event} {cookie} />
+						{/if}
+					</div>
+				{:else}
+					<div class="relative">
+						<RegisterButton {event} {cookie} />
+						<CalendarButton {event} />
+					</div>
+				{/if}
 				<SocialMedia {event} />
 			</div>
 			<div class="text-2xl mb-2 text-primary-500">
 				{event.title}
 			</div>
-			<div class="event-date">
-				{#if event.status != 'pending'}
+			<div class="event-date mb-4">
+				{#if event.status !== 'pending'}
 					Previously aired on:
 					{new Date(event.event_start).toLocaleString('en-US', {
 						dateStyle: 'full'
@@ -76,42 +91,21 @@
 					})} ET
 				{/if}
 			</div>
-			{#if event.status == 'pending'}
-				<div class="border-t border-t-black">
-					{@html event.content_cpe}
-				</div>
-				<div
-					class="event-register mt-6 mb-4 flex justify-between flex-col md:flex-row gap-1 md:gap-8"
-				>
-					<!-- <SocialMedia {event} /> -->
-					<RegisterButton {event} {cookie} />
-					<span class="relative">
-						<CalendarButton {event} />
-					</span>
-				</div>
-			{:else if event.status === 'replay'}
-				<h4 class="text-error-500 my-4">This event does not qualify for CPE credit.</h4>
-			{/if}
 
-			<div class="event-replay-notice font-bold mb-2">
-				{#if event.status === 'replay'}
-					The live session has concluded. View the webcast replay!
-				{/if}
-				{#if event.status === 'past'}
-					The live session has concluded, and this session is not available for replay.
-				{/if}
-			</div>
 			<span class="mb-4">
 				<div class="underline font-extrabold">Featured speakers:</div>
 				{@html event.content_speakers}
 			</span>
-			<p class="text-sm">
-				{#if event.status === 'pending'}
+			{#if event.status !== 'pending'}
+				{@html event.content_replay}
+			{:else}
+				<div class="prose2 border-b border-b-black mb-4 pb-8">
 					{@html event.content}
-				{:else}
-					{@html event.content_replay}
-				{/if}
-			</p>
+				</div>
+				<div class="text-sm">
+					{@html event.content_cpe}
+				</div>
+			{/if}
 		</div>
 		<div class="hidden md:inline w-1/3 bg-[#dedede] p-6">
 			<User {cookie} />
