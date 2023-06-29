@@ -23,15 +23,17 @@
             update(); // on success, trigger default behavior
         };
 }}> -->
-<form action="/login" id="loginForm" method="post" on:submit|preventDefault={validate}>
-	<input
-		type="email"
-		name="email"
-		id="email"
-		bind:value={email}
-		placeholder="Email address"
-		class="sm:w-2/4 md:w-64 md:mb-2"
-	/>
-	{#if showError}<div class="variant-filled-error p-1 my-1">Please enter a valid email address.</div>{/if}
-	<button type="submit" class="btn bg-primary-500 text-white">Continue</button>	
-</form>
+<div class="p-2">
+	<form class="flex flex-row xl:flex-col gap-4" action="/login" id="loginForm" method="post" on:submit|preventDefault={validate}>
+		<input
+			type="email"
+			name="email"
+			id="email"
+			bind:value={email}
+			placeholder="Email address"
+			class=""
+		/>
+		{#if showError}<div class="variant-filled-error p-1 my-1">Please enter a valid email address.</div>{/if}
+		<button type="submit" class="btn bg-primary-500 text-white">Continue</button>	
+	</form>
+</div>
