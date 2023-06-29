@@ -60,9 +60,9 @@
 		</div>
 	</div>
 
-	<div class="p-8 pt-0 mt-4 md:p-16 ">
+	<div class="px-8 pt-0 mt-4 md:p-16 ">
 		<div class="border-t border-black"></div>
-		<h2 class="my-12">Past events</h2>
+		<h2 class="my-4">Past events</h2>
 		<div
 			class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-x-10 lg:gap-x-20 2xl:gap-x-30 gap-y-5 lg:gap-y-10 2xl:gap-y-20"
 		>
