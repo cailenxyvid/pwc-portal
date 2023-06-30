@@ -24,6 +24,7 @@
         };
 }}> -->
 <div class="p-2">
+	<div class="mb-1">Please enter your email to continue with registration.</div>
 	<form class="flex flex-row xl:flex-col gap-4" action="/login" id="loginForm" method="post" on:submit|preventDefault={validate}>
 		<input
 			type="email"

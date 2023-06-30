@@ -157,7 +157,7 @@
 			<EditProfile profile={$myProfile} {updateProfile} />
 			<!-- <ProfileForm /> -->
 		{/if}
-	{:else}
+	{:else}	
 		<LoginForm />
 	{/if}
 </div>
