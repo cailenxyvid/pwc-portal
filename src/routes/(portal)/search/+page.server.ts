@@ -7,45 +7,36 @@ export async function load({ url }) {
     let q = params.get('queryString') as string;
 
     // override actual search if the user is trying to type in 'cpe' for some reason
-    if (q && q.toLowerCase().trim() === 'cpe') {
+    if (q && (q.toLowerCase().trim() === 'cpe' || q.toLowerCase().trim() === 'trust')) {
         throw redirect(303, '/eventlist');
     }
 
-    //# depends on custom search column function (event_search_cols) in postgres
     const upcoming = await supabase
         .from('event')
         .select()
-        .textSearch('pending_event_search_cols', q, {
-            type: 'plain',
-            config: 'english'
-        })
+        .or('title.ilike.*'+q+'*,content.ilike.*'+q+'*,content_speakers.ilike.*'+q+'*')
         .eq('status', 'pending')
         .order('event_start', {ascending: false});
+
     const replay = await supabase
         .from('event')
         .select()
-        .textSearch('past_event_search_cols', q, {
-            type: 'plain',
-            config: 'english'
-        })
+        .or('title.ilike.*'+q+'*,content_replay.ilike.*'+q+'*,content_speakers.ilike.*'+q+'*')
         .eq('status', 'replay')
         .order('event_start', {ascending: false});   
+
     const past = await supabase
         .from('event')
         .select()
-        .textSearch('past_event_search_cols', q, {
-            type: 'plain',
-            config: 'english'
-        })
+        .or('title.ilike.*'+q+'*,content_replay.ilike.*'+q+'*,content_speakers.ilike.*'+q+'*')
         .eq('status', 'past')
         .order('event_start', {ascending: false});     
+
     const faq = await supabase
         .from('faq')
         .select()
-        .textSearch('faq_search_cols', q, {
-            type: 'plain',
-            config: 'english'
-        });
+        .or('title.ilike.*'+q+'*,content.ilike.*'+q+'*')
+        .order('display_order');
         
     if (upcoming.error || replay.error || past.error || faq.error) {
         console.error(upcoming.error, replay.error, past.error, faq.error);
