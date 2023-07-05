@@ -28,11 +28,8 @@
 			setTimeout(() => {
 				// this is helpful for the modal login prompt and to prevent rapid clicks, but could be rethought
 				disableButton = false;
-			}, 3000);
-			// would prefer something more stateful like the following, but would need to rethink flow to include pending and error states
-			// alreadyRegistered = await registerEvent(event, cookie) ?? false;
-			alreadyRegistered = true;
-			registerEvent(event, cookie);
+			}, 3000);			
+			alreadyRegistered = await registerEvent(event, cookie) ?? false;			
 		}}
 	>
 		Register
