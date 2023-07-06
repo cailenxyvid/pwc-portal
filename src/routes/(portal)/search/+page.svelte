@@ -62,7 +62,7 @@
 					<h4>{faq.length} results found.</h4>
 					{#each faq as f}
 						<div class="p-2">
-							<a href="/faq/#faq-{f.id}" class=" unstyled block text-xl"
+							<a href="/faq/#faq-{f.id}" class="unstyled block text-xl"
 								>{@html highlight(f.title, query)}</a
 							>
 							<div class="text-sm">{@html highlight(f.content, query)}</div>

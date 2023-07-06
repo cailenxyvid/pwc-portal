@@ -3,7 +3,7 @@
 		<hr class="border-[#dedede] mb-2" />
 		<div class="text-xl mb-16">
 			Have questions? Want to learn more? Get in touch with our team. <a
-				href="mailto:us_trust_leadership_institute_inbox@pwc.com">Email us</a
+				href="mailto:us_trust_leadership_institute_inbox@pwc.com" class="unstyled text-primary-500">Email us</a
 			>.
 		</div>
 		<div class="flex flex-row flex-wrap gap-4 lg:gap-16 xl:gap-32 mb-8">
