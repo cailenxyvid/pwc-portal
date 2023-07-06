@@ -110,7 +110,7 @@
 	$: showCultCall = $scrollStore > 300;
 </script>
 
-<div id="userPane" class="bg-[#dedede] p-2 xl:w-64" in:fade>
+<div id="userPane" class="bg-[#dedede] py-2 xl:w-64" in:fade>
 	{#if showCultCall}
 		<button
 			on:click={() => {
