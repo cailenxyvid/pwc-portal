@@ -32,7 +32,7 @@
 	<a href="https://www.linkedin.com/shareArticle?mini=true&url={url}" target="_blank"
 		><i class="fa-brands fa-linkedin text-[#2d2d2d] hover:text-[#d04a02] transition-colors" /></a
 	>
-	<a href='mailto:?subject=Link%20to%20event&body=Here%20is%20the%20link%20to%20the%20event%20page%20{url}'>
+	<a href='mailto:?subject=Trust%20Leadership%20Institute%3A%20{event.title}&body=Check%20out%20this%20event%20on%20the%20Trust%20Leadership%20Institute%20portal%3A%20{url}'>
 		<i class="fa fa-envelope text-[#2d2d2d] hover:text-[#d04a02] transition-colors"></i>
 	</a>
 	<!-- svelte-ignore a11y-invalid-attribute :( -->
