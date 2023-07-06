@@ -37,7 +37,7 @@
 
 <Hero />
 
-<div id="mainContent" class="justify-center mb-16 pb-8">
+<div id="mainContent" class="justify-center mt-4 mb-16 pb-8">
 	<div class="w-full flex flex-row space-x-6">
 		<div class="grow p-8 md:p-16">
 			<h4 class="">
