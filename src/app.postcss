@@ -38,13 +38,21 @@ select {
 	@apply border-[#2d2d2d];
 }
 
-/* TODO: figure out right way to override skeleton css */
 a {
 	text-decoration: none;
+	text-decoration-line: none;
 }
 a:hover {
 	text-decoration: underline;
 }
+
+/* absurdly specific override to defeat skeletonUI because they don't provide a proper hook (selector class) for links */
+a:not(.unstyled):not(.permalink):is(:not(.prose *)):not(.btn):not(.btn-icon):not(.app-bar a):not(.logo-item):not(a.card):not(
+			.list-nav a
+		) {
+		@apply text-primary-500 dark:text-primary-500 hover:underline;
+		text-decoration-line: none;
+	}
 
 .btn.bg-primary-500:hover {
 	background: #2d2d2d;
