@@ -37,7 +37,7 @@
 				<SocialMedia {event} />
 			</div>
 			<div class="prose2 border-b border-b-black mb-4 pb-8">
-				{@html event.content}
+				{@html event.content_replay}
 			</div>
 			<div class="text-sm">
 				{@html event.content_cpe}
